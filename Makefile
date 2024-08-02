@@ -6,13 +6,13 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/08/02 18:25:42 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/08/02 20:56:26 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COMMANDS #
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 RM				= rm -f
 RM_DIR			= rm -rf
 
@@ -20,7 +20,7 @@ RM_DIR			= rm -rf
 SRC_DIR			= src
 OBJ_DIR			= objects
 INC_DIR			= includes
-TEST_DIR		= testing
+TEST_DIR		= test_folder
 LIB_DIR			= libft
 LIBFT			= libft.a
 LIB_TEST_DIR	= testing
@@ -48,9 +48,9 @@ BONUS_OBJS		= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_NAME))
 BONUS_MAIN_OBJ	= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_MAIN))
 
 # TEST #
-TEST_SRC_NAME	= test_parser.C
+TEST_SRC_NAME	= test_string_parser.c test_list_parser.c test_main.c
 TEST_OBJ_NAME	= $(notdir $(TEST_SRC_NAME:.c=.o))
-TEST_OBJS		= $(addprefix $(TEST_DIR)/,$(TEST_OBJ_NAME))
+TEST_OBJS		= $(addprefix $(OBJ_DIR)/,$(TEST_OBJ_NAME))
 
 
 # COLORS #
@@ -74,7 +74,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
 	@mkdir -p $(INC_DIR)
-	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -o $@
 
 $(OBJ_DIR):
@@ -94,7 +93,9 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
+	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
+	@make fclean -s -C $(LIB_TEST_DIR)
 	@echo "$(C_RED)Cleaned $(NAME) program!$(C_DEF)"
 
 re: fclean all
@@ -107,17 +108,18 @@ bonus: $(BONUS_OBJS) $(BONUS_MAIN_OBJ)
 
 test: $(OBJS) $(TEST_OBJS)
 	@make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(OBJS) $(TEST_OBJS) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(TEST_NAME)
-	@echo "============= TEST COMPILED ============="
-	@./test
+	@make all -s -C ./$(LIB_TEST_DIR)/
+	@$(CC) $(CFLAGS) $(OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -L./$(LIB_TEST_DIR) -ltest -o $(TEST_NAME)
+	@echo "=================== TEST COMPILED ==================="
+	@./$(TEST_NAME)
 	@echo
 
 test_bonus: $(BONUS_OBJS) $(TEST_OBJS)
 	@make all -s -C ./$(LIB_DIR)/
-	@make all -s -C ./$(LIBTEST_DIR)/
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(TEST_OBJS) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -L./$(LIB_TEST_DIR) ./&(LIB_TEST_DIR)/$(TEST_LIB)-o $(TEST_NAME)
-	@echo "============= TEST COMPILED ============="
-	@./test
+	@make all -s -C ./$(LIB_TEST_DIR)/
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -L./$(LIB_TEST_DIR) -ltest -o $(TEST_NAME)
+	@echo "=================== TEST COMPILED ==================="
+	@./$(TEST_NAME)
 	@echo
 
 .PHONY: all bonus clean fclean re test test_bonus .c.o

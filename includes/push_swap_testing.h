@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   push_swap_testing.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 03:25:00 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 20:48:01 by mzurera-         ###   ########.fr       */
+/*   Created: 2024/08/02 18:59:55 by mzurera-          #+#    #+#             */
+/*   Updated: 2024/08/02 20:34:42 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PUSH_SWAP_TESTING
+# define PUSH_SWAP_TESTING
+
+#include "../libft/libft.h"
 #include "push_swap.h"
+#include "../testing/includes/ft_testing.h"
 
-t_stack	*init_stack(int amount_of_nums)
-{
-	t_stack			*stack;
+void	assert_stack(t_stack *stack_a, t_stack *stack_b);
 
-	if (amount_of_nums == 0)
-		return (NULL);
-	stack = malloc(sizeof(t_stack));
-	if (stack == NULL)
-		return (NULL);
-	stack->size = amount_of_nums;
-	stack->list = malloc(amount_of_nums * sizeof(int));
-	return (stack);
-}
+void	test_string_parser(void);
 
-void	free_stack(t_stack *stack)
-{
-	free(stack->list);
-	free(stack);
-}
+void    test_list_parser(void);
+
+#endif /* PUSH_SWAP_TESTING */

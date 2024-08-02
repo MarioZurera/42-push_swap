@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:24:28 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 18:26:35 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 19:17:46 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include "../libft/libft.h"
 # include "../libft/colors.h"
 # include <limits.h>
+# include <stdbool.h>
 
 typedef struct  stack
 {
-    int             *list;
     unsigned int    size;
+    int             *list;
 }   t_stack;
 
 t_stack	*init_stack(int amount_of_nums);
