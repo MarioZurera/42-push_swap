@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:46:01 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 03:27:30 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 18:00:39 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int is_correct_format_number(char *num)
 	return (1);
 }
 
-static int	add_number(t_stack stack, int index, char *str_num)
+static int	add_number(t_stack *stack, int index, char *str_num)
 {
 	int	num;
 	
-	if (!is_correct_format_number(stack, str_num))
+	if (!is_correct_format_number(str_num))
 	{
 		free(stack);
 		return (0);
@@ -43,26 +43,27 @@ static int	add_number(t_stack stack, int index, char *str_num)
 		free_stack(stack);
 		return (0);
 	}
-	stack.list[index] = num;
+	stack->list[index] = num;
 	return (1);
 }
 
-static t_stack	parse_string(char *str)
+static t_stack	*parse_string(char *str)
 {
 	int		i;
 	int		j;
 	int		index;
 	t_stack	*stack;
 
-	init_stack(ft_count_words(str));
+	
+	stack = init_stack(ft_count_words(str));
 	j = 0;
 	index = 0;
 	while (str[j])
 	{
-		while (str[j] && str[j] == ' ')
+		while (str[j] && ft_isspace(str[j]))
 			j++;
 		i = j;
-		while (str[j] && str[j] != ' ')
+		while (str[j] && !ft_isspace(str[j]))
 			j++;
 		str[j++] = '\0';
 		if (str[j - 1] == '\0')
@@ -75,11 +76,11 @@ static t_stack	parse_string(char *str)
 	return (stack);
 }
 
-static t_stack	parse_list(int argc, char **argv)
+static t_stack	*parse_list(int argc, char **argv)
 {
 	int		i;
 	int		index;
-	t_stack	stack;
+	t_stack	*stack;
 
 	stack = init_stack(argc - 1);
 	i = 0;
@@ -94,12 +95,11 @@ static t_stack	parse_list(int argc, char **argv)
 	return (stack);
 }
 
-t_stack	parse_numbers(int argc, char **argv)
+t_stack	*parse_numbers(int argc, char **argv)
 {
-	if (argc < 2)
-		return (NULL);
 	if (argc == 2)
 		return (parse_string(argv[1]));
 	if (argc > 2)
 		return (parse_list(argc, argv));
+	return (NULL);
 }

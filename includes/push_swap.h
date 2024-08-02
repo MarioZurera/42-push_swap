@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:24:28 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 03:28:38 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:43:44 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 # define PIPEX_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include <sys/wait.h>
+#include <limits.h>
 
 enum e_error_code
 {
@@ -36,7 +31,11 @@ typedef struct  stack
     unsigned int    size;
 }   t_stack;
 
-t_stack	parse_numbers(int argc, char **argv);
+t_stack	*init_stack(int amount_of_nums);
+
+void	free_stack(t_stack *stack);
+
+t_stack	*parse_numbers(int argc, char **argv);
 
 int		main(int argc, char **argv);
 

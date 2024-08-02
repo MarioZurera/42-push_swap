@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 03:25:00 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 18:01:09 by mzurera-         ###   ########.fr       */
+/*   Created: 2024/08/02 18:06:10 by mzurera-          #+#    #+#             */
+/*   Updated: 2024/08/02 18:09:12 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stack(int amount_of_nums)
+static void	print_error(void)
 {
-	t_stack			*stack;
-
-
-	stack = malloc(sizeof(t_stack));
-	if (stack == NULL)
-		return (NULL);
-	stack->size = amount_of_nums;
-	stack->list = malloc(amount_of_nums * sizeof(int));
-	return (stack);
+	ft_printf("Error.\n");
+	exit(1);
 }
 
-void	free_stack(t_stack *stack)
+void	check_stack(t_stack *stack)
 {
-	free(stack->list);
-	free(stack);
+	if (stack == NULL || stack->list == NULL)
+		print_error();
 }

@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:27:32 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 03:28:13 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 18:21:26 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
-	parse_numbers(argc, argv);
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	stack_a = parse_numbers(argc, argv);
+	check_stack(stack_a)
+	stack_b = init_stack(stack_a->size);
+	check_stack(stack_b);
+	
 	// Lexer argv and prepare the input for the algorithm
 	// Algorithm magic
 	return (0);
