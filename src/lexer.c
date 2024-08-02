@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:46:01 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 22:37:36 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:42:51 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	add_number(t_stack *stack, int index, char *str_num)
 	return (1);
 }
 
-static t_stack	*parse_string(char *str)
+static t_stack	*tokenize_string(char *str)
 {
 	int		i;
 	int		j;
@@ -73,7 +73,7 @@ static t_stack	*parse_string(char *str)
 	return (stack);
 }
 
-static t_stack	*parse_list(int argc, char **argv)
+static t_stack	*tokenize_list(int argc, char **argv)
 {
 	int		i;
 	int		index;
@@ -98,7 +98,7 @@ static t_stack	*parse_list(int argc, char **argv)
 	return (stack);
 }
 
-t_stack	*parse_numbers(int argc, char **argv)
+t_stack	*tokenize_numbers(int argc, char **argv)
 {
 	char	*str;
 	t_stack	*stack;
@@ -109,10 +109,10 @@ t_stack	*parse_numbers(int argc, char **argv)
 		str = ft_strdup(argv[1]);
 		if (str == NULL)
 			return (NULL);
-		stack = parse_string(str);
+		stack = tokenize_string(str);
 		free(str);
 	}
 	if (argc > 2)
-		stack = parse_list(argc, argv);
+		stack = tokenize_list(argc, argv);
 	return (stack);
 }

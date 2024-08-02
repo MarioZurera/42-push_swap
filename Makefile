@@ -6,7 +6,7 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/08/02 20:56:26 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/08/02 23:45:37 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= test
 
 # NORMAL #
-SRC_NAME		= parser.c init.c error.c
+SRC_NAME		= lexer.c init.c error.c
 SRC_MAIN		= main.c
 OBJ_NAME		= $(notdir $(SRC_NAME:.c=.o))
 OBJ_MAIN		= $(notdir $(SRC_MAIN:.c=.o))
@@ -48,7 +48,7 @@ BONUS_OBJS		= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_NAME))
 BONUS_MAIN_OBJ	= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_MAIN))
 
 # TEST #
-TEST_SRC_NAME	= test_string_parser.c test_list_parser.c test_main.c
+TEST_SRC_NAME	= test_string_lexer.c test_list_lexer.c test_main.c
 TEST_OBJ_NAME	= $(notdir $(TEST_SRC_NAME:.c=.o))
 TEST_OBJS		= $(addprefix $(OBJ_DIR)/,$(TEST_OBJ_NAME))
 

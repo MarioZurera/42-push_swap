@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:24:28 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 19:17:46 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 23:42:56 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_stack(t_stack *stack);
 
 void	check_stack(t_stack *stack);
 
-t_stack	*parse_numbers(int argc, char **argv);
+t_stack	*tokenize_numbers(int argc, char **argv);
 
 int		main(int argc, char **argv);
 
