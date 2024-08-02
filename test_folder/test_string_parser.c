@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:30:35 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 20:51:59 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 22:40:28 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,27 @@ void	test_string_parser(void)
 	END_TEST();
 
 
-	ft_printf(B"================== END STRING PARSER ================\n"NC);
+	START_TEST("Extreme Values String:");
+    {
+		t_stack s = {4, (int []){1, 2, 3, 42}};
+		t_stack *result = parse_numbers(2, (char *[]){"", "1 2 3 42"});
+		assert_stack(result, &s);
+    }
+    {
+		t_stack s = {6, (int []){1, 2, 3, 4, 5, 6}};
+		t_stack *result = parse_numbers(2, (char *[]){"", "\t1\t2\n3\r4\v5\f6\t"});
+		assert_stack(result, &s);
+
+    }
+    {
+		t_stack s = {6, (int []){10, -10, 9, -9, 10, -10}};
+		t_stack *result = parse_numbers(2, (char *[]){"", "10 -10 9 -9 10 -10"});
+		assert_stack(result, &s);
+    }
+	END_TEST();
+
+	// Extremes Valid
+	// Extremes Invalid
+
+	ft_printf(B"================== END STRING PARSER ================\n\n"NC);
 }

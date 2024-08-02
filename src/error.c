@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:06:10 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 18:24:43 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 22:33:13 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	print_error(void)
 {
-	ft_printf(R"Error.\n"NC);
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(1);
 }
 

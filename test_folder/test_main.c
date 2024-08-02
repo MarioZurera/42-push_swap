@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:30:31 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 20:37:37 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 21:40:36 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static bool	cmp_stack(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_a == stack_b)
 		return (true);
+	if (stack_a == NULL || stack_b == NULL)
+		return (false);
 	if (stack_a->size != stack_b->size)
 		return (false);
 	i = 0;
@@ -46,7 +48,8 @@ static bool	cmp_stack(t_stack *stack_a, t_stack *stack_b)
 void	assert_stack(t_stack *stack_a, t_stack *stack_b)
 {
 	ASSERT(cmp_stack(stack_a, stack_b));
-	free(stack_a->list);
+	if (stack_a != NULL)
+		free(stack_a->list);
 	free(stack_a);
 }
 

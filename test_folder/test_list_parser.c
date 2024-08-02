@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:45:16 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 20:35:56 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 22:40:16 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ void	test_list_parser(void)
     }
 	END_TEST();
 
-	ft_printf(B"=================== END LIST PARSER =================\n"NC);
+	// Extremes Valid
+	// Extremes Invalid
+
+	ft_printf(B"=================== END LIST PARSER =================\n\n"NC);
 }

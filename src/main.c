@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:27:32 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 18:26:52 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/02 22:04:07 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	main(int argc, char **argv)
 	stack_b = init_stack(stack_a->size);
 	check_stack(stack_b);
 	
-	// Lexer argv and prepare the input for the algorithm
+	// Lexer stack_a->list and prepare the input for the algorithm
 	// Algorithm magic
+	free_stack(stack_a);
+	free_stack(stack_b);
 	return (0);
 }
