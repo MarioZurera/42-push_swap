@@ -6,7 +6,7 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/08/02 18:01:48 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/08/02 18:25:42 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= test
 
 # NORMAL #
-SRC_NAME		= parser.c init.c
+SRC_NAME		= parser.c init.c error.c
 SRC_MAIN		= main.c
 OBJ_NAME		= $(notdir $(SRC_NAME:.c=.o))
 OBJ_MAIN		= $(notdir $(SRC_MAIN:.c=.o))
