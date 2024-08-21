@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:45:16 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/03 00:09:02 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:18:54 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	test_list_parser(void)
 		assert_stack(result, &s);
     }
     {
-		t_stack s = {6, (int []){1, 2, 3, 4, 5, 6}};
+		t_stack s = {6, (int []){1, 2, 3, 4, 5, 5}};
 		t_stack *result = tokenize_numbers(7, (char*[]){"", "\t1", "\t2\n", "3\r", "4", "\v5\f", "6\t"});
 		assert_stack(result, &s);
 

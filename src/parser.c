@@ -15,5 +15,6 @@
 
 t_stack	*parser(t_stack *stack)
 {
-	quicksort()
+	// quicksort();
+	return (stack);
 }

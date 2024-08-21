@@ -20,16 +20,17 @@ RM_DIR			= rm -rf
 SRC_DIR			= src
 OBJ_DIR			= objects
 INC_DIR			= includes
-TEST_DIR		= test_folder
+TEST_DIR		= test
 LIB_DIR			= libft
+UNITY_DIR		= unity/src
+
+# LIBRARIES #
 LIBFT			= libft.a
-LIB_TEST_DIR	= testing
-LIB_TEST		= libtest.a
 
 # NAME #
 NAME			= push_swap
 CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr($$0, 2)}')
-TEST_NAME		= test
+TEST_NAME		= my_test
 
 # NORMAL #
 SRC_NAME		= lexer.c init.c error.c parser.c
@@ -48,9 +49,14 @@ BONUS_OBJS		= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_NAME))
 BONUS_MAIN_OBJ	= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_MAIN))
 
 # TEST #
-TEST_SRC_NAME	= test_string_lexer.c test_list_lexer.c test_main.c
-TEST_OBJ_NAME	= $(notdir $(TEST_SRC_NAME:.c=.o))
-TEST_OBJS		= $(addprefix $(OBJ_DIR)/,$(TEST_OBJ_NAME))
+TEST_SRC		= test_runner.c
+TEST_OBJ		= $(notdir $(TEST_SRC:.c=.o))
+TEST_OBJS		= $(addprefix $(OBJ_DIR)/,$(TEST_OBJ))
+
+# UNITY #
+UNITY_SRC		= unity.c
+UNITY_OBJ		= $(notdir $(UNITY_SRC:.c=.o))
+UNITY_OBJS		= $(addprefix $(OBJ_DIR)/,$(UNITY_OBJ))
 
 
 # COLORS #
@@ -74,7 +80,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
 	@mkdir -p $(INC_DIR)
-	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -o $@
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
+
+$(OBJ_DIR)/%.o: $(UNITY_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
@@ -95,7 +106,6 @@ fclean: clean
 	@$(RM) $(LIBFT)
 	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
-	@make fclean -s -C $(LIB_TEST_DIR)
 	@echo "$(C_RED)Cleaned $(NAME) program!$(C_DEF)"
 
 re: fclean all
@@ -106,18 +116,17 @@ bonus: $(BONUS_OBJS) $(BONUS_MAIN_OBJ)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(BONUS_MAIN_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
 
-test: $(OBJS) $(TEST_OBJS)
-	@make all -s -C ./$(LIB_DIR)/
-	@make all -s -C ./$(LIB_TEST_DIR)/
-	@$(CC) $(CFLAGS) $(OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -L./$(LIB_TEST_DIR) -ltest -o $(TEST_NAME)
-	@echo "=================== TEST COMPILED ==================="
+test: $(OBJS) $(TEST_OBJS) $(UNITY_OBJS)
+	@+make all -s -C ./$(LIB_DIR)/
+	@$(CC) $(CFLAGS) $(OBJS) $(TEST_OBJS) $(UNITY_OBJS) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(TEST_NAME)
+	@echo "=================== RUNNING TESTS ==================="
 	@./$(TEST_NAME)
-	@echo
+	@echo "=================== TESTS COMPLETE =================="
 
 test_bonus: $(BONUS_OBJS) $(TEST_OBJS)
-	@make all -s -C ./$(LIB_DIR)/
-	@make all -s -C ./$(LIB_TEST_DIR)/
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -L./$(LIB_TEST_DIR) -ltest -o $(TEST_NAME)
+	@+make all -s -C ./$(LIB_DIR)/
+	@+make all -s -C ./$(LIB_TEST_DIR)/
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -o $(TEST_NAME)
 	@echo "=================== TEST COMPILED ==================="
 	@./$(TEST_NAME)
 	@echo

@@ -1,0 +1,11 @@
+---
+Language: Cpp
+TabWidth: 4
+UseTab: Always
+IndentWidth: 4
+ContinuationIndentWidth: 4
+ColumnLimit: 80
+BreakBeforeBraces: Attach
+SpaceBeforeParens: Never
+SpaceAfterCStyleCast: false
+...

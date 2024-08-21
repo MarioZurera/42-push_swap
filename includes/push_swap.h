@@ -6,7 +6,7 @@
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 01:24:28 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 23:42:56 by mzurera-         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:20:42 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct  stack
+typedef struct	s_stack
 {
     unsigned int    size;
     int             *list;
-}   t_stack;
+}	t_stack;
 
 t_stack	*init_stack(int amount_of_nums);
 
