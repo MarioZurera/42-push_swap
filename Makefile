@@ -32,7 +32,7 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= test
 
 # NORMAL #
-SRC_NAME		= lexer.c init.c error.c
+SRC_NAME		= lexer.c init.c error.c parser.c
 SRC_MAIN		= main.c
 OBJ_NAME		= $(notdir $(SRC_NAME:.c=.o))
 OBJ_MAIN		= $(notdir $(SRC_MAIN:.c=.o))
