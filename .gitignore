@@ -16,5 +16,6 @@ leaks
 MLX42/
 build/
 
-# Tests
+# Executables
+push_swap
 my_test

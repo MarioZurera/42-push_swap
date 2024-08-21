@@ -73,15 +73,18 @@ C_DEF			= \033[0m
 
 all: $(NAME)
 
+$(OBJ_DIR)/test_runner.o: $(TEST_DIR)/test_runner.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(INC_DIR)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -o $@
 
-$(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
-	@mkdir -p $(INC_DIR)
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
+#$(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
+#	@mkdir -p $(INC_DIR)
+#	@mkdir -p $(OBJ_DIR)
+#	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
 
 $(OBJ_DIR)/%.o: $(UNITY_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
@@ -102,7 +105,7 @@ clean:
 	@echo "$(C_RED)Cleaned objects folder!$(C_DEF)"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME)O
 	@$(RM) $(LIBFT)
 	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
