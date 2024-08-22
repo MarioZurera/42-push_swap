@@ -18,7 +18,6 @@ RM_DIR			= rm -rf
 
 # DIRECTORIES #
 SRC_DIR			= src
-OBJ_DIR			= objects
 INC_DIR			= includes
 TEST_DIR		= test
 LIB_DIR			= libft
@@ -32,32 +31,29 @@ NAME			= push_swap
 CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr($$0, 2)}')
 TEST_NAME		= my_test
 
-# NORMAL #
-SRC_NAME		= lexer.c init.c error.c parser.c
-SRC_MAIN		= main.c
-OBJ_NAME		= $(notdir $(SRC_NAME:.c=.o))
-OBJ_MAIN		= $(notdir $(SRC_MAIN:.c=.o))
-OBJS			= $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
-MAIN_OBJ		= $(addprefix $(OBJ_DIR)/,$(OBJ_MAIN))
+# SOURCE FILES #
+STANDARD		= lexer.c init.c error.c parser.c
+MAIN			= main.c
+BONUS			=
+BONUS_MAIN		= main_bonus.c
+TEST			= test_runner.c
+UNITY			= unity.c
+
+# STANDARD #
+STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(STANDARD))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
+STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #
-BONUS_SRC_NAME	= 
-BONUS_SRC_MAIN	= main_bonus.c
-BONUS_OBJ_NAME	= $(notdir $(BONUS_SRC_NAME:.c=.o))
-BONUS_OBJ_MAIN	= $(notdir $(BONUS_SRC_MAIN:.c=.o))
-BONUS_OBJS		= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_NAME))
-BONUS_MAIN_OBJ	= $(addprefix $(OBJ_DIR)/,$(BONUS_OBJ_MAIN))
+BONUS_SRC		= $(addprefix $(SRC_DIR)/, $(BONUS))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(BONUS_MAIN))
+BONUS_OBJ		= $(BONUS_SRC:.c=.o)
 
 # TEST #
-TEST_SRC		= test_runner.c
-TEST_OBJ		= $(notdir $(TEST_SRC:.c=.o))
-TEST_OBJS		= $(addprefix $(OBJ_DIR)/,$(TEST_OBJ))
-
-# UNITY #
-UNITY_SRC		= unity.c
-UNITY_OBJ		= $(notdir $(UNITY_SRC:.c=.o))
-UNITY_OBJS		= $(addprefix $(OBJ_DIR)/,$(UNITY_OBJ))
-
+TEST_SRC			= $(addprefix $(SRC_DIR)/, $(STANDARD))
+TEST_SRC		   += $(addprefix $(TEST_DIR)/, $(TEST))
+TEST_SRC		   += $(addprefix $(UNITY_DIR)/, $(UNITY))
+TEST_OBJ			= $(TEST_SRC:.c=.o)
 
 # COLORS #
 C_GREEN			= \033[0;32m
@@ -73,39 +69,22 @@ C_DEF			= \033[0m
 
 all: $(NAME)
 
-$(OBJ_DIR)/test_runner.o: $(TEST_DIR)/test_runner.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I $(UNITY_DIR) -c $^ -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -o $@
-
-#$(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
-#	@mkdir -p $(INC_DIR)
-#	@mkdir -p $(OBJ_DIR)
-#	@$(CC) $(CFLAGS) -c $< -I $(INC_DIR) -I $(UNITY_DIR) -o $@
-
-$(OBJ_DIR)/%.o: $(UNITY_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR):
-	@mkdir -p $@
-
-$(NAME): $(OBJS) $(MAIN_OBJ)
+$(NAME): $(STANDARD_OBJ)
 	@echo "$(C_BLUE)Builing $(NAME)...$(C_DEF)"
 	@make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(OBJS) $(MAIN_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(STANDARD_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
 
 clean:
-	@$(RM_DIR) $(OBJ_DIR)
+	@$(RM) */*.o */*/*.o
 	@make clean -s -C $(LIB_DIR)
-	@echo "$(C_RED)Cleaned objects folder!$(C_DEF)"
+	@echo "$(C_RED)Cleaned objects!$(C_DEF)"
 
 fclean: clean
-	@$(RM) $(NAME)O
+	@$(RM) $(NAME)
 	@$(RM) $(LIBFT)
 	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
@@ -119,9 +98,9 @@ bonus: $(BONUS_OBJS) $(BONUS_MAIN_OBJ)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(BONUS_MAIN_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
 
-test: $(OBJS) $(TEST_OBJS) $(UNITY_OBJS)
+test: $(TEST_OBJ)
 	@+make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(OBJS) $(TEST_OBJS) $(UNITY_OBJS) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(TEST_NAME)
+	@$(CC) $(CFLAGS) $(TEST_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(TEST_NAME)
 	@echo "=================== RUNNING TESTS ==================="
 	@./$(TEST_NAME)
 	@echo "=================== TESTS COMPLETE =================="
