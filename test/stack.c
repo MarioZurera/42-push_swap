@@ -70,8 +70,12 @@ void	stack_valid_input(void) {
 
 void	stack_with_repetitions(void) {
 	t_stack *result;
+
+	result = parse_numbers(tokenize_numbers(7, (char *[]){"", "-1", "1", "2", "3", "zero", "-1"}));
+	TEST_ASSERT_NULL(result);
 	result = parse_numbers(tokenize_numbers(7, (char *[]){"", "-1", "1", "2", "3", "0", "-1"}));
 	TEST_ASSERT_NULL(result);
+
 }
 
 void	stack_without_repetitions(void) {
