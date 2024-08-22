@@ -28,6 +28,8 @@ int	compare_stacks(t_stack *stackA, t_stack *stackB)
 
 void	free_stack(t_stack *stack)
 {
+	if (stack == NULL)
+		return ;
 	free(stack->list);
 	free(stack);
 }
