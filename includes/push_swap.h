@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "../libft/libft.h"
 # include "../libft/colors.h"
@@ -28,7 +28,6 @@ typedef struct	s_stack
 
 int	    compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
-t_stack	*create_stack(unsigned int size);
 t_stack	*create_stack(unsigned int size, int *nums);
 
 // *** Push_Swap  *** //
@@ -42,4 +41,4 @@ t_stack	*tokenize_numbers(int argc, char **argv);
 
 int		main(int argc, char **argv);
 
-#endif /* PIPEX_H */
+#endif /* PUSH_SWAP_H */

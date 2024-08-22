@@ -12,11 +12,8 @@
 
 #include "push_swap_testing.h"
 
-void	test_list_parser(void)
+void	test_list_lexer(void)
 {
-   	ft_printf(B"================= TESTING LIST LEXER ===============\n"NC);
-
-	
 	START_TEST("Empty String:");
 	{
 		t_stack *result = tokenize_numbers(3, (char*[]){"", "", ""});

@@ -14,7 +14,7 @@
 
 int	compare_stacks(t_stack *stackA, t_stack *stackB)
 {
-	int	i;
+	unsigned int	i;
 
 	if (!stackA || !stackB)
 		return (0);
@@ -34,7 +34,7 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-t_stack	*create_stack(unsigned int size)
+t_stack	*create_stack(unsigned int size, int *nums)
 {
 	t_stack	*stack;
 
@@ -44,18 +44,13 @@ t_stack	*create_stack(unsigned int size)
 	if (stack == NULL)
 		return (NULL);
 	stack->size = size;
-	stack->list = malloc(size * sizeof(int));
-	return (stack);
-}
-
-t_stack	*create_stack(unsigned int size, int *nums)
-{
-	t_stack	*stack;
-
-	stack = malloc(sizeof(t_stack));
-
-	stack->size = size;
 	stack->list = nums;
-
+	if (stack->list == NULL)
+		stack->list = ft_calloc(size, sizeof(int));
+	if (stack->list == NULL)
+	{
+		free(stack);
+		return (NULL);
+	}
 	return (stack);
 }

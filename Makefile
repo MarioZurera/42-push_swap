@@ -32,7 +32,7 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= my_test
 
 # SOURCE FILES #
-STANDARD		= lexer.c init.c error.c parser.c stack.c
+STANDARD		= lexer.c error.c parser.c stack.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
@@ -42,6 +42,9 @@ UNITY			= unity.c
 # STANDARD #
 STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(STANDARD))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
+#STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
+#STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
+
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #

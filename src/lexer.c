@@ -54,7 +54,7 @@ static t_stack	*tokenize_string(char *str)
 	int		index;
 	t_stack	*stack;
 	
-	stack = create_stack(ft_count_words(str));
+	stack = create_stack(ft_count_words(str), NULL);
 	j = 0;
 	index = 0;
 	while (str[j] && stack != NULL)
@@ -80,7 +80,7 @@ static t_stack	*tokenize_list(int argc, char **argv)
 	char	*str;
 	t_stack	*stack;
 
-	stack = init_stack(argc - 1);
+	stack = create_stack(argc - 1, NULL);
 	i = 1;
 	index = 0;
 	while (i < argc)

@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	stack_a = tokenize_numbers(argc, argv);
 	check_stack(stack_a);
-	stack_b = init_stack(stack_a->size);
+	stack_b = create_stack(stack_a->size, NULL);
 	check_stack(stack_b);
 	// Lexer stack_a->list and prepare the input for the algorithm
 	// Algorithm magic
