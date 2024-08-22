@@ -54,7 +54,7 @@ static t_stack	*tokenize_string(char *str)
 	int		index;
 	t_stack	*stack;
 	
-	stack = init_stack(ft_count_words(str));
+	stack = create_stack(ft_count_words(str));
 	j = 0;
 	index = 0;
 	while (str[j] && stack != NULL)
