@@ -53,7 +53,7 @@ static t_stack	*tokenize_string(char *str)
 	int		j;
 	int		index;
 	t_stack	*stack;
-	
+
 	stack = create_stack(ft_count_words(str), NULL);
 	j = 0;
 	index = 0;

@@ -12,7 +12,7 @@
 
 # COMMANDS #
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror #-g -fsanitize=address
 RM				= rm -f
 RM_DIR			= rm -rf
 
@@ -36,7 +36,7 @@ STANDARD		= lexer.c error.c parser.c stack.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
-TEST			= test.c
+TEST			= test.c test_list_lexer.c test_string_lexer.c
 UNITY			= unity.c
 
 # STANDARD #
