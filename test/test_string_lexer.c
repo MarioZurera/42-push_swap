@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap_testing.h"
-
+/*
 void	test_string_parser(void)
 {
 	ft_printf(B"================ TESTING STRING LEXER ==============\n"NC);
@@ -120,3 +120,4 @@ void	test_string_parser(void)
 
 	ft_printf(B"================== END STRING LEXER ================\n\n"NC);
 }
+*/

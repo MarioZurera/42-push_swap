@@ -12,36 +12,44 @@
 
 #include "push_swap_testing.h"
 
-void	test_list_lexer(void)
+#include <unity.h>
+
+
+
+void	stack_invalid_input_list(void)
 {
-	START_TEST("Empty String:");
-	{
-		t_stack *result = tokenize_numbers(3, (char*[]){"", "", ""});
-		assert_stack(result, NULL);
-    }
-	{
-		t_stack *result = tokenize_numbers(3, (char*[]){"", "", " "});
-		assert_stack(result, NULL);
-    }
-	{
-		t_stack *result = tokenize_numbers(4, (char*[]){"", "     ", "           ", ""});
-		assert_stack(result, NULL);
-    }
-	{
-		t_stack *result = tokenize_numbers(4, (char*[]){"", "\t\n\r", "\v\f", " \n\n\n\t   \r\v\v\f\n"});
-		assert_stack(result, NULL);
-    }
-	{
-		t_stack *result = tokenize_numbers(10, (char*[]){"", "\r\t\n\r\v", "\f \n\n\n\t\r", "\v\v\f", "\n\n\n\t\r\v", "\v\f", "", "\n\t\n\r\v\f		\n\t\n\r\v\f \n\n\n\t\r\v", "\v\f\n\t\n\r\v\f \n\n\n\t\r\v\v\f\n", "\r"});
-		assert_stack(result, NULL);
-    }
-	END_TEST();
+	t_stack *result;
 
+	result = tokenize_numbers(3, (char*[]){"", "", ""});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(4, (char*[]){"", "     ", "           ", ""});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(10, (char*[]){"", "\r\t\n\r\v", "\f \n\n\n\t\r", "\v\v\f", "\n\n\n\t\r\v", "\v\f", "", "\n\t\n\r\v\f		\n\t\n\r\v\f \n\n\n\t\r\v", "\v\f\n\t\n\r\v\f \n\n\n\t\r\v\v\f\n", "\r"});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(6, (char*[]){"", "\t1\t", "2", "\n3", "\rfour", "\v5"});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(3, (char *[]){"", "1234567890", "09876543210"});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(3, (char *[]){"", "2147483647", "2147483648"});
+	TEST_ASSERT_NULL(result);
+	result = tokenize_numbers(3, (char *[]){"", "-2147483648", "-2147483649"});
+	TEST_ASSERT_NULL(result);
+}
 
+void	stack_valid_input_list(void) {
+	t_stack *result;
+
+	result = tokenize_numbers(5, (char*[]){"", "1", "2", "3", "42"});
+	const int	t1[4] = {1, 2, 3, 42};
+	TEST_ASSERT_EQUAL_INT(4, result->size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(t1, result->list, 4);
+	free(result);
+}
+/*
 	START_TEST("Valid Simple:");
     {
-		t_stack s = {4, (int []){1, 2, 3, 42}};
-		t_stack *result = tokenize_numbers(5, (char*[]){"", "1", "2", "3", "42"});
+
+		 =
 		assert_stack(result, &s);
     }
     {
@@ -102,20 +110,10 @@ void	test_list_lexer(void)
 
 
 	START_TEST("Invalid Extreme:");
-	{
-		t_stack *result = tokenize_numbers(3, (char *[]){"", "1234567890", "09876543210"});
-		assert_stack(result, NULL);
-    }
-    {
-		t_stack *result = tokenize_numbers(3, (char *[]){"", "2147483647", "2147483648"});
-		assert_stack(result, NULL);
-    }
-	{
-		t_stack *result = tokenize_numbers(3, (char *[]){"", "-2147483648", "-2147483649"});
-		assert_stack(result, NULL);
-    }
+
 	END_TEST();
 	
 
 	ft_printf(B"=================== END LIST LEXER =================\n\n"NC);
 }
+*/

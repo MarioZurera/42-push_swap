@@ -13,10 +13,16 @@ void setUp(void) {}
 
 void tearDown(void) {}
 
+static void run_stack_tests(void) {
+	RUN_TEST(stack_invalid_input_list);
+	RUN_TEST(stack_valid_input_list);
+}
+
 int main(int argc, char **argv) {
 	(void)argc;
 	(void)argv;
 	UNITY_BEGIN();
-//	RUN_TEST();
+	TEST_MESSAGE("Test Stack Creation");
+	run_stack_tests();
 	return (UNITY_END());
 }

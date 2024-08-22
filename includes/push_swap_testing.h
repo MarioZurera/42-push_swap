@@ -18,8 +18,9 @@
 
 void	assert_stack(t_stack *stack_a, t_stack *stack_b);
 
-void	test_string_parser(void);
+void	stack_invalid_input_list(void);
+void	stack_valid_input_list(void);
 
-void    test_list_parser(void);
+void    test_list_lexer(void);
 
 #endif /* PUSH_SWAP_TESTING */
