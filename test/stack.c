@@ -14,19 +14,17 @@
 
 #include <unity.h>
 
-
-
 void	stack_invalid_input(void)
 {
 	t_stack *result;
 
-	result = tokenize_numbers(3, (char*[]){"", "", ""});
+	result = tokenize_numbers(3, (char *[]){"", "", ""});
 	TEST_ASSERT_NULL(result);
-	result = tokenize_numbers(4, (char*[]){"", "     ", "           ", ""});
+	result = tokenize_numbers(4, (char *[]){"", "     ", "           ", ""});
 	TEST_ASSERT_NULL(result);
-	result = tokenize_numbers(10, (char*[]){"", "\r\t\n\r\v \f \n\n\n\t\r \v\v\f \n\n\n\t\r\v \v\f  \n\t\n\r\v\f		\n\t\n\r\v\f \n\n\n\t\r\v \v\f\n\t\n\r\v\f \n\n\n\t\r\v\v\f\n \r"});
+	result = tokenize_numbers(10, (char *[]){"", "\r\t\n\r\v \f \n\n\n\t\r \v\v\f \n\n\n\t\r\v \v\f  \n\t\n\r\v\f		\n\t\n\r\v\f \n\n\n\t\r\v \v\f\n\t\n\r\v\f \n\n\n\t\r\v\v\f\n \r"});
 	TEST_ASSERT_NULL(result);
-	result = tokenize_numbers(6, (char*[]){"", "\t1\t", "2", "\n3", "\rfour", "\v5"});
+	result = tokenize_numbers(6, (char *[]){"", "\t1\t", "2", "\n3", "\rfour", "\v5"});
 	TEST_ASSERT_NULL(result);
 	result = tokenize_numbers(3, (char *[]){"", "1234567890", "09876543210"});
 	TEST_ASSERT_NULL(result);
@@ -68,4 +66,18 @@ void	stack_valid_input(void) {
 	TEST_ASSERT_EQUAL_INT(5, result->size);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t5, result->list, 5);
 	free(result);
+}
+
+void	stack_with_repetitions(void) {
+	t_stack *result;
+	result = parse_numbers(tokenize_numbers(7, (char *[]){"", "-1", "1", "2", "3", "0", "-1"}));
+	TEST_ASSERT_NULL(result);
+}
+
+void	stack_without_repetitions(void) {
+	t_stack *result;
+	const int t1[6] = {1, 3, 4, 5, 2, 0};
+	result = parse_numbers(tokenize_numbers(7, (char *[]){"", "-1", "1", "2", "3", "0", "-2"}));
+	TEST_ASSERT_EQUAL_INT(6, result->size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(t1, result->list, 6);
 }

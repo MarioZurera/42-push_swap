@@ -36,6 +36,7 @@ t_stack	*init_stack(int amount_of_nums);
 void	free_stack(t_stack *stack);
 void	check_stack(t_stack *stack);
 t_stack	*tokenize_numbers(int argc, char **argv);
+t_stack *parse_numbers(t_stack *stack);
 
 // *** Main *** //
 

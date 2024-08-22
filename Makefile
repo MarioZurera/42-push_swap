@@ -36,15 +36,14 @@ STANDARD		= lexer.c error.c parser.c stack.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
-TEST			= test.c test_list_lexer.c test_string_lexer.c
+TEST			= test.c stack.c
 UNITY			= unity.c
 
 # STANDARD #
 STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(STANDARD))
-STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
-#STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
-#STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
-
+#STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
+STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
+STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #

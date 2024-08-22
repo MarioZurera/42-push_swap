@@ -16,11 +16,9 @@
 #include "../libft/libft.h"
 #include "push_swap.h"
 
-void	assert_stack(t_stack *stack_a, t_stack *stack_b);
-
-void	stack_invalid_input_list(void);
-void	stack_valid_input_list(void);
-
-void    test_list_lexer(void);
+void	stack_invalid_input(void);
+void	stack_valid_input(void);
+void	stack_with_repetitions(void);
+void	stack_without_repetitions(void);
 
 #endif /* PUSH_SWAP_TESTING */

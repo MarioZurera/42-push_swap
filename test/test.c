@@ -15,8 +15,10 @@ void tearDown(void) {}
 
 static void run_stack_tests(void) {
 	TEST_MESSAGE("Test Stack");
-	RUN_TEST(stack_valid_input_list);
-	RUN_TEST(stack_invalid_input_list);
+	RUN_TEST(stack_invalid_input);
+	RUN_TEST(stack_valid_input);
+	RUN_TEST(stack_with_repetitions);
+	RUN_TEST(stack_without_repetitions);
 }
 
 int main(int argc, char **argv) {
