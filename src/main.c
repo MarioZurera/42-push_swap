@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	check_stack(stack_a);
 	stack_b = init_stack(stack_a->size);
 	check_stack(stack_b);
-	
 	// Lexer stack_a->list and prepare the input for the algorithm
 	// Algorithm magic
 	free_stack(stack_a);
