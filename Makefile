@@ -32,11 +32,11 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= my_test
 
 # SOURCE FILES #
-STANDARD		= lexer.c init.c error.c parser.c
+STANDARD		= lexer.c init.c error.c parser.c stack.c
 MAIN			= main.c
-BONUS			=
+#BONUS			=
 BONUS_MAIN		= main_bonus.c
-TEST			= test_runner.c
+TEST			= test.c
 UNITY			= unity.c
 
 # STANDARD #
@@ -70,7 +70,7 @@ C_DEF			= \033[0m
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(INC_DIR) -I $(UNITY_DIR) -c $^ -o $@
+	$(CC) $(CFLAGS) -I $(INC_DIR) -I $(UNITY_DIR) -c $^ -o $@
 
 $(NAME): $(STANDARD_OBJ)
 	@echo "$(C_BLUE)Builing $(NAME)...$(C_DEF)"

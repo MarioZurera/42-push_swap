@@ -15,7 +15,6 @@
 
 #include "../libft/libft.h"
 #include "push_swap.h"
-#include "../testing/includes/ft_testing.h"
 
 void	assert_stack(t_stack *stack_a, t_stack *stack_b);
 

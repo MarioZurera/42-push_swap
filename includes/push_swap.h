@@ -24,13 +24,21 @@ typedef struct	s_stack
     int             *list;
 }	t_stack;
 
-t_stack	*init_stack(int amount_of_nums);
+// *** Stack Functions *** //
 
+int	    compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
+t_stack	*create_stack(unsigned int size);
+t_stack	*create_stack(unsigned int size, int *nums);
 
+// *** Push_Swap  *** //
+
+t_stack	*init_stack(int amount_of_nums);
+void	free_stack(t_stack *stack);
 void	check_stack(t_stack *stack);
-
 t_stack	*tokenize_numbers(int argc, char **argv);
+
+// *** Main *** //
 
 int		main(int argc, char **argv);
 
