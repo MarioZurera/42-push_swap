@@ -40,12 +40,14 @@ t_stack	*create_stack(unsigned int size, int *nums);
 int sa(const t_pair *pair);
 int sb(const t_pair *pair);
 int ss(const t_pair *pair);
+int	pa(const t_pair *pair);
+int	pb(const t_pair *pair);
 
 // *** Push_Swap  *** //
 
 t_stack	*init_stack(int amount_of_nums);
 void	free_stack(t_stack *stack);
-void	check_stack(t_stack *stack);
+int 	check_stack(t_stack *stack);
 t_stack	*tokenize_numbers(int argc, char **argv);
 t_stack *parse_numbers(t_stack *stack);
 
