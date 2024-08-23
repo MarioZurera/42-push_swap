@@ -22,6 +22,7 @@ static void run_stack_tests(void) {
 static void run_movement_tests(void) {
 	TEST_MESSAGE("Test Movements");
 	RUN_TEST(stack_swap);
+	RUN_TEST(stack_push);
 }
 
 int main(int argc, char **argv) {
