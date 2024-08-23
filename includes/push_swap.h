@@ -24,11 +24,22 @@ typedef struct	s_stack
     int             *list;
 }	t_stack;
 
+typedef struct	s_pair {
+    t_stack *stack_a;
+    t_stack *stack_b;
+} t_pair;
+
 // *** Stack Functions *** //
 
 int	    compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
 t_stack	*create_stack(unsigned int size, int *nums);
+
+// *** Movements *** //
+
+int sa(const t_pair *pair);
+int sb(const t_pair *pair);
+int ss(const t_pair *pair);
 
 // *** Push_Swap  *** //
 

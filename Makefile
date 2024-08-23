@@ -32,7 +32,8 @@ CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr
 TEST_NAME		= my_test
 
 # SOURCE FILES #
-STANDARD		= lexer.c error.c parser.c stack.c
+STANDARD		= lexer.c error.c parser.c stack.c \
+				  movement_swap.c movement_push.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
