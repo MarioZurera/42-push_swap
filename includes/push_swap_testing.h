@@ -15,10 +15,13 @@
 
 #include "../libft/libft.h"
 #include "push_swap.h"
+#include <unity.h>
 
 void	stack_invalid_input(void);
 void	stack_valid_input(void);
 void	stack_with_repetitions(void);
 void	stack_without_repetitions(void);
+
+void	stack_swap(void);
 
 #endif /* PUSH_SWAP_TESTING */

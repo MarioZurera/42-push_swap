@@ -5,8 +5,6 @@
 /*   Updated: 2024/08/02 23:43:05 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "unity.h"
 #include "push_swap_testing.h"
 
 void setUp(void) {}
@@ -21,10 +19,16 @@ static void run_stack_tests(void) {
 	RUN_TEST(stack_without_repetitions);
 }
 
+static void run_movement_tests(void) {
+	TEST_MESSAGE("Test Movements");
+	RUN_TEST(stack_swap);
+}
+
 int main(int argc, char **argv) {
 	(void)argc;
 	(void)argv;
 	UNITY_BEGIN();
 	run_stack_tests();
+	run_movement_tests();
 	return (UNITY_END());
 }

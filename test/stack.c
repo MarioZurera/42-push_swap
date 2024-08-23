@@ -12,8 +12,6 @@
 
 #include "push_swap_testing.h"
 
-#include <unity.h>
-
 void	stack_invalid_input(void)
 {
 	t_stack *result;

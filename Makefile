@@ -36,7 +36,7 @@ STANDARD		= lexer.c error.c parser.c stack.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
-TEST			= test.c stack.c
+TEST			= test.c stack.c movements.c
 UNITY			= unity.c
 
 # STANDARD #
