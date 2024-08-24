@@ -114,5 +114,8 @@ t_stack	*tokenize_numbers(int argc, char **argv)
 	}
 	if (argc > 2)
 		stack = tokenize_list(argc, argv);
+	if (stack == NULL)
+		return (NULL);
+	stack->len = stack->size;
 	return (stack);
 }

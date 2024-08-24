@@ -34,7 +34,7 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-t_stack	*create_stack(unsigned int size, int *nums)
+t_stack	*create_stack(const unsigned int size, int *nums)
 {
 	t_stack	*stack;
 
@@ -45,8 +45,12 @@ t_stack	*create_stack(unsigned int size, int *nums)
 		return (NULL);
 	stack->size = size;
 	stack->list = nums;
+	stack->len = size;
 	if (stack->list == NULL)
+	{
 		stack->list = ft_calloc(size, sizeof(int));
+		stack->len = 0;
+	}
 	if (stack->list == NULL)
 	{
 		free(stack);
