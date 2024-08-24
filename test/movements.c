@@ -26,27 +26,24 @@ static int *copy_list(int nums[], unsigned int size) {
 	return (new_list);
 }
 
-// TODO: Create stacks using parse_numbers(tokenize_numbers(argc, argv));
-
 void	stack_swap(void) {
 	int	t1a[6] = {0, 3, 2, 4, 1, 7};
 	int	t1b[3] = {5, 8, 6};
-	t_stack	a = {6, (int[]){0, 3, 2, 4, 1, 7}};
-	t_stack	b = {3, (int[]){5, 8, 6}};
-	const t_pair p = {&a, &b};
-	sa(&p);
+	t_stack	a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
+	t_stack	b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
+	sa(a, b);
 	swap(t1a, t1a + 1);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_a->list, t1a, p.stack_a->size);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_b->list, t1b, p.stack_b->size);
-	sb(&p);
+	TEST_ASSERT_EQUAL_INT_ARRAY(a.list, t1a, a.size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(b.list, t1b, b.size);
+	sb(a, b);
 	swap(t1b, t1b + 1);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_a->list, t1a, p.stack_a->size);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_b->list, t1b, p.stack_b->size);
-	ss(&p);
+	TEST_ASSERT_EQUAL_INT_ARRAY(a.list, t1a, a.size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(b.list, t1b, b.size);
+	ss(a, b);
 	swap(t1a, t1a + 1);
 	swap(t1b, t1b + 1);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_a->list, t1a, p.stack_a->size);
-	TEST_ASSERT_EQUAL_INT_ARRAY(p.stack_b->list, t1b, p.stack_b->size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(a.list, t1a, a.size);
+	TEST_ASSERT_EQUAL_INT_ARRAY(b.list, t1b, b.size);
 }
 
 void	stack_push(void) {
