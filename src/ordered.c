@@ -40,7 +40,7 @@ int	is_partially_ordered(const t_stack *stack)
 	return (i == stack->len - 1 && stack->list[i] < stack->list[0]);
 }
 
-int	rotations_to_order(const t_stack *stack)
+static int	rotations_to_order(const t_stack *stack)
 {
 	unsigned int	i;
 
@@ -54,7 +54,7 @@ int	rotations_to_order(const t_stack *stack)
 	return (i == stack->len - 1);
 }
 
-void	sort_partial_ordered(t_stack *stack_a)
+void	sort_partial_ordered_stack_a(t_stack *stack_a)
 {
 	int	n;
 	int	i;
