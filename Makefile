@@ -33,7 +33,7 @@ TEST_NAME		= my_test
 
 # SOURCE FILES #
 STANDARD		= lexer.c error.c parser.c stack.c \
-				  movement_swap.c movement_push.c
+				  movement_swap.c movement_push.c movement_rotate.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
