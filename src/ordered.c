@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	is_ordered(t_stack *stack)
+int	is_ordered(const t_stack *stack)
 {
 	unsigned int	i;
 
@@ -20,4 +20,61 @@ int	is_ordered(t_stack *stack)
 	while (i < stack->len - 1 && stack->list[i] < stack->list[i + 1])
 		++i;
 	return (i == stack->len - 1);
+}
+
+int	is_partially_ordered(const t_stack *stack)
+{
+	unsigned int	i;
+	int				flag;
+
+	i = 0;
+	flag = 0;
+	while (i < stack->len - 1)
+	{
+		if (flag && stack->list[i] > stack->list[i + 1])
+			return (0);
+		if (stack->list[i] > stack->list[i + 1])
+			flag = 1;
+		++i;
+	}
+	return (i == stack->len - 1 && stack->list[i] < stack->list[0]);
+}
+
+int	rotations_to_order(const t_stack *stack)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < stack->len - 1)
+	{
+		if (stack->list[i] > stack->list[i + 1])
+			return (i + 1);
+		++i;
+	}
+	return (i == stack->len - 1);
+}
+
+void	sort_partial_ordered(t_stack *stack_a)
+{
+	int	n;
+	int	i;
+
+	i = 0;
+	n = rotations_to_order(stack_a);
+	if (n <= ((int) stack_a->len) - n)
+	{
+		while (i < n)
+		{
+			ra(stack_a, NULL);
+			++i;
+		}
+	}
+	else
+	{
+		while (i < ((int) stack_a->len) - n)
+		{
+			rra(stack_a, NULL);
+			++i;
+		}
+	}
 }
