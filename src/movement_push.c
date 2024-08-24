@@ -30,60 +30,54 @@ static int	copy_list(int src[], int *dest[], unsigned int size)
 	return (1);
 }
 
-int	pa(const t_pair *pair)
+void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-	int				*temp_list;
 	unsigned int	i;
-	t_stack			*sa;
-	t_stack			*sb;
 
-	if (pair == NULL)
-		return (0);
-	sa = pair->stack_a;
-	sb = pair->stack_b;
-	if (!check_stack(sa) || !check_stack(sb))
-		return (0);
-	temp_list = malloc(sizeof(int) * (sa->size + 1));
-	if (temp_list == NULL)
-		return (0);
-	i = 0;
-	temp_list[0] = sb->list[0];
-	while (++i < sa->size)
-		temp_list[i] = sa->list[i];
-	free(sa->list);
-	sa->list = temp_list;
-	if (!copy_list(sb->list + 1, &temp_list, sb->size - 1))
-		return (0);
-	free(sb->list);
-	sb->list = temp_list;
-	return (ft_printf("pa"), 1);
+	if (stack_a == NULL || stack_b == NULL)
+		return ;
+	if (stack_a->len == stack_a->size)
+		return ;
+	i = stack_a->len;
+	while (i > 0)
+	{
+		stack_a->list[i + 1] = stack_a->list[i];
+		--i;
+	}
+	stack_a->list[0] = stack_b->list[0];
+	i = 1;
+	while (i < stack_b->len )
+	{
+		stack_b->list[i - 1] = stack_b->list[i];
+		++i;
+	}
+	--stack_a->len;
+	++stack_b->len;
+	ft_printf("pa");
 }
 
-int	pb(const t_pair *pair)
+void	pb(t_stack *stack_a, t_stack *stack_b)
 {
-	int				*temp_list;
 	unsigned int	i;
-	t_stack			*sa;
-	t_stack			*sb;
 
-	if (pair == NULL)
-		return (0);
-	sa = pair->stack_a;
-	sb = pair->stack_b;
-	if (!check_stack(sa) || !check_stack(sb))
-		return (0);
-	temp_list = malloc(sizeof(int) * (sb->size + 1));
-	if (temp_list == NULL)
-		return (0);
-	i = 0;
-	temp_list[0] = sa->list[0];
-	while (++i < sb->size)
-		temp_list[i] = sb->list[i];
-	free(sb->list);
-	sb->list = temp_list;
-	if (!copy_list(sa->list + 1, &temp_list, sa->size - 1))
-		return (0);
-	free(sa->list);
-	sa->list = temp_list;
-	return (ft_printf("pb"), 1);
+	if (stack_a == NULL || stack_b == NULL)
+		return ;
+	if (stack_b->len == stack_b->size)
+		return ;
+	i = stack_b->len;
+	while (i > 0)
+	{
+		stack_b->list[i + 1] = stack_b->list[i];
+		--i;
+	}
+	stack_b->list[0] = stack_a->list[0];
+	i = 1;
+	while (i < stack_a->len )
+	{
+		stack_a->list[i - 1] = stack_a->list[i];
+		++i;
+	}
+	++stack_a->len;
+	--stack_b->len;
+	ft_printf("pb");
 }

@@ -21,32 +21,28 @@ static void	swap(int *a, int *b)
 	*b = temp;
 }
 
-int	sa(const t_pair *pair)
+void	sa(t_stack *stack_a, t_stack *stack_b)
 {
-	if (pair == NULL || pair->stack_a == NULL || pair->stack_a->list == NULL)
-		return (0);
-	swap(pair->stack_a->list, pair->stack_a->list + 1);
+	if (stack_a == NULL || stack_a->list == NULL)
+		return ;
+	swap(stack_a->list, stack_a->list + 1);
 	ft_printf("sa");
-	return (1);
 }
 
-int	sb(const t_pair *pair)
+void	sb(t_stack *stack_a, t_stack *stack_b)
 {
-	if (pair == NULL || pair->stack_b == NULL || pair->stack_b->list == NULL)
-		return (0);
-	swap(pair->stack_b->list, pair->stack_b->list + 1);
+	if (stack_b == NULL || stack_b->list == NULL)
+		return ;
+	swap(stack_b->list, stack_b->list + 1);
 	ft_printf("sb");
-	return (1);
 }
 
-int	ss(const t_pair *pair)
+void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	if (pair == NULL || pair->stack_a == NULL || pair->stack_b == NULL)
-		return (0);
-	if (pair->stack_a->list == NULL || pair->stack_b->list == NULL)
-		return (0);
-	swap(pair->stack_a->list, pair->stack_a->list + 1);
-	swap(pair->stack_b->list, pair->stack_b->list + 1);
+	if (stack_a == NULL || stack_b == NULL
+		|| stack_a->list == NULL || stack_b->list == NULL)
+		return ;
+	swap(stack_a->list, stack_a->list + 1);
+	swap(stack_b->list, stack_b->list + 1);
 	ft_printf("ss");
-	return (1);
 }

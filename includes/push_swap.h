@@ -18,41 +18,40 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct	s_stack
-{
-    unsigned int    size;
-    int             *list;
+typedef struct s_stack {
+	unsigned int	size;
+	unsigned int	len;
+	int				*list;
 }	t_stack;
-
-typedef struct	s_pair {
-    t_stack *stack_a;
-    t_stack *stack_b;
-} t_pair;
 
 // *** Stack Functions *** //
 
-int	    compare_stacks(t_stack *stackA, t_stack *stackB);
+int		compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
-t_stack	*create_stack(unsigned int size, int *nums);
+t_stack *create_stack(unsigned int size, int *nums);
 
 // *** Movements *** //
 
-int sa(const t_pair *pair);
-int sb(const t_pair *pair);
-int ss(const t_pair *pair);
-int	pa(const t_pair *pair);
-int	pb(const t_pair *pair);
+void	sa(t_stack *stack_a, t_stack *stack_b);
+void	sb(t_stack *stack_a, t_stack *stack_b);
+void	ss(t_stack *stack_a, t_stack *stack_b);
+void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack *stack_a, t_stack *stack_b);
 
 // *** Push_Swap  *** //
 
-t_stack	*init_stack(int amount_of_nums);
-void	free_stack(t_stack *stack);
-int 	check_stack(t_stack *stack);
-t_stack	*tokenize_numbers(int argc, char **argv);
+t_stack *init_stack(int amount_of_nums);
+
+void free_stack(t_stack *stack);
+
+int check_stack(t_stack *stack);
+
+t_stack *tokenize_numbers(int argc, char **argv);
+
 t_stack *parse_numbers(t_stack *stack);
 
 // *** Main *** //
 
-int		main(int argc, char **argv);
+int main(int argc, char **argv);
 
 #endif /* PUSH_SWAP_H */
