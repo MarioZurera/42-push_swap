@@ -41,6 +41,9 @@ void	pb(t_stack *stack_a, t_stack *stack_b);
 void	ra(t_stack *stack_a, t_stack *stack_b);
 void	rb(t_stack *stack_a, t_stack *stack_b);
 void	rr(t_stack *stack_a, t_stack *stack_b);
+void	rra(t_stack *stack_a, t_stack *stack_b);
+void	rrb(t_stack *stack_a, t_stack *stack_b);
+void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 // *** Push_Swap  *** //
 
