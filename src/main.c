@@ -14,15 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_pair	pair;
+	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	pair->stack_a = parse_numbers(tokenize_numbers(argc, argv));
-	check_stack(pair->stack_a);
-	pair->stack_b = create_stack(pair->stack_a->size, NULL);
-	check_stack(pair->stack_b);
+	stack_a = parse_numbers(tokenize_numbers(argc, argv));
+	check_stack(stack_a);
+	stack_b = create_stack(pair->stack_a->size, NULL);
+	check_stack(stack_b);
 	// Algorithm magic
-	free_stack(pair->stack_a);
-	free_stack(pair->stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
 	return (0);
 }
