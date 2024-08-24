@@ -24,5 +24,6 @@ void	stack_without_repetitions(void);
 
 void	stack_swap(void);
 void	stack_push(void);
+void	stack_rotate(void);
 
 #endif /* PUSH_SWAP_TESTING */
