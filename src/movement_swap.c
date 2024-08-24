@@ -23,6 +23,7 @@ static void	swap(int *a, int *b)
 
 void	sa(t_stack *stack_a, t_stack *stack_b)
 {
+	(void) stack_b;
 	if (stack_a == NULL || stack_a->list == NULL)
 		return ;
 	swap(stack_a->list, stack_a->list + 1);
@@ -31,6 +32,7 @@ void	sa(t_stack *stack_a, t_stack *stack_b)
 
 void	sb(t_stack *stack_a, t_stack *stack_b)
 {
+	(void) stack_a;
 	if (stack_b == NULL || stack_b->list == NULL)
 		return ;
 	swap(stack_b->list, stack_b->list + 1);
