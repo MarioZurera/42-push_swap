@@ -65,7 +65,7 @@ void	sort_partial_ordered_stack_a(t_stack *stack_a)
 	{
 		while (i < n)
 		{
-			ra(stack_a, NULL);
+			ra(stack_a, NULL, 1);
 			++i;
 		}
 	}
@@ -73,7 +73,7 @@ void	sort_partial_ordered_stack_a(t_stack *stack_a)
 	{
 		while (i < ((int) stack_a->len) - n)
 		{
-			rra(stack_a, NULL);
+			rra(stack_a, NULL, 1);
 			++i;
 		}
 	}

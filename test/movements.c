@@ -23,15 +23,15 @@ void	stack_swap(void) {
 	int	t1b[3] = {5, 8, 6};
 	t_stack	a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
 	t_stack	b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
-	sa(&a, &b);
+	sa(&a, &b,1 );
 	swap(t1a, t1a + 1);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t1a, a.list, a.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t1b, b.list, b.len);
-	sb(&a, &b);
+	sb(&a, &b, 1);
 	swap(t1b, t1b + 1);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t1a, a.list, a.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t1b, b.list, b.len);
-	ss(&a, &b);
+	ss(&a, &b, 1);
 	swap(t1a, t1a + 1);
 	swap(t1b, t1b + 1);
 	TEST_ASSERT_EQUAL_INT_ARRAY(t1a, a.list, a.len);
@@ -43,7 +43,7 @@ void	stack_push(void) {
 	const int	tb[4] = {0, 5, 8, 6};
 	t_stack a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
 	t_stack b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
-	pb(&a, &b);
+	pb(&a, &b, 1);
 	TEST_ASSERT_EQUAL_INT(5, a.len);
 	TEST_ASSERT_EQUAL_INT(4, b.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(ta, a.list, a.len);
@@ -55,7 +55,7 @@ void	stack_rotate(void) {
 	const int	tb[3] = {8, 6, 5};
 	t_stack a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
 	t_stack b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
-	rr(&a, &b);
+	rr(&a, &b, 1);
 	TEST_ASSERT_EQUAL_INT_ARRAY(ta, a.list, a.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(tb, b.list, b.len);
 }
@@ -65,7 +65,7 @@ void	stack_reverse_rotate(void) {
 	const int	tb[3] = {6, 5, 8};
 	t_stack a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
 	t_stack b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
-	rrr(&a, &b);
+	rrr(&a, &b, 1);
 	TEST_ASSERT_EQUAL_INT_ARRAY(ta, a.list, a.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(tb, b.list, b.len);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
+void	pa(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;
 
@@ -35,10 +35,11 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 	}
 	++stack_a->len;
 	--stack_b->len;
-	ft_printf("pa\n");
+	if (print)
+		ft_printf("pa\n");
 }
 
-void	pb(t_stack *stack_a, t_stack *stack_b)
+void	pb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;
 
@@ -61,5 +62,6 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 	}
 	--stack_a->len;
 	++stack_b->len;
-	ft_printf("pb\n");
+	if (print)
+		ft_printf("pb\n");
 }

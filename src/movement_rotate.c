@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ra(t_stack *stack_a, t_stack *stack_b)
+void	ra(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
@@ -26,10 +26,11 @@ void	ra(t_stack *stack_a, t_stack *stack_b)
 		++i;
 	}
 	stack_a->list[i - 1] = n;
-	ft_printf("ra\n");
+	if (print)
+		ft_printf("ra\n");
 }
 
-void	rb(t_stack *stack_a, t_stack *stack_b)
+void	rb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
@@ -43,10 +44,11 @@ void	rb(t_stack *stack_a, t_stack *stack_b)
 		++i;
 	}
 	stack_b->list[i - 1] = n;
-	ft_printf("rb\n");
+	if (print)
+		ft_printf("rb\n");
 }
 
-void	rr(t_stack *stack_a, t_stack *stack_b)
+void	rr(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
@@ -67,5 +69,6 @@ void	rr(t_stack *stack_a, t_stack *stack_b)
 		++i;
 	}
 	stack_b->list[i - 1] = n;
-	ft_printf("rr\n");
+	if (print)
+		ft_printf("rr\n");
 }
