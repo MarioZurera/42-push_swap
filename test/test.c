@@ -24,6 +24,7 @@ static void run_movement_tests(void) {
 	RUN_TEST(stack_swap);
 	RUN_TEST(stack_push);
 	RUN_TEST(stack_rotate);
+	RUN_TEST(stack_reverse_rotate);
 }
 
 int main(int argc, char **argv) {
