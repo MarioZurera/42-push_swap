@@ -26,7 +26,7 @@ void	rra(t_stack *stack_a, t_stack *stack_b)
 		--i;
 	}
 	stack_a->list[i + 1] = n;
-	ft_printf("rra");
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack *stack_a, t_stack *stack_b)
@@ -43,7 +43,7 @@ void	rrb(t_stack *stack_a, t_stack *stack_b)
 		--i;
 	}
 	stack_b->list[i + 1] = n;
-	ft_printf("rrb");
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *stack_a, t_stack *stack_b)
@@ -67,5 +67,5 @@ void	rrr(t_stack *stack_a, t_stack *stack_b)
 		--i;
 	}
 	stack_b->list[i] = n;
-	ft_printf("rrr");
+	ft_printf("rrr\n");
 }

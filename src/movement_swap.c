@@ -27,7 +27,7 @@ void	sa(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a == NULL || stack_a->list == NULL)
 		return ;
 	swap(stack_a->list, stack_a->list + 1);
-	ft_printf("sa");
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack *stack_a, t_stack *stack_b)
@@ -36,7 +36,7 @@ void	sb(t_stack *stack_a, t_stack *stack_b)
 	if (stack_b == NULL || stack_b->list == NULL)
 		return ;
 	swap(stack_b->list, stack_b->list + 1);
-	ft_printf("sb");
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
@@ -46,5 +46,5 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	swap(stack_a->list, stack_a->list + 1);
 	swap(stack_b->list, stack_b->list + 1);
-	ft_printf("ss");
+	ft_printf("ss\n");
 }
