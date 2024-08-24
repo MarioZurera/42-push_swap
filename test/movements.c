@@ -49,3 +49,13 @@ void	stack_push(void) {
 	TEST_ASSERT_EQUAL_INT_ARRAY(ta, a.list, a.len);
 	TEST_ASSERT_EQUAL_INT_ARRAY(tb, b.list, b.len);
 }
+
+void	stack_rotate(void) {
+	const int	ta[6] = {3, 2, 4, 1, 7, 0};
+	const int	tb[3] = {8, 6, 5};
+	t_stack a = {9, 6, (int[]){0, 3, 2, 4, 1, 7, -1, -1, -1}};
+	t_stack b = {9, 3, (int[]){5, 8, 6, -1, -1, -1, -1, -1, -1}};
+	rr(&a, &b);
+	TEST_ASSERT_EQUAL_INT_ARRAY(ta, a.list, a.len);
+	TEST_ASSERT_EQUAL_INT_ARRAY(tb, b.list, b.len);
+}

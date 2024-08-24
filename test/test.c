@@ -23,6 +23,7 @@ static void run_movement_tests(void) {
 	TEST_MESSAGE("Test Movements");
 	RUN_TEST(stack_swap);
 	RUN_TEST(stack_push);
+	RUN_TEST(stack_rotate);
 }
 
 int main(int argc, char **argv) {
