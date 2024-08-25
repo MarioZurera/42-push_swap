@@ -39,41 +39,43 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 
 #include <stdio.h>
 
-static void print_array(int nums[], unsigned int size)
+static void print_array(int nums[], unsigned int size, const char *movement)
 {
 	unsigned int i;
+	printf("LEN: %d  | ", size);
 	for (i = 0; i < size; i++)
 		printf("%d ", nums[i]);
+	printf("%s", movement);
 	printf("\n");
 }
 
 static char	**sort_recursive(t_stack *stack_a, t_stack *stack_b, unsigned int limit);
 
-static void	move(t_stack *stack_a, t_stack *stack_b, const char *movement)
+static int	move(t_stack *stack_a, t_stack *stack_b, const char *movement)
 {
-	print_array(stack_a->list, stack_a->len);
 	if (ft_strncmp(movement, "sa", 2) == 0)
-		return (sa(stack_a, stack_b, 1));
+		return (sa(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "sb", 2) == 0)
-		return (sb(stack_a, stack_b, 1));
+		return (sb(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "ss", 2) == 0)
-		return (ss(stack_a, stack_b, 1));
+		return (ss(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "pa", 2) == 0)
-		return (pa(stack_a, stack_b, 1));
+		return (pa(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "pb", 2) == 0)
-		return (pb(stack_a, stack_b, 1));
+		return (pb(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "ra", 2) == 0)
-		return (ra(stack_a, stack_b, 1));
+		return (ra(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "rb", 2) == 0)
-		return (rb(stack_a, stack_b, 1));
+		return (rb(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "rr", 2) == 0)
-		return (rr(stack_a, stack_b, 1));
+		return (rr(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "rra", 3) == 0)
-		return (rra(stack_a, stack_b, 1));
+		return (rra(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "rrb", 3) == 0)
-		return (rrb(stack_a, stack_b, 1));
+		return (rrb(stack_a, stack_b, 0));
 	if (ft_strncmp(movement, "rrr", 3) == 0)
-		return (rrr(stack_a, stack_b, 1));
+		return (rrr(stack_a, stack_b, 0));
+	return (0);
 }
 
 static void	unmove(t_stack *stack_a, t_stack *stack_b, const char *movement)
@@ -108,7 +110,8 @@ static char	**process_movement(t_stack *stack_a, t_stack *stack_b, unsigned int 
 	char			**result;
 	char			 **strs;
 
-	move(stack_a, stack_b, movement);
+	if (move(stack_a, stack_b, movement) == 0)
+		return (NULL);
 	result = sort_recursive(stack_a, stack_b, limit - 1);
 	unmove(stack_a, stack_b, movement);
 	if (result == NULL)
@@ -178,10 +181,14 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_a == NULL || stack_b == NULL || stack_b->len > 0)
 		return ;
-	result = sort_recursive(stack_a, stack_b, 4);
+	result = sort_recursive(stack_a, stack_b, 1000);
 	i = 0;
 	if (result == NULL)
 		return ;
-	while (result[i] != NULL)
-		ft_printf("%s\n", result[i++]);
+	while (result[i] != NULL) {
+		move(stack_a, stack_b, result[i]);
+		ft_printf("%s ", result[i]);
+		print_array(stack_a->list, stack_a->len, result[i++]);
+	}
+	printf("%s\n", is_ordered(stack_a, stack_b) ? "sorted" : "unsorted");
 }
