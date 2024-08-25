@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 
 	stack_a = parse_numbers(tokenize_numbers(argc, argv));
 	check_stack(stack_a);
-	stack_b = create_stack(pair->stack_a->size, NULL);
+	stack_b = create_stack(stack_a->size, NULL);
 	check_stack(stack_b);
-	// Algorithm magic
+	sort(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

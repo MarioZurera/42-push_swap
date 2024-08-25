@@ -44,9 +44,9 @@ UNITY			= unity.c
 
 # STANDARD #
 STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(STANDARD))
-#STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
-STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
-STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
+#STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
+#STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #

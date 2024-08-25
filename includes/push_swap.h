@@ -50,6 +50,7 @@ int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
 t_stack	*init_stack(int amount_of_nums);
 t_stack	*tokenize_numbers(int argc, char **argv);
 t_stack	*parse_numbers(t_stack *stack);
+void	sort(t_stack *stack_a, t_stack *stack_b);
 
 // *** Ordered *** //
 
