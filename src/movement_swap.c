@@ -21,33 +21,42 @@ static void	swap(int *a, int *b)
 	*b = temp;
 }
 
-void	sa(t_stack *stack_a, t_stack *stack_b, int print)
+int	sa(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	(void) stack_b;
 	if (stack_a == NULL || stack_a->list == NULL)
-		return ;
+		return (0);
+	if (stack_a->len == 0)
+		return (0);
 	swap(stack_a->list, stack_a->list + 1);
 	if (print)
 		ft_printf("sa\n");
+	return (1);
 }
 
-void	sb(t_stack *stack_a, t_stack *stack_b, int print)
+int	sb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	(void) stack_a;
 	if (stack_b == NULL || stack_b->list == NULL)
-		return ;
+		return (0);
+	if (stack_b->len == 0)
+		return (0);
 	swap(stack_b->list, stack_b->list + 1);
 	if (print)
 		ft_printf("sb\n");
+	return (1);
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b, int print)
+int	ss(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	if (stack_a == NULL || stack_b == NULL
 		|| stack_a->list == NULL || stack_b->list == NULL)
-		return ;
+		return (0);
+	if (stack_a->len == 0 || stack_b->len == 0)
+		return (0);
 	swap(stack_a->list, stack_a->list + 1);
 	swap(stack_b->list, stack_b->list + 1);
 	if (print)
 		ft_printf("ss\n");
+	return (1);
 }

@@ -12,12 +12,14 @@
 
 #include "push_swap.h"
 
-void	rra(t_stack *stack_a, t_stack *stack_b, int print)
+int	rra(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
 
 	(void) stack_b;
+	if (stack_a->len < 2)
+		return (0);
 	n = stack_a->list[stack_a->len - 1];
 	i = stack_a->len - 1;
 	while (i > 0)
@@ -28,14 +30,17 @@ void	rra(t_stack *stack_a, t_stack *stack_b, int print)
 	stack_a->list[i + 1] = n;
 	if (print)
 		ft_printf("rra\n");
+	return (1);
 }
 
-void	rrb(t_stack *stack_a, t_stack *stack_b, int print)
+int	rrb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
 
 	(void) stack_a;
+	if (stack_b->len < 2)
+		return (0);
 	n = stack_b->list[stack_b->len - 1];
 	i = stack_b->len - 1;
 	while (i > 0)
@@ -46,13 +51,16 @@ void	rrb(t_stack *stack_a, t_stack *stack_b, int print)
 	stack_b->list[i + 1] = n;
 	if (print)
 		ft_printf("rrb\n");
+	return (1);
 }
 
-void	rrr(t_stack *stack_a, t_stack *stack_b, int print)
+int	rrr(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int				n;
 	unsigned int	i;
 
+	if (stack_a->len < 2 || stack_b->len < 2)
+		return (0);
 	i = stack_a->len - 1;
 	n = stack_a->list[i];
 	while (i > 0)
@@ -71,4 +79,5 @@ void	rrr(t_stack *stack_a, t_stack *stack_b, int print)
 	stack_b->list[i] = n;
 	if (print)
 		ft_printf("rrr\n");
+	return (1);
 }

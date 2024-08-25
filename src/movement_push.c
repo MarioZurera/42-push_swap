@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	pa(t_stack *stack_a, t_stack *stack_b, int print)
+int	pa(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;
 
 	if (stack_a == NULL || stack_b == NULL)
-		return ;
-	if (stack_a->len == stack_a->size)
-		return ;
+		return (0);
+	if (stack_a->len == stack_a->size || stack_b->len == 0)
+		return (0);
 	i = stack_a->len - 1;
 	while (i >= 0)
 	{
@@ -37,16 +37,17 @@ void	pa(t_stack *stack_a, t_stack *stack_b, int print)
 	--stack_b->len;
 	if (print)
 		ft_printf("pa\n");
+	return (1);
 }
 
-void	pb(t_stack *stack_a, t_stack *stack_b, int print)
+int	pb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;
 
 	if (stack_a == NULL || stack_b == NULL)
-		return ;
+		return (0);
 	if (stack_b->len == stack_b->size)
-		return ;
+		return (0);
 	i = stack_b->len - 1;
 	while (i >= 0)
 	{
@@ -64,4 +65,5 @@ void	pb(t_stack *stack_a, t_stack *stack_b, int print)
 	++stack_b->len;
 	if (print)
 		ft_printf("pb\n");
+	return (1);
 }

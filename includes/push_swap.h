@@ -33,17 +33,17 @@ t_stack *create_stack(unsigned int size, int *nums);
 
 // *** Movements *** //
 
-void	sa(t_stack *stack_a, t_stack *stack_b, int print);
-void	sb(t_stack *stack_a, t_stack *stack_b, int print);
-void	ss(t_stack *stack_a, t_stack *stack_b, int print);
-void	pa(t_stack *stack_a, t_stack *stack_b, int print);
-void	pb(t_stack *stack_a, t_stack *stack_b, int print);
-void	ra(t_stack *stack_a, t_stack *stack_b, int print);
-void	rb(t_stack *stack_a, t_stack *stack_b, int print);
-void	rr(t_stack *stack_a, t_stack *stack_b, int print);
-void	rra(t_stack *stack_a, t_stack *stack_b, int print);
-void	rrb(t_stack *stack_a, t_stack *stack_b, int print);
-void	rrr(t_stack *stack_a, t_stack *stack_b, int print);
+int		sa(t_stack *stack_a, t_stack *stack_b, int print);
+int		sb(t_stack *stack_a, t_stack *stack_b, int print);
+int		ss(t_stack *stack_a, t_stack *stack_b, int print);
+int		pa(t_stack *stack_a, t_stack *stack_b, int print);
+int		pb(t_stack *stack_a, t_stack *stack_b, int print);
+int		ra(t_stack *stack_a, t_stack *stack_b, int print);
+int		rb(t_stack *stack_a, t_stack *stack_b, int print);
+int		rr(t_stack *stack_a, t_stack *stack_b, int print);
+int		rra(t_stack *stack_a, t_stack *stack_b, int print);
+int		rrb(t_stack *stack_a, t_stack *stack_b, int print);
+int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
 
 // *** Push_Swap  *** //
 
