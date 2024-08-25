@@ -57,6 +57,13 @@ int		is_ordered(const t_stack *stack);
 int		is_partially_ordered(const t_stack *stack);
 void	sort_partial_ordered_stack_a(t_stack *stack_a);
 
+// *** Sort *** //
+
+void	sort(t_stack *stack_a, t_stack *stack_b);
+void	sort3(t_stack *stack_a, t_stack *stack_b);
+void	sort5(t_stack *stack_a, t_stack *stack_b);
+
+
 // *** Main *** //
 
 int		main(int argc, char **argv);
