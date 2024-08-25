@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include "../libft/colors.h"
 # include <limits.h>
-# include <stdbool.h>
+# include <stdint.h>
 
 typedef struct s_stack {
 	unsigned int	size;
