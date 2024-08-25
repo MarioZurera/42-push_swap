@@ -12,34 +12,30 @@
 
 #include "push_swap.h"
 
-int	is_ordered(const t_stack *stack_a, const t_stack *stack_b)
+int	is_ordered(const t_stack *stack)
 {
 	unsigned int	i;
 
-	if (stack_b->len != 0)
-		return (0);
 	i = 0;
-	while (i < stack_a->len - 1 && stack_a->list[i] < stack_a->list[i + 1])
+	while (i < stack->len - 1 && stack->list[i] < stack->list[i + 1])
 		++i;
-	return (i == stack_a->len - 1);
+	return (i == stack->len - 1);
 }
 
 int	is_partially_ordered(const t_stack *stack)
 {
 	unsigned int	i;
-	int				flag;
 
 	i = 0;
-	flag = 0;
 	while (i < stack->len - 1)
 	{
-		if (flag && stack->list[i] > stack->list[i + 1])
+		if (stack->list[i] > stack->list[i + 1]
+			&& stack->list[i] != (int) stack->len - 1 && stack->list[i + 1] != 0)
 			return (0);
-		if (stack->list[i] > stack->list[i + 1])
-			flag = 1;
 		++i;
 	}
-	return (i == stack->len - 1 && stack->list[i] < stack->list[0]);
+	return ((i == stack->len - 1
+		&& stack->list[i] < stack->list[0]) || stack->list[i] == (int) stack->len - 1);
 }
 
 static int	rotations_to_order(const t_stack *stack)
