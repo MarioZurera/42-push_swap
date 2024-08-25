@@ -46,7 +46,7 @@ int	pb(t_stack *stack_a, t_stack *stack_b, int print)
 
 	if (stack_a == NULL || stack_b == NULL)
 		return (0);
-	if (stack_b->len == stack_b->size)
+	if (stack_b->len == stack_b->size || stack_a->len == 0)
 		return (0);
 	i = stack_b->len - 1;
 	while (i >= 0)
