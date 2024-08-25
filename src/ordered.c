@@ -12,14 +12,16 @@
 
 #include "push_swap.h"
 
-int	is_ordered(const t_stack *stack)
+int	is_ordered(const t_stack *stack_a, const t_stack *stack_b)
 {
 	unsigned int	i;
 
+	if (stack_b->len != 0)
+		return (0);
 	i = 0;
-	while (i < stack->len - 1 && stack->list[i] < stack->list[i + 1])
+	while (i < stack_a->len - 1 && stack_a->list[i] < stack_a->list[i + 1])
 		++i;
-	return (i == stack->len - 1);
+	return (i == stack_a->len - 1);
 }
 
 int	is_partially_ordered(const t_stack *stack)
