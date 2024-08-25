@@ -14,14 +14,16 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	uint64_t	*stack_a_64;
 
 	stack_a = parse_numbers(tokenize_numbers(argc, argv));
 	check_stack(stack_a);
-	stack_b = create_stack(pair->stack_a->size, NULL);
+	stack_a_64 = convert_to_9bits_nums(stack_a);
+	stack_b = create_stack(stack_a->size, NULL);
 	check_stack(stack_b);
-	// Algorithm magic
+	sort(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

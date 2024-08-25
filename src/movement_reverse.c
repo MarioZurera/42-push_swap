@@ -20,14 +20,14 @@ int	rra(t_stack *stack_a, t_stack *stack_b, int print)
 	(void) stack_b;
 	if (stack_a->len < 2)
 		return (0);
-	n = stack_a->list[stack_a->len - 1];
 	i = stack_a->len - 1;
+	n = stack_a->list[i];
 	while (i > 0)
 	{
-		stack_a->list[i - 1] = stack_a->list[i];
+		stack_a->list[i] = stack_a->list[i - 1];
 		--i;
 	}
-	stack_a->list[i + 1] = n;
+	stack_a->list[i] = n;
 	if (print)
 		ft_printf("rra\n");
 	return (1);
@@ -41,14 +41,14 @@ int	rrb(t_stack *stack_a, t_stack *stack_b, int print)
 	(void) stack_a;
 	if (stack_b->len < 2)
 		return (0);
-	n = stack_b->list[stack_b->len - 1];
 	i = stack_b->len - 1;
+	n = stack_b->list[i];
 	while (i > 0)
 	{
-		stack_b->list[i - 1] = stack_b->list[i];
+		stack_b->list[i] = stack_b->list[i - 1];
 		--i;
 	}
-	stack_b->list[i + 1] = n;
+	stack_b->list[i] = n;
 	if (print)
 		ft_printf("rrb\n");
 	return (1);
