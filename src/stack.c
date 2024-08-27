@@ -58,3 +58,13 @@ t_stack	*create_stack(const unsigned int size, int *nums)
 	}
 	return (stack);
 }
+
+t_stack	*copy_stack(const t_stack *stack)
+{
+	t_stack	*copy;
+	copy = create_stack(stack->size, stack->list);
+	if (copy == NULL)
+		return (NULL);
+	copy->len = stack->len;
+	return (copy);
+}

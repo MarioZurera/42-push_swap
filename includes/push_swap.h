@@ -30,6 +30,8 @@ int		compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
 int		check_stack(t_stack *stack);
 t_stack *create_stack(unsigned int size, int *nums);
+t_stack	*copy_stack(const t_stack *stack);
+int		binary_search(int *arr, int size, int value);
 
 // *** Movements *** //
 
