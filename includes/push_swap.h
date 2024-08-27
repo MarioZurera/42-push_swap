@@ -46,6 +46,7 @@ int		rr(t_stack *stack_a, t_stack *stack_b, int print);
 int		rra(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrb(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
+void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print);
 
 // *** Push_Swap  *** //
 
