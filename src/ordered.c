@@ -34,8 +34,7 @@ int	is_partially_ordered(const t_stack *stack)
 			return (0);
 		++i;
 	}
-	return ((i == stack->len - 1
-		&& stack->list[i] < stack->list[0]) || stack->list[i] == (int) stack->len - 1);
+	return (i == stack->len - 1);
 }
 
 static int	rotations_to_order(const t_stack *stack)
