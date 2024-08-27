@@ -69,6 +69,9 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
 void	sort3(t_stack *stack_a, t_stack *stack_b);
 void	sort5(t_stack *stack_a, t_stack *stack_b);
 
+// *** Heuristic *** //
+
+int	greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b);
 
 // *** Main *** //
 
