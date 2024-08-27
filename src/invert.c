@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   ordered.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,29 +12,50 @@
 
 #include "push_swap.h"
 
-void	sort_3(t_stack *stack_a, t_stack *stack_b)
+static void sort_4_inverted(t_stack *stack_a, t_stack *stack_b)
 {
 	sa(stack_a, stack_b, 1);
-	if (!is_ordered(stack_a))
-		sort_partial_ordered_stack_a(stack_a);
+	ra(stack_a, stack_b, 1);
+	ra(stack_a, stack_b, 1);
+	sa(stack_a, stack_b, 1);
 }
 
-void	sort(t_stack *stack_a, t_stack *stack_b)
+void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a == NULL || stack_b == NULL)
-		return ;
-	if (is_partially_ordered(stack_a))
+	if (stack_a->len < 4)
 	{
+		sort3(stack_a, stack_b);
+		return ;
+	}
+	if (stack_a->len == 4)
+	{
+		sort_4_inverted(stack_a, stack_b);
 		sort_partial_ordered_stack_a(stack_a);
 		return ;
 	}
-	if (is_inversally_ordered(stack_a))
+	while (stack_a->len > 4)
+		pb(stack_a, stack_b, 1);
+	sort_4_inverted(stack_a, stack_b);
+	while (stack_b->len > 1)
 	{
-		sort_inversally_ordered_stack_a(stack_a, stack_b);
-		return ;
+		pb(stack_a, stack_b, 1);
+		ra(stack_a, stack_b, 1);
 	}
-	if (stack_a->len <= 3)
-		sort_3(stack_a, stack_b);
-	if (stack_a->len <= 5)
-		sort_5(stack_a, stack_b);
+	pb(stack_a, stack_b, 1);
+	sort_partial_ordered_stack_a(stack_a);
+}
+
+int	is_inversally_ordered(const t_stack *stack)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < stack->len - 1)
+	{
+		if (stack->list[i] < stack->list[i + 1]
+			&& stack->list[i] != 0 && stack->list[i + 1] != (int) stack->len - 1)
+			return (0);
+		++i;
+	}
+	return (i == stack->len - 1);
 }

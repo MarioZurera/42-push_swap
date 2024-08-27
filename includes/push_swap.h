@@ -57,6 +57,8 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
 int		is_ordered(const t_stack *stack);
 int		is_partially_ordered(const t_stack *stack);
 void	sort_partial_ordered_stack_a(t_stack *stack_a);
+int		is_inversally_ordered(const t_stack *stack);
+void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b);
 
 // *** Sort *** //
 

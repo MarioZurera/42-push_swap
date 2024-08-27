@@ -35,7 +35,7 @@ TEST_NAME		= my_test
 STANDARD		= lexer.c error.c parser.c stack.c \
 				  movement_swap.c movement_push.c \
 				  movement_rotate.c movement_reverse.c \
-				  ordered.c sort.c sort5.c
+				  ordered.c invert.c sort.c sort5.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
