@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	binary_search(int *arr, int size, int value)
+int	binary_search(int *arr, int size, int value)
 {
 	unsigned int	l;
 	unsigned int	r;
