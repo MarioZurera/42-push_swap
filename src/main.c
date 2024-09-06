@@ -12,15 +12,16 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
-{
+int	main(int argc, char **argv) {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 
 	stack_a = parse_numbers(tokenize_numbers(argc, argv));
-	check_stack(stack_a);
+	if (check_stack(stack_a) == 0)
+		exit(1);
 	stack_b = create_stack(stack_a->size, NULL);
-	check_stack(stack_b);
+	if (check_stack(stack_b) == 0)
+		exit(1);
 	sort(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
