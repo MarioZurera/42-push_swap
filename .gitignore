@@ -19,3 +19,6 @@ build/
 # Executables
 push_swap
 my_test
+
+# Configurations
+.idea
