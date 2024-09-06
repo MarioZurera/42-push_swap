@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 static void	print_error(void) {
-	write(STDERR_FILENO, R"Error\n"NC, 17);
+	write(STDERR_FILENO, "Error\n", 17);
 	exit(1);
 }
 
