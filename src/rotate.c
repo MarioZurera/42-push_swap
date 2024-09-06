@@ -63,19 +63,19 @@ static void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print)
 {
 	int	index_b;
-	int	curr_cost;
 	int	moves[2];
+	int	curr_cost;
 
 	index_b = binary_search(stack_b->list, stack_b->len, stack_a->list[index_a]);
 	curr_cost = ft_max(index_a, index_b);
 	moves[0] = index_a;
 	moves[1] = index_b;
-	if (curr_cost > index_a + stack_b->len - index_b)
+	if (curr_cost > (int) (index_a + stack_b->len - index_b))
 	{
 		moves[1] = -index_b;
 		curr_cost = index_a + stack_b->len - index_b;
 	}
-	if (curr_cost > stack_a->len - index_a + index_b)
+	if (curr_cost > (int) (stack_a->len - index_a + index_b))
 	{
 		moves[0] = -index_a;
 		moves[1] = index_b;
