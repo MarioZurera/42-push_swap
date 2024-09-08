@@ -47,7 +47,8 @@ LEXER			= $(addprefix $(LEXER_DIR)/, $(LEXER_SRC))
 PARSER_SRC		= parser.c
 PARSER			= $(addprefix $(PARSER_DIR)/, $(PARSER_SRC))
 
-STACK_SRC		= stack.c
+STACK_SRC		= create_stack.c free_stack.c copy_stack.c compare_stack.c \
+				  push_stack.c pop_stack.c
 STACK			= $(addprefix $(STACK_DIR)/, $(STACK_SRC))
 
 MOVEMENTS_SRC	= movement_swap.c movement_push.c movement_rotate.c movement_reverse.c

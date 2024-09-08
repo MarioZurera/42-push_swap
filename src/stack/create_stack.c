@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,36 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*create_stack(const unsigned int size, int *nums);
-
-static void	free_stack(t_stack *stack)
-{
-	free(stack->list);
-	free(stack);
-}
-
-static t_stack	*copy_stack(const t_stack *stack)
-{
-	t_stack	*copy;
-	copy = create_stack(stack->size, stack->list);
-	copy->len = stack->len;
-	return (copy);
-}
-
-static int	compare_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	unsigned int	i;
-
-	if (!stack_a || !stack_b)
-		return (0);
-	if (stack_a->size != stack_b->size)
-		return (0);
-	i = 0;
-	while (i < stack_a->size && stack_a->list[i] == stack_b->list[i])
-		i++;
-	return (i == stack_a->size);
-}
+#include "stack_private.h"
 
 t_stack	*create_stack_from(t_i32_array *array)
 {
