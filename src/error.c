@@ -24,3 +24,10 @@ int	check_stack(t_stack *stack) {
 	}
 	return (1);
 }
+
+void	*exit_if_null(void *ptr)
+{
+	if (ptr == NULL)
+		print_error();
+	return (ptr);
+}

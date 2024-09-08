@@ -31,7 +31,14 @@ NAME			= push_swap
 CAP_NAME		= $(shell echo $(NAME) | awk '{print toupper(substr($$0, 1, 1)) substr($$0, 2)}')
 TEST_NAME		= my_test
 
+# SOURCE DIRECTORIES #
+LEXER_DIR		= lexer
+PARSER_DIR		= parser
+
 # SOURCE FILES #
+LEXER_SRC		= lexer.c
+LEXER			= $(addprefix $(LEXER_DIR)/, $(LEXER_SRC))
+
 STANDARD		= lexer.c error.c parser.c stack.c \
 				  movement_swap.c movement_push.c \
 				  movement_rotate.c movement_reverse.c \
@@ -44,10 +51,9 @@ TEST			= test.c stack.c movements.c
 UNITY			= unity.c
 
 # STANDARD #
-STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(STANDARD))
-STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MAIN))
-#STANDARD_SRC   += $(addprefix $(TEST_DIR)/, $(TEST))
-#STANDARD_SRC   += $(addprefix $(UNITY_DIR)/, $(UNITY))
+STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(MAIN))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(LEXER))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(STANDARD))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #
