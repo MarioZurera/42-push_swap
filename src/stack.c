@@ -34,6 +34,14 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
+t_stack	*create_stack_from(t_i32_array *array)
+{
+	t_stack	*stack;
+	stack = create_stack(array->size, array->list);
+	array->free(array);
+	return (stack);
+}
+
 t_stack	*create_stack(const unsigned int size, int *nums)
 {
 	t_stack	*stack;

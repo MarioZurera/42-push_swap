@@ -21,10 +21,12 @@ SRC_DIR			= src
 INC_DIR			= includes
 TEST_DIR		= test
 LIB_DIR			= libft
+STR_ARR_DIR		= string_array
 UNITY_DIR		= unity/src
 
 # LIBRARIES #
 LIBFT			= libft.a
+STRING_ARRAY	= libstrarr.a
 
 # NAME #
 NAME			= push_swap
@@ -39,7 +41,7 @@ PARSER_DIR		= parser
 LEXER_SRC		= lexer.c
 LEXER			= $(addprefix $(LEXER_DIR)/, $(LEXER_SRC))
 
-STANDARD		= lexer.c error.c parser.c stack.c \
+STANDARD		= error.c parser.c stack.c \
 				  movement_swap.c movement_push.c \
 				  movement_rotate.c movement_reverse.c \
 				  ordered.c invert.c sort.c sort5.c  rotate.c \
@@ -87,12 +89,14 @@ all: $(NAME)
 $(NAME): $(STANDARD_OBJ)
 	@echo "$(C_BLUE)Builing $(NAME)...$(C_DEF)"
 	@make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(STANDARD_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
+	@make all -s -C ./$(STR_ARR_DIR)/
+	@$(CC) $(CFLAGS) $(STANDARD_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -L./$(STR_ARR_DIR) ./$(STR_ARR_DIR)/$(STRING_ARRAY) -o $(NAME)
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
 
 clean:
 	@$(RM) */*.o */*/*.o
 	@make clean -s -C $(LIB_DIR)
+	@make clean -s -C $(STR_ARR_DIR)
 	@echo "$(C_RED)Cleaned objects!$(C_DEF)"
 
 fclean: clean
@@ -100,6 +104,7 @@ fclean: clean
 	@$(RM) $(LIBFT)
 	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
+	@make fclean -s -C $(STR_ARR_DIR)
 	@echo "$(C_RED)Cleaned $(NAME) program!$(C_DEF)"
 
 re: fclean all

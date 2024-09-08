@@ -34,6 +34,7 @@ void	*exit_if_null(void *ptr);
 int		compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
 t_stack *create_stack(unsigned int size, int *nums);
+t_stack	*create_stack_from(t_i32_array *array);
 t_stack	*copy_stack(const t_stack *stack);
 int		binary_search(int *arr, int size, int value);
 
