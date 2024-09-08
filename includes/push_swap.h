@@ -32,7 +32,7 @@ void	push_swap_error();
 
 // *** Stack Functions *** //
 
-int		compare_stacks(t_stack *stackA, t_stack *stackB);
+int		compare_stacks(t_stack *stack_a, t_stack *stack_b);
 void	free_stack(t_stack *stack);
 t_stack *create_stack(unsigned int size, int *nums);
 t_stack	*create_stack_from(t_i32_array *array);
