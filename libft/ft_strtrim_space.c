@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strtrim_spaces(char *str)
+char	*ft_strtrim_space(char *str)
 {
 	char	*result;
 
