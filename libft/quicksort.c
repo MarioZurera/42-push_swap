@@ -39,7 +39,7 @@ static int partition(int arr[], int low, int high) {
 	return (i + 1);
 }
 
-void quicksort(int arr[], int low, int high) {
+int *quicksort(int arr[], int low, int high) {
 	int	pi;
 
 	if (low < high) {
@@ -47,4 +47,5 @@ void quicksort(int arr[], int low, int high) {
 		quicksort(arr, low, pi - 1);
 		quicksort(arr, pi + 1, high);
 	}
+	return (arr);
 }
