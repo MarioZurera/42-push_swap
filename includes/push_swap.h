@@ -27,6 +27,7 @@ typedef struct s_stack {
 // *** Error Handler *** //
 void	check_stack(t_stack *stack);
 void	*exit_if_null(void *ptr);
+void	push_swap_error();
 
 
 // *** Stack Functions *** //

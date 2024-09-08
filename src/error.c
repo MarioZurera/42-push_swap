@@ -25,12 +25,12 @@ void		push_swap_error()
 void	check_stack(const t_stack *stack)
 {
 	if (stack == NULL || stack->list == NULL)
-	push_swap_error();
+		push_swap_error();
 }
 
 void	*exit_if_null(void *ptr)
 {
 	if (ptr == NULL)
-		print_error();
+		push_swap_error();
 	return (ptr);
 }
