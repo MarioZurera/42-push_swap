@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort5.c                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,8 +12,23 @@
 
 #include "push_swap.h"
 
-void	sort_5(t_stack *stack_a, t_stack *stack_b)
+
+
+void	sort(t_stack *stack_a, t_stack *stack_b)
 {
-	(void) stack_a;
-	(void) stack_b;
+	if (stack_a == NULL || stack_b == NULL)
+		return ;
+	if (is_partially_ordered(stack_a))
+	{
+		sort_partial_ordered_stack_a(stack_a);
+		return ;
+	}
+	if (is_inversally_ordered(stack_a))
+	{
+		sort_inversally_ordered_stack_a(stack_a, stack_b);
+		return ;
+	}
+	if (stack_a->len <= 3)
+		sort3(stack_a, stack_b);
+	greedy_algorithm(stack_a, stack_b);
 }

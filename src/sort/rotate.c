@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 static void	rotate_movements_aux(t_stack *stack_a, t_stack *stack_b,
-	int moves[2], int print)
+									int moves[2], int print)
 {
 	while (moves[0] > 0)
 	{

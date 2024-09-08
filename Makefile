@@ -39,6 +39,7 @@ PARSER_DIR		= parser
 STACK_DIR		= stack
 MOVEMENTS_DIR	= movements
 ERROR_DIR		= error
+SORT_DIR		= sort
 
 # SOURCE FILES #
 LEXER_SRC		= lexer.c
@@ -57,7 +58,9 @@ MOVEMENTS		= $(addprefix $(MOVEMENTS_DIR)/, $(MOVEMENTS_SRC))
 ERROR_SRC		= error.c
 ERROR			= $(addprefix $(ERROR_DIR)/, $(ERROR_SRC))
 
-STANDARD		= ordered.c invert.c sort.c sort5.c rotate.c greedy.c
+SORT_SRC		= sort.c sort3.c ordered.c invert.c rotate.c greedy.c
+SORT			=$(addprefix $(SORT_DIR)/, $(SORT_SRC))
+
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
@@ -71,7 +74,7 @@ STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(PARSER))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(STACK))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MOVEMENTS))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(ERROR))
-STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(STANDARD))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(SORT))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #

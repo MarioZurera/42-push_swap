@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 static void sort_4_inverted(t_stack *stack_a, t_stack *stack_b)
 {

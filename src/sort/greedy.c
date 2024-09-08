@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 static int	calculate_rotations(t_stack *stack_a, t_stack *stack_b,
-	int min_cost, int index)
+								int min_cost, int index)
 {
 	int	index_a;
 	int	index_b;
