@@ -23,7 +23,7 @@ static void	check_repetition(int nums[], unsigned int size)
 		push_swap_error();
 }
 
-static int	*copy_list(int src[], int dest[], unsigned int size)
+static int	*populate_from(int dest[], int src[], unsigned int size)
 {
 	int	i;
 
@@ -38,7 +38,8 @@ static int	*index_list(int list[], unsigned int size)
 	int	*index;
 	int	i;
 
-	index = copy_list(list, smalloc(size * sizeof(int)), size);
+	index = smalloc(size * sizeof(int));
+	index = populate_from(index, list, size);
 	index = quicksort(index, 0, size - 1);
 	i = -1;
 	while (++i < (int) size)
