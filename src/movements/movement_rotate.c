@@ -14,70 +14,33 @@
 
 int	ra(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	int				n;
-	unsigned int	i;
-
 	(void) stack_b;
 	if (stack_a->len < 2)
 		return (0);
-	n = stack_a->list[0];
-	i = 1;
-	while (i < stack_a->len)
-	{
-		stack_a->list[i - 1] = stack_a->list[i];
-		++i;
-	}
-	stack_a->list[i - 1] = n;
-	if (print)
+	stack_a->push_back(stack_a, stack_a->pop(stack_a));
+	if (print != 0)
 		ft_printf("ra\n");
 	return (1);
 }
 
 int	rb(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	int				n;
-	unsigned int	i;
-
 	(void) stack_a;
 	if (stack_b->len < 2)
 		return (0);
-	n = stack_b->list[0];
-	i = 1;
-	while (i < stack_b->len)
-	{
-		stack_b->list[i - 1] = stack_b->list[i];
-		++i;
-	}
-	stack_b->list[i - 1] = n;
-	if (print)
+	stack_b->push_back(stack_b, stack_b->pop(stack_b));
+	if (print != 0)
 		ft_printf("rb\n");
 	return (1);
 }
 
 int	rr(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	int				n;
-	unsigned int	i;
-
 	if (stack_a->len < 2 || stack_b->len < 2)
 		return (0);
-	n = stack_a->list[0];
-	i = 1;
-	while (i < stack_a->len)
-	{
-		stack_a->list[i - 1] = stack_a->list[i];
-		++i;
-	}
-	stack_a->list[i - 1] = n;
-	n = stack_b->list[0];
-	i = 1;
-	while (i < stack_b->len)
-	{
-		stack_b->list[i - 1] = stack_b->list[i];
-		++i;
-	}
-	stack_b->list[i - 1] = n;
-	if (print)
+	ra(stack_a, stack_b, 0);
+	rb(stack_a, stack_b, 0);
+	if (print != 0)
 		ft_printf("rr\n");
 	return (1);
 }
