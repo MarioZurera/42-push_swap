@@ -12,7 +12,7 @@
 
 #include "stack_private.h"
 
-int	compare_stacks(t_stack *stack_a, t_stack *stack_b)
+int	compare_stacks(const t_stack *stack_a, const t_stack *stack_b)
 {
 	unsigned int	i;
 
