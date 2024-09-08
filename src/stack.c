@@ -12,24 +12,22 @@
 
 #include "push_swap.h"
 
-int	compare_stacks(t_stack *stackA, t_stack *stackB)
+int	compare_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	unsigned int	i;
 
-	if (!stackA || !stackB)
+	if (!stack_a || !stack_b)
 		return (0);
-	if (stackA->size != stackB->size)
+	if (stack_a->size != stack_b->size)
 		return (0);
 	i = 0;
-	while (i < stackA->size && stackA->list[i] == stackB->list[i])
+	while (i < stack_a->size && stack_a->list[i] == stack_b->list[i])
 		i++;
-	return (i == stackA->size);
+	return (i == stack_a->size);
 }
 
 void	free_stack(t_stack *stack)
 {
-	if (stack == NULL)
-		return ;
 	free(stack->list);
 	free(stack);
 }
@@ -47,7 +45,7 @@ t_stack	*create_stack(const unsigned int size, int *nums)
 	t_stack	*stack;
 
 	if (size == 0)
-		return (NULL);
+		push_swap_error();
 	stack = smalloc(sizeof(t_stack));
 	stack->size = size;
 	stack->list = nums;
@@ -64,8 +62,6 @@ t_stack	*copy_stack(const t_stack *stack)
 {
 	t_stack	*copy;
 	copy = create_stack(stack->size, stack->list);
-	if (copy == NULL)
-		return (NULL);
 	copy->len = stack->len;
 	return (copy);
 }
