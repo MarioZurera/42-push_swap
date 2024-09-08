@@ -13,7 +13,6 @@
 #ifndef PUSH_SWAP_TESTING
 # define PUSH_SWAP_TESTING
 
-#include "../libft/libft.h"
 #include "push_swap.h"
 #include <unity.h>
 

@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include "../libft/colors.h"
+# include "../string_array/includes/string_array.h"
 # include <limits.h>
 # include <stdint.h>
 
@@ -24,11 +24,15 @@ typedef struct s_stack {
 	int				*list;
 }	t_stack;
 
+// *** Error Handler *** //
+int		check_stack(t_stack *stack);
+void	*exit_if_null(void *ptr);
+
+
 // *** Stack Functions *** //
 
 int		compare_stacks(t_stack *stackA, t_stack *stackB);
 void	free_stack(t_stack *stack);
-int		check_stack(t_stack *stack);
 t_stack *create_stack(unsigned int size, int *nums);
 t_stack	*copy_stack(const t_stack *stack);
 int		binary_search(int *arr, int size, int value);
