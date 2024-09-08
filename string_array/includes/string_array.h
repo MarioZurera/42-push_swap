@@ -37,6 +37,6 @@ struct s_i32_array {
 
 t_str_array	*string_array_from(const char **array);
 t_str_array	*string_array_empty();
-t_i32_array	*create_i32_array(int size);
+t_i32_array	*create_i32_array(size_t size);
 
 #endif //STRING_ARRAY_H
