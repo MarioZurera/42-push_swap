@@ -12,12 +12,12 @@
 
 #include "string_array_private.h"
 
-int	every_string_array(t_str_array *array, int *(*f)(char *))
+int	every_string_array(t_str_array *array, int *(*f)(const char *))
 {
 	int	i;
 
 	i = 0;
-	while (array->strings[i] != NULL && f(array[i]) != 0)
+	while (array->strings[i] != NULL && f(array->strings[i]) != 0)
 		i++;
 	return (array->strings[i] == NULL);
 }

@@ -14,5 +14,5 @@
 
 char	*get_string_array(t_str_array *array, int index)
 {
-	return (array->strings[index]);
+	return ((char *) array->strings[index]);
 }

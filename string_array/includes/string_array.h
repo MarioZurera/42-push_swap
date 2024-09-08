@@ -19,13 +19,13 @@ typedef struct s_str_array t_str_array;
 typedef struct s_i32_array t_i32_array;
 
 struct s_str_array {
-	char		**strings;
+	const char	**strings;
 	char		*(*get)(t_str_array *, int);
 	int			(*len)(t_str_array *);
 	void		(*free)(t_str_array *);
 	t_str_array	*(*clone)(t_str_array *);
-	t_str_array	*(*map)(t_str_array *, char *(*f)(char *));
-	int			(*every)(t_str_array *, int *(*f)(char *));
+	t_str_array	*(*map)(t_str_array *, char *(*f)(const char *));
+	int			(*every)(t_str_array *, int *(*f)(const char *));
 	t_i32_array	*(*parse)(t_str_array *);
 };
 

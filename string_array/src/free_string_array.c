@@ -20,7 +20,7 @@ void	free_string_array(t_str_array *array)
 		return ;
 	i = 0;
 	while (array->strings && i < array->len(array))
-		free(array->strings[i]);
+		free((void *) array->strings[i]);
 	free(array->strings);
 	free(array);
 }

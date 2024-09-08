@@ -14,5 +14,5 @@
 
 t_str_array *clone_string_array(t_str_array *array)
 {
-	return (string_array_from(array));
+	return (string_array_from(array->strings));
 }

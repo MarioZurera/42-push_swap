@@ -28,7 +28,7 @@ static void	*smalloc(size_t size)
 	return (ptr);
 }
 
-static char	**ft_deep_copy(char **array, int size)
+static const char	**ft_deep_copy(const char **array, const int size)
 {
 	char	**result;
 	int		i;
@@ -38,7 +38,7 @@ static char	**ft_deep_copy(char **array, int size)
 	while (++i < size)
 		result[i] = ft_strdup(array[i]);
 	result[i] = NULL;
-	return (result);
+	return ((const char **) result);
 }
 
 static int	get_size(const char **array)
@@ -69,7 +69,7 @@ t_str_array	*string_array_from(const char **array)
 
 t_str_array	*string_array_empty()
 {
-	char	**array;
+	const char	**array;
 
 	array = smalloc(sizeof(char *));
 	array[0] = NULL;
