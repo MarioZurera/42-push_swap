@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	check_repetition(int nums[], unsigned int size)
+static void	check_repetition(int *nums, unsigned int size)
 {
 	unsigned int	i;
 
@@ -23,7 +23,7 @@ static void	check_repetition(int nums[], unsigned int size)
 		push_swap_error();
 }
 
-static int	*populate_from(int dest[], int src[], unsigned int size)
+static int	*populate_from(int *dest, int *src, unsigned int size)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ static int	*populate_from(int dest[], int src[], unsigned int size)
 	return (dest);
 }
 
-static int	*index_list(int list[], unsigned int size)
+static int	*index_list(int *list, unsigned int size)
 {
 	int	*index;
 	int	i;

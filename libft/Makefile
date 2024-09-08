@@ -17,7 +17,7 @@ SRCS	= ft_abs.c ft_alnum.c ft_atoi.c ft_bzero.c ft_calloc.c \
 		  quicksort.c binary_search.c ft_strtrim_space.c smalloc.c scalloc.c
 OBJS	= $(SRCS:.c=.o)
 NAME	= libft.a
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 LIBC	= ar rcs
 RM		= rm -f
 
