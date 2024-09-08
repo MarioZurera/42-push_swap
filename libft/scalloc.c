@@ -19,7 +19,7 @@ void	*scalloc(size_t num, size_t size)
 	array = ft_calloc(num, size);
 	if (array == NULL)
 	{
-		write(2, "[ABORT]: Invalid malloc: Out of memory\n", 40);
+		write(2, "[ABORT]: Invalid calloc: Out of memory\n", 40);
 		exit(1);
 	}
 	return (array);

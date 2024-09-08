@@ -12,6 +12,8 @@
 
 #include "string_array_private.h"
 #include <stdlib.h>
+#include <unistd.h>
+
 
 static void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
@@ -62,6 +64,19 @@ static int	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (src_len);
 }
 
+void	*smalloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (ptr == NULL)
+	{
+		write(2, "[ABORT]: Invalid malloc: Out of memory\n", 40);
+		exit(1);
+	}
+	return (ptr);
+}
+
 
 char	*ft_strdup(const char *s)
 {
@@ -69,9 +84,7 @@ char	*ft_strdup(const char *s)
 	char	*str;
 
 	size = ft_strlen(s) + 1;
-	str = (char *) malloc(size);
-	if (str == NULL)
-		return (NULL);
+	str = (char *) smalloc(size);
 	ft_strlcpy(str, s, size);
 	return (str);
 }

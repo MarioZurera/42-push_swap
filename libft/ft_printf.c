@@ -33,10 +33,8 @@ static char	*get_flags(const char *format, int *pos)
 	if (format[*pos] == '*')
 		(*pos)++;
 	if (!ft_strchr(conversions, format[*pos]))
-		return (NULL);
+		return (NONE);
 	result = ft_substr(format, start, *pos - start);
-	if (result == NULL)
-		return (NULL);
 	return (result);
 }
 
@@ -71,16 +69,14 @@ static t_conversion	*eval_flags(const char *format, int *pos, va_list arg)
 {
 	t_conversion	*data;
 
-	data = (t_conversion *) malloc(sizeof(t_conversion));
-	if (data == NULL)
-		return (NULL);
+	data = (t_conversion *) smalloc(sizeof(t_conversion));
 	data->length = 0;
 	data->precision = -1;
 	data->flags = get_flags(format, pos);
-	if (data->flags == NULL)
+	if (data->flags == NONE)
 	{
 		free(data);
-		return (NULL);
+		return (NONE);
 	}
 	format_flags(data, arg);
 	return (data);
@@ -93,7 +89,7 @@ int	eval_conversion(const char *format, int *pos, va_list arg)
 
 	printed_chars = 0;
 	data = eval_flags(format, pos, arg);
-	if (data == NULL)
+	if (data == NONE)
 		return (-1);
 	printed_chars = ft_conversion(format, pos, arg, data);
 	free(data->flags);

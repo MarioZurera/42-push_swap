@@ -33,9 +33,7 @@ char	*ft_itoa(int n)
 	int		len;
 
 	len = ft_num_len(n);
-	str = (char *) malloc((len + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
+	str = (char *) smalloc((len + 1) * sizeof(char));
 	str[len] = 0;
 	if (n < 0)
 		str[0] = '-';

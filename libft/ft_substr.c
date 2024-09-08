@@ -28,9 +28,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	max_len = ft_strlen(s);
 	max_len -= ft_min_size(max_len, start);
 	size = ft_min_size(len, max_len) + 1;
-	substr = (char *) malloc(size);
-	if (substr == NULL)
-		return (NULL);
+	substr = (char *) smalloc(size);
 	if (size > 1)
 		ft_strlcpy(substr, s + start, size);
 	else

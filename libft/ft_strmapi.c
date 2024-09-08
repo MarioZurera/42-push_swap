@@ -17,9 +17,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	char			*str;
 	unsigned int	i;
 
-	str = (char *) malloc(ft_strlen(s) + 1);
-	if (str == NULL)
-		return (NULL);
+	str = (char *) smalloc(ft_strlen(s) + 1);
 	i = 0;
 	while (s[i])
 	{

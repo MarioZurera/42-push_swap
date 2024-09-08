@@ -21,12 +21,7 @@ static char	*ft_getline_strjoin(const char *s1,
 	unsigned int	cat_len;
 
 	length = ft_strlen(s1) + ft_strlen(s2) + extra_size;
-	str = (char *) malloc(sizeof(char) * length);
-	if (str == NULL)
-	{
-		free((char *) s1);
-		return (NULL);
-	}
+	str = (char *) smalloc(sizeof(char) * length);
 	ft_strlcpy(str, s1, length);
 	free((char *) s1);
 	dest_len = ft_strlen(str);
@@ -110,9 +105,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd >= FD_LIMIT)
 		return (NULL);
-	str = (char *) malloc(1 * sizeof(char));
-	if (str == NULL)
-		return (NULL);
+	str = (char *) smalloc(1 * sizeof(char));
 	str[0] = '\0';
 	control = read_line(fd, buffer[fd], &str);
 	if (!control)

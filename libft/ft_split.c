@@ -57,12 +57,10 @@ char	**ft_split(const char *s, char c)
 	int		end;
 	int		index;
 
-	strs = (char **) malloc((ft_strs_len(s, c) + 1) * sizeof(char *));
-	if (strs == NULL)
-		return (NULL);
-	index = 0;
+	strs = (char **) smalloc((ft_strs_len(s, c) + 1) * sizeof(char *));
 	begin = 0;
 	end = 0;
+	index = 0;
 	while (s[end])
 	{
 		ft_find_word(s, c, &begin, &end);

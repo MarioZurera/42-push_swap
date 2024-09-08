@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *str, const char *substr, size_t n)
 	if (!*substr)
 		return ((char *) str);
 	if (ft_strlen(str) < substr_len)
-		return (NULL);
+		return (NONE);
 	i = 0;
 	while (str[i] && i + substr_len <= n)
 	{
@@ -29,5 +29,5 @@ char	*ft_strnstr(const char *str, const char *substr, size_t n)
 			return ((char *)(str + i));
 		i++;
 	}
-	return (NULL);
+	return (NONE);
 }
