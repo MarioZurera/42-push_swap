@@ -28,6 +28,7 @@ int			every_string_array(t_str_array *array, int (*f)(const char *));
 t_i32_array	*parse_string_array(t_str_array *array);
 
 t_str_array	*string_array_from(char **array);
+t_str_array	*string_array_from_const(char **array);
 t_str_array	*string_array_empty();
 
 void		free_i32_array(t_i32_array *array);

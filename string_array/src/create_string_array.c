@@ -49,7 +49,7 @@ static int	get_size(const char **array)
 	return (size);
 }
 
-t_str_array	*string_array_from(char **array)
+t_str_array	*string_array_from_const(char **array)
 {
 	t_str_array	*result;
 
@@ -65,11 +65,18 @@ t_str_array	*string_array_from(char **array)
 	return (result);
 }
 
-t_str_array	*string_array_empty()
+t_str_array	*string_array_from(char **array)
 {
-	char	**array;
+	t_str_array	*result;
 
-	array = smalloc(sizeof(char *));
-	array[0] = NULL;
-	return (string_array_from(array));
+	result = smalloc(sizeof(t_str_array));
+	result->strings = (const char **) array;
+	result->get = &get_string_array;
+	result->len = &len_string_array;
+	result->free = &free_string_array;
+	result->clone = &clone_string_array;
+	result->map = &map_string_array;
+	result->every = &every_string_array;
+	result->parse = &parse_string_array;
+	return (result);
 }
