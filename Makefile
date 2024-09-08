@@ -36,16 +36,27 @@ TEST_NAME		= my_test
 # SOURCE DIRECTORIES #
 LEXER_DIR		= lexer
 PARSER_DIR		= parser
+STACK_DIR		= stack
+MOVEMENTS_DIR	= movements
+ERROR_DIR		= error
 
 # SOURCE FILES #
 LEXER_SRC		= lexer.c
 LEXER			= $(addprefix $(LEXER_DIR)/, $(LEXER_SRC))
 
-STANDARD		= error.c parser.c stack.c \
-				  movement_swap.c movement_push.c \
-				  movement_rotate.c movement_reverse.c \
-				  ordered.c invert.c sort.c sort5.c  rotate.c \
-				  greedy.c
+PARSER_SRC		= parser.c
+PARSER			= $(addprefix $(PARSER_DIR)/, $(PARSER_SRC))
+
+STACK_SRC		= stack.c
+STACK			= $(addprefix $(STACK_DIR)/, $(STACK_SRC))
+
+MOVEMENTS_SRC	= movement_swap.c movement_push.c movement_rotate.c movement_reverse.c
+MOVEMENTS		= $(addprefix $(MOVEMENTS_DIR)/, $(MOVEMENTS_SRC))
+
+ERROR_SRC		= error.c
+ERROR			= $(addprefix $(ERROR_DIR)/, $(ERROR_SRC))
+
+STANDARD		= ordered.c invert.c sort.c sort5.c rotate.c greedy.c
 MAIN			= main.c
 #BONUS			=
 BONUS_MAIN		= main_bonus.c
@@ -55,6 +66,10 @@ UNITY			= unity.c
 # STANDARD #
 STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(MAIN))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(LEXER))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(PARSER))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(STACK))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(MOVEMENTS))
+STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(ERROR))
 STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(STANDARD))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
@@ -64,7 +79,11 @@ BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(BONUS_MAIN))
 BONUS_OBJ		= $(BONUS_SRC:.c=.o)
 
 # TEST #
-TEST_SRC			= $(addprefix $(SRC_DIR)/, $(STANDARD))
+TEST_SRC			= $(addprefix $(SRC_DIR)/, $(LEXER))
+TEST_SRC		   += $(addprefix $(SRC_DIR)/, $(PARSER))
+TEST_SRC		   += $(addprefix $(SRC_DIR)/, $(STACK))
+TEST_SRC		   += $(addprefix $(SRC_DIR)/, $(MOVEMENTS))
+TEST_SRC		   += $(addprefix $(SRC_DIR)/, $(ERROR))
 TEST_SRC		   += $(addprefix $(TEST_DIR)/, $(TEST))
 TEST_SRC		   += $(addprefix $(UNITY_DIR)/, $(UNITY))
 TEST_OBJ			= $(TEST_SRC:.c=.o)

@@ -64,10 +64,8 @@ int	greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b)
 	t_stack	*s_b_cpy;
 	int		cost;
 
-	s_a_cpy = copy_stack(stack_a);
-	s_b_cpy = copy_stack(stack_b);
-	if (s_a_cpy == NULL || s_b_cpy == NULL)
-		return (-1);
+	s_a_cpy = stack_a->copy(stack_a);
+	s_b_cpy = stack_b->copy(stack_b);
 	cost = 0;
 	while (stack_a->len > 4)
 	{
