@@ -17,7 +17,7 @@ int	main(int argc, char **argv) {
 	t_stack		*stack_b;
 
 	stack_a = parse_numbers(tokenize_numbers(argc, argv));
-	stack_b = create_stack(stack_a->size, NULL);
+	stack_b = create_stack(stack_a->size, NONE);
 	sort(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
