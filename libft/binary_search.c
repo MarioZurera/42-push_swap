@@ -20,7 +20,6 @@ int	binary_search(int *arr, int size, int value)
 
 	l = 0;
 	r = size - 1;
-
 	while (l <= r)
 	{
 		m = (l + r) / 2;

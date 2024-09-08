@@ -12,21 +12,21 @@
 
 #include "libft.h"
 
-unsigned int    ft_count_words(const char *str)
+unsigned int	ft_count_words(const char *str)
 {
-    unsigned int count;
-    
-    if (str == NULL)
-        return (0);
-    count = 0;
-    while (*str)
-    {
-        while (ft_isspace(*str))
-            str++;
-        if (*str)
-            count++;
-        while (*str && !ft_isspace(*str))
-            str++;
-    }
-    return (count);
+	unsigned int	count;
+
+	if (str == NULL)
+		return (0);
+	count = 0;
+	while (*str)
+	{
+		while (ft_isspace(*str))
+			str++;
+		if (*str)
+			count++;
+		while (*str && !ft_isspace(*str))
+			str++;
+	}
+	return (count);
 }

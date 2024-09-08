@@ -12,11 +12,12 @@
 
 #include "push_swap.h"
 
-static void	print_error(void) {
+static void	print_error(void)
+{
 	write(STDERR_FILENO, "Error\n", 6);
 }
 
-void		push_swap_error()
+void	push_swap_error(void)
 {
 	print_error();
 	exit(1);

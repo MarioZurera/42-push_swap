@@ -12,7 +12,7 @@
 
 #include "string_array_private.h"
 
-t_str_array *map_string_array(t_str_array *array, char *(*f)(char *))
+t_str_array	*map_string_array(t_str_array *array, char *(*f)(char *))
 {
 	int	i;
 

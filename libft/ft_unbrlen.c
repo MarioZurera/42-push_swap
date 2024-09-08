@@ -12,13 +12,15 @@
 
 #include "libft.h"
 
-int	ft_unbrlen(unsigned int n) {
-	int length;
+int	ft_unbrlen(unsigned int n)
+{
+	int	length;
 
 	length = 0;
 	if (n == 0)
 		++length;
-	while (n > 0) {
+	while (n > 0)
+	{
 		n /= 10;
 		++length;
 	}

@@ -42,7 +42,7 @@ static long	ft_atol(const char *s)
 	return (number * sign);
 }
 
-static int is_correct_format_number(const char *num)
+static int	is_correct_format_number(const char *num)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ static int is_correct_format_number(const char *num)
 t_i32_array	*parse_string_array(t_str_array *array)
 {
 	t_i32_array	*result;
-	long		 num;
+	long		num;
 	int			i;
 
 	result = create_i32_array(array->len(array));

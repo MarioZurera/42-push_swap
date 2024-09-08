@@ -52,9 +52,11 @@ static int	get_size(const char **array)
 t_str_array	*string_array_from_const(char **array)
 {
 	t_str_array	*result;
+	const char	**arr;
 
+	arr = (const char **) array;
 	result = smalloc(sizeof(t_str_array));
-	result->strings = ft_deep_copy((const char **) array, get_size((const char **) array));
+	result->strings = ft_deep_copy(arr, get_size(arr));
 	result->get = &get_string_array;
 	result->len = &len_string_array;
 	result->free = &free_string_array;

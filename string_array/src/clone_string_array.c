@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clone_string_array.c                                :+:      :+:    :+:   */
+/*   clone_string_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "string_array_private.h"
 
-t_str_array *clone_string_array(t_str_array *array)
+t_str_array	*clone_string_array(t_str_array *array)
 {
 	return (string_array_from((char **) array->strings));
 }

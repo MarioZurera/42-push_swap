@@ -14,10 +14,10 @@
 
 # include "string_array.h"
 # include <limits.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-char	*ft_strdup(const char *s);
+char		*ft_strdup(const char *s);
 
 char		*get_string_array(t_str_array *array, int index);
 int			len_string_array(t_str_array *array);
@@ -29,9 +29,9 @@ t_i32_array	*parse_string_array(t_str_array *array);
 
 t_str_array	*string_array_from(char **array);
 t_str_array	*string_array_from_const(char **array);
-t_str_array	*string_array_empty();
+t_str_array	*string_array_empty(void);
 
 void		free_i32_array(t_i32_array *array);
 t_i32_array	*create_i32_array(size_t size);
 
-#endif //STRING_ARRAY_PRIVATE_H
+#endif /* STRING_ARRAY_PRIVATE_H */

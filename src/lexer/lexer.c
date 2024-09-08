@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static t_str_array *get_list(int argc, char **argv)
+static t_str_array	*get_list(int argc, char **argv)
 {
 	if (argc == 2)
 		return (string_array_from(ft_split(argv[1], ' ')));

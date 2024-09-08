@@ -26,8 +26,7 @@ static void	*smalloc(size_t size)
 	return (ptr);
 }
 
-
-t_str_array	*string_array_empty()
+t_str_array	*string_array_empty(void)
 {
 	char	**array;
 

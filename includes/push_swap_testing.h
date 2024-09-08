@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_TESTING
-# define PUSH_SWAP_TESTING
+#ifndef PUSH_SWAP_TESTING_H
+# define PUSH_SWAP_TESTING_H
 
-#include "push_swap.h"
-#include <unity.h>
+# include "push_swap.h"
+# include <unity.h>
 
 void	stack_invalid_input(void);
 void	stack_valid_input(void);
@@ -26,4 +26,4 @@ void	stack_push(void);
 void	stack_rotate(void);
 void	stack_reverse_rotate(void);
 
-#endif /* PUSH_SWAP_TESTING */
+#endif /* PUSH_SWAP_TESTING_H */

@@ -18,9 +18,10 @@
 # include <limits.h>
 # include <stdint.h>
 
-typedef struct s_stack t_stack;
+typedef struct s_stack	t_stack;
 
-struct s_stack {
+struct s_stack
+{
 	unsigned int	size;
 	unsigned int	len;
 	int				*list;
@@ -37,12 +38,12 @@ struct s_stack {
 
 // *** Stack Functions *** //
 
-t_stack *create_stack(unsigned int size, int *nums);
+t_stack	*create_stack(unsigned int size, int *nums);
 t_stack	*create_stack_from(t_i32_array *array);
 
 // *** Error Handler *** //
 void	check_stack(t_stack *stack);
-void	push_swap_error();
+void	push_swap_error(void);
 
 // *** Movements *** //
 
@@ -82,7 +83,7 @@ void	sort5(t_stack *stack_a, t_stack *stack_b);
 
 // *** Heuristic *** //
 
-int	greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b);
+int		greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b);
 
 // *** Main *** //
 
