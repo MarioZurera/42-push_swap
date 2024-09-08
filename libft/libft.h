@@ -359,7 +359,7 @@ long				ft_atol_base(char *str, char *base);
 
 /**
  * @brief Convert the string s in hexadecimal to integer.
- * @param s The pointer to the string.
+ * @param str The pointer to the string.
  * @return The integer converted.
  */
 unsigned long		ft_atohex(char *str);
