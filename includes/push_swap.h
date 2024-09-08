@@ -18,25 +18,27 @@
 # include <limits.h>
 # include <stdint.h>
 
-typedef struct s_stack {
+typedef struct s_stack t_stack;
+
+struct s_stack {
 	unsigned int	size;
 	unsigned int	len;
 	int				*list;
-}	t_stack;
+	void			(*free)(t_stack *);
+	t_stack			*(*copy)(const t_stack *);
+	int				(*cmp)(t_stack *, t_stack *);
+
+};
+
+// *** Stack Functions *** //
+
+t_stack *create_stack(unsigned int size, int *nums);
+t_stack	*create_stack_from(t_i32_array *array);
 
 // *** Error Handler *** //
 void	check_stack(t_stack *stack);
 void	*exit_if_null(void *ptr);
 void	push_swap_error();
-
-
-// *** Stack Functions *** //
-
-int		compare_stacks(t_stack *stack_a, t_stack *stack_b);
-void	free_stack(t_stack *stack);
-t_stack *create_stack(unsigned int size, int *nums);
-t_stack	*create_stack_from(t_i32_array *array);
-t_stack	*copy_stack(const t_stack *stack);
 
 // *** Movements *** //
 
