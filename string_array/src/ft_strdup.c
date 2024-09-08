@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "string_array_private.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 
 static void	*ft_memcpy(void *dest, const void *src, size_t n)
@@ -64,7 +62,7 @@ static int	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (src_len);
 }
 
-void	*smalloc(size_t size)
+static void	*smalloc(size_t size)
 {
 	void	*ptr;
 

@@ -14,18 +14,20 @@
 
 # include "string_array.h"
 # include <limits.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 char	*ft_strdup(const char *s);
-void	*smalloc(size_t size);
 
 char		*get_string_array(t_str_array *array, int index);
 int			len_string_array(t_str_array *array);
 void		free_string_array(t_str_array *array);
 t_str_array	*clone_string_array(t_str_array *array);
-t_str_array	*map_string_array(t_str_array *array, char *(*f)(const char *));
+t_str_array	*map_string_array(t_str_array *array, char *(*f)(char *));
 int			every_string_array(t_str_array *array, int (*f)(const char *));
 t_i32_array	*parse_string_array(t_str_array *array);
-t_str_array	*string_array_from(const char **array);
+
+t_str_array	*string_array_from(char **array);
 t_str_array	*string_array_empty();
 
 void		free_i32_array(t_i32_array *array);

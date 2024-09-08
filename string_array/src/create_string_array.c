@@ -13,6 +13,19 @@
 #include "string_array_private.h"
 #include "string_array.h"
 
+static void	*smalloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (ptr == NULL)
+	{
+		write(2, "[ABORT]: Invalid malloc: Out of memory\n", 40);
+		exit(1);
+	}
+	return (ptr);
+}
+
 static const char	**ft_deep_copy(const char **array, const int size)
 {
 	char	**result;
@@ -36,12 +49,12 @@ static int	get_size(const char **array)
 	return (size);
 }
 
-t_str_array	*string_array_from(const char **array)
+t_str_array	*string_array_from(char **array)
 {
 	t_str_array	*result;
 
 	result = smalloc(sizeof(t_str_array));
-	result->strings = ft_deep_copy(array, get_size(array));
+	result->strings = ft_deep_copy((const char **) array, get_size((const char **) array));
 	result->get = &get_string_array;
 	result->len = &len_string_array;
 	result->free = &free_string_array;
@@ -54,7 +67,7 @@ t_str_array	*string_array_from(const char **array)
 
 t_str_array	*string_array_empty()
 {
-	const char	**array;
+	char	**array;
 
 	array = smalloc(sizeof(char *));
 	array[0] = NULL;

@@ -72,8 +72,13 @@ t_i32_array	*parse_string_array(t_str_array *array)
 	{
 		num = ft_atol(array->get(array, i));
 		if (num < INT_MIN || num > INT_MAX)
-			return (result->free(result), NULL);
+		{
+			write(2, "[ABORT]: Parse error: Invalid overflow\n", 40);
+			exit(1);
+		}
 		result->list[i] = num;
+		i++;
 	}
+	array->free(array);
 	return (result);
 }
