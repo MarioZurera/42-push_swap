@@ -21,10 +21,3 @@ void		push_swap_error()
 	print_error();
 	exit(1);
 }
-
-void	*exit_if_null(void *ptr)
-{
-	if (ptr == NULL)
-		push_swap_error();
-	return (ptr);
-}

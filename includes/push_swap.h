@@ -37,7 +37,6 @@ t_stack	*create_stack_from(t_i32_array *array);
 
 // *** Error Handler *** //
 void	check_stack(t_stack *stack);
-void	*exit_if_null(void *ptr);
 void	push_swap_error();
 
 // *** Movements *** //
