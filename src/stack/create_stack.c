@@ -39,5 +39,11 @@ t_stack	*create_stack(const unsigned int size, int *nums)
 	stack->free = &free_stack;
 	stack->copy = &copy_stack;
 	stack->cmp = &compare_stacks;
+	stack->push = &push_stack;
+	stack->push_back = &push_back_stack;
+	stack->pop = &pop_stack;
+	stack->pop_back = &pop_back_stack;
+	stack->is_empty = &is_empty_stack;
+	stack->is_full = &is_full_stack;
 	return (stack);
 }

@@ -26,8 +26,13 @@ struct s_stack {
 	int				*list;
 	void			(*free)(t_stack *);
 	t_stack			*(*copy)(const t_stack *);
-	int				(*cmp)(t_stack *, t_stack *);
-
+	int				(*cmp)(const t_stack *, const t_stack *);
+	void			(*push)(t_stack *, int);
+	void			(*push_back)(t_stack *, int);
+	int				(*pop)(t_stack *);
+	int				(*pop_back)(t_stack *);
+	int				(*is_full)(const t_stack *);
+	int				(*is_empty)(const t_stack *);
 };
 
 // *** Stack Functions *** //

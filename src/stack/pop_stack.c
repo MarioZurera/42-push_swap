@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_private.h                                    :+:      :+:    :+:   */
+/*   pop_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_PRIVATE_H
-# define STACK_PRIVATE_H
+#include "stack_private.h"
 
-# include "push_swap.h"
+int	pop_stack(t_stack *stack)
+{
+	int	n;
+	int	i;
 
-int	compare_stacks(const t_stack *stack_a, const t_stack *stack_b);
-t_stack	*copy_stack(const t_stack *stack);
-void	free_stack(t_stack *stack);
-void		push_stack(t_stack *stack, int n);
-void	push_back_stack(t_stack *stack, int n);
-int		pop_stack(t_stack *stack);
-int		pop_back_stack(t_stack *stack);
-int		is_empty_stack(const t_stack *stack);
-int		is_full_stack(const t_stack *stack);
+	if (stack->len == 0)
+		push_swap_error();
+	n = stack->list[0];
+	i = 0;
+	while (++i < (int) stack->len)
+		stack->list[i - 1] = stack->list[i];
+	stack->len--;
+	return (n);
+}
 
-
-t_stack	*create_stack_from(t_i32_array *array);
-t_stack	*create_stack(const unsigned int size, int *nums);
-
-
-#endif //STACK_PRIVATE_H
+int	pop_back_stack(t_stack *stack)
+{
+	if (stack->len == 0)
+		return (-1);
+	return (stack->list[--stack->len]);
+}
