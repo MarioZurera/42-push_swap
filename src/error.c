@@ -16,13 +16,16 @@ static void	print_error(void) {
 	write(STDERR_FILENO, "Error\n", 6);
 }
 
-int	check_stack(t_stack *stack) {
+void		push_swap_error()
+{
+	print_error();
+	exit(1);
+}
+
+void	check_stack(const t_stack *stack)
+{
 	if (stack == NULL || stack->list == NULL)
-	{
-		print_error();
-		return (0);
-	}
-	return (1);
+	push_swap_error();
 }
 
 void	*exit_if_null(void *ptr)

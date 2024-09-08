@@ -25,7 +25,7 @@ typedef struct s_stack {
 }	t_stack;
 
 // *** Error Handler *** //
-int		check_stack(t_stack *stack);
+void	check_stack(t_stack *stack);
 void	*exit_if_null(void *ptr);
 
 

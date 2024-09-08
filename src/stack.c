@@ -48,21 +48,14 @@ t_stack	*create_stack(const unsigned int size, int *nums)
 
 	if (size == 0)
 		return (NULL);
-	stack = malloc(sizeof(t_stack));
-	if (stack == NULL)
-		return (NULL);
+	stack = smalloc(sizeof(t_stack));
 	stack->size = size;
 	stack->list = nums;
 	stack->len = size;
-	if (stack->list == NULL)
+	if (stack->list == NONE)
 	{
-		stack->list = ft_calloc(size, sizeof(int));
+		stack->list = scalloc(size, sizeof(int));
 		stack->len = 0;
-	}
-	if (stack->list == NULL)
-	{
-		free(stack);
-		return (NULL);
 	}
 	return (stack);
 }
