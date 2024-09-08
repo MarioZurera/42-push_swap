@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_array.h                                     :+:      :+:    :+:   */
+/*   clone_string_array.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,33 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRING_ARRAY_H
-# define STRING_ARRAY_H
+#include "string_array_private.h"
+#include "string_array.h"
 
-# include <stdlib.h>
+static void	*ft_memset(void	*s, int c, size_t n)
+{
+	char	*memory;
+	size_t	i;
 
-typedef struct s_str_array t_str_array;
-typedef struct s_i32_array t_i32_array;
+	memory = (char *) s;
+	i = 0;
+	while (i < n)
+		memory[i++] = c;
+	return (s);
+}
 
-struct s_str_array {
-	const char	**strings;
-	char		*(*get)(t_str_array *, int);
-	int			(*len)(t_str_array *);
-	void		(*free)(t_str_array *);
-	t_str_array	*(*clone)(t_str_array *);
-	t_str_array	*(*map)(t_str_array *, char *(*f)(const char *));
-	int			(*every)(t_str_array *, int (*f)(const char *));
-	t_i32_array	*(*parse)(t_str_array *);
-};
+t_i32_array	*create_i32_array(size_t size)
+{
+	t_i32_array	*result;
 
-struct s_i32_array {
-	int		*list;
-	int		size;
-	void	(*free)(t_i32_array *);
-};
-
-t_str_array	*string_array_from(const char **array);
-t_str_array	*string_array_empty();
-t_i32_array	*create_i32_array(int size);
-
-#endif //STRING_ARRAY_H
+	result = smalloc(sizeof(t_i32_array));
+	result->size = size;
+	result->list = smalloc(size * sizeof(int));
+	ft_memset(result->list, 0, size * sizeof(int));
+	result->free = &free_i32_array;
+	return (result);
+}

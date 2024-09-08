@@ -27,6 +27,7 @@ NAME			= libstrarr.a
 
 # SOURCE #
 SRC_FILE	= create_string_array.c	\
+			  create_i32_array.c	\
 			  get_string_array.c	\
 			  len_string_array.c	\
 			  free_string_array.c	\

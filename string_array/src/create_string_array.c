@@ -12,21 +12,6 @@
 
 #include "string_array_private.h"
 #include "string_array.h"
-#include <unistd.h>
-#include <stdlib.h>
-
-static void	*smalloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (ptr == NULL)
-	{
-		write(2, "[ABORT]: Invalid malloc: Out of memory\n", 40);
-		exit(1);
-	}
-	return (ptr);
-}
 
 static const char	**ft_deep_copy(const char **array, const int size)
 {
