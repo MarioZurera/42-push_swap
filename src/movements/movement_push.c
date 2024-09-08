@@ -14,56 +14,20 @@
 
 int	pa(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	int	i;
-
-	if (stack_a == NULL || stack_b == NULL)
+	if (stack_b->is_empty(stack_b))
 		return (0);
-	if (stack_a->len == stack_a->size || stack_b->len == 0)
-		return (0);
-	i = stack_a->len - 1;
-	while (i >= 0)
-	{
-		stack_a->list[i + 1] = stack_a->list[i];
-		--i;
-	}
-	stack_a->list[0] = stack_b->list[0];
-	i = 1;
-	while ((unsigned int) i < stack_b->len)
-	{
-		stack_b->list[i - 1] = stack_b->list[i];
-		++i;
-	}
-	++stack_a->len;
-	--stack_b->len;
-	if (print)
+	stack_a->push(stack_a, stack_b->pop(stack_b));
+	if (print != 0)
 		ft_printf("pa\n");
 	return (1);
 }
 
 int	pb(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	int	i;
-
-	if (stack_a == NULL || stack_b == NULL)
+	if (stack_a->is_empty(stack_a))
 		return (0);
-	if (stack_b->len == stack_b->size || stack_a->len == 0)
-		return (0);
-	i = stack_b->len - 1;
-	while (i >= 0)
-	{
-		stack_b->list[i + 1] = stack_b->list[i];
-		--i;
-	}
-	stack_b->list[0] = stack_a->list[0];
-	i = 1;
-	while ((unsigned int) i < stack_a->len)
-	{
-		stack_a->list[i - 1] = stack_a->list[i];
-		++i;
-	}
-	--stack_a->len;
-	++stack_b->len;
-	if (print)
+	stack_b->push(stack_b, stack_a->pop(stack_a));
+	if (print != 0)
 		ft_printf("pb\n");
 	return (1);
 }
