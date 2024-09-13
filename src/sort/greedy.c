@@ -12,9 +12,14 @@
 
 #include "push_swap.h"
 
-void	check_rotations(int *ra, int *rb, int len_a, int len_b)
+void	check_rotations(int *ra, int *rb, int curr_ra, int curr_rb)
 {
-	if
+	if (*ra == -1 || *rb == -1)
+	{
+		*ra = curr_ra;
+		*rb = curr_rb;
+		return ;
+	}
 }
 
 static void	optimize_rotations(int *curr_ra, int *curr_rb, int len_a, int len_b)
@@ -63,7 +68,7 @@ static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 	{
 		b_curr_rots = binary_search(stack_b->list, stack_b->len, stack_a->list[a_curr_rots]);
 		optimize_rotations(&a_curr_rots, &b_curr_rots, stack_a->len, stack_b->len);
-		check_rotations(&rotations_a, &rotations_b, stack_a->len, stack_b->len);
+		check_rotations(&rotations_a, &rotations_b, a_curr_rots, b_curr_rots);
 	}
 }
 
