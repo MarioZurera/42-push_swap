@@ -24,24 +24,21 @@ void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->len < 4)
 	{
-		sort3(stack_a, stack_b);
-		return ;
-	}
-	if (stack_a->len == 4)
-	{
-		sort_4_inverted(stack_a, stack_b);
+		sa(stack_a, stack_b, 1);
 		sort_partial_ordered_stack_a(stack_a);
 		return ;
 	}
+
 	while (stack_a->len > 4)
 		pb(stack_a, stack_b, 1);
 	sort_4_inverted(stack_a, stack_b);
 	while (stack_b->len > 1)
 	{
-		pb(stack_a, stack_b, 1);
+		pa(stack_a, stack_b, 1);
 		ra(stack_a, stack_b, 1);
 	}
-	pb(stack_a, stack_b, 1);
+	if (stack_b->len > 0)
+		pa(stack_a, stack_b, 1);
 	sort_partial_ordered_stack_a(stack_a);
 }
 

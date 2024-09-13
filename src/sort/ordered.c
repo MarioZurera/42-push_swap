@@ -28,7 +28,7 @@ int	is_partially_ordered(const t_stack *stack) {
 
 	i = 0;
 	n = stack->list[0];
-	while (i < stack->len && stack->list[i] == (int) (n + i % stack->len))
+	while (i < stack->len && stack->list[i] == (int) ((n + i) % stack->len))
 		++i;
 	return (i == stack->len);
 }

@@ -20,15 +20,17 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	if (is_partially_ordered(stack_a))
 	{
+		ft_printf("PARTIAL ORDER!\n");
 		sort_partial_ordered_stack_a(stack_a);
 		return ;
 	}
+	ft_printf("NOT PARTIAL ORDER!\n");
 	if (is_inversally_ordered(stack_a))
 	{
+		ft_printf("PARTIAL INV ORDER!\n");
 		sort_inversally_ordered_stack_a(stack_a, stack_b);
 		return ;
 	}
-	if (stack_a->len <= 3)
-		sort3(stack_a, stack_b);
+	ft_printf("NOT PARTIAL INV ORDER!\n");
 	greedy_algorithm(stack_a, stack_b);
 }
