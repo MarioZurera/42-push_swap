@@ -17,6 +17,8 @@ t_stack	*create_stack_from(t_i32_array *array)
 {
 	t_stack	*stack;
 
+	if (array == NULL)
+		push_swap_error();
 	stack = create_stack(array->size, array->list);
 	free(array);
 	return (stack);
