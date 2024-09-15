@@ -22,13 +22,14 @@ static int	ft_isspace(int c)
 	return ((9 <= c && c <= 13) || c == 32);
 }
 
-static long	ft_atol(const char *s)
+static long	ft_atoi(const char *s, int *overflow)
 {
-	long	number;
+	int	number;
 	char	sign;
 
 	number = 0;
 	sign = 1;
+	*overflow = 0;
 	while (ft_isspace(*s))
 		++s;
 	if (*s == '+' || *s == '-')
@@ -38,6 +39,12 @@ static long	ft_atol(const char *s)
 		++s;
 	}
 	while (ft_isdigit(*s))
+	{
+		if (number > (INT_MAX - (*str - '0')) / 10)
+		{
+			*overflow = 1;
+			return ;
+		}
 		number = (number * 10) + (*(s++) - '0');
 	return (number * sign);
 }
@@ -61,8 +68,9 @@ static int	is_correct_format_number(const char *num)
 t_i32_array	*parse_string_array(t_str_array *array)
 {
 	t_i32_array	*result;
-	long		num;
+	int			num;
 	int			i;
+	int			overflow;
 
 	result = create_i32_array(array->len(array));
 	if (!array->every(array, &is_correct_format_number))
@@ -70,8 +78,8 @@ t_i32_array	*parse_string_array(t_str_array *array)
 	i = 0;
 	while (i < result->size)
 	{
-		num = ft_atol(array->get(array, i));
-		if (num < INT_MIN || num > INT_MAX)
+		num = ft_atoi(array->get(array, i), &overflow);
+		if (overflow)
 		{
 			write(2, "[ABORT]: Parse error: Invalid overflow\n", 40);
 			exit(1);
