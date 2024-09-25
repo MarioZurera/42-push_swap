@@ -59,6 +59,7 @@ int		rra(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrb(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
 void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print);
+int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a);
 
 // *** Push_Swap  *** //
 
@@ -66,6 +67,7 @@ t_stack	*init_stack(int amount_of_nums);
 t_stack	*tokenize_numbers(int argc, char **argv);
 t_stack	*parse_numbers(t_stack *stack);
 void	sort(t_stack *stack_a, t_stack *stack_b);
+void	sort3(t_stack *stack);
 
 // *** Ordered *** //
 
@@ -82,7 +84,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
 
 // *** Heuristic *** //
 
-int		greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b);
+void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b);
 
 // *** Main *** //
 

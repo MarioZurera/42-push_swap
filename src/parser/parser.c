@@ -53,7 +53,7 @@ static int	*index_list(int *list, unsigned int size)
  */
 t_stack	*parse_numbers(t_stack *stack)
 {
-	stack->list = index_list(stack->list, stack->size);
-	check_repetition(stack->list, stack->size);
+	stack->list = index_list(stack->list, stack->len);
+	check_repetition(stack->list, stack->len);
 	return (stack);
 }

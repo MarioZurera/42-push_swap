@@ -44,15 +44,20 @@ void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b)
 
 int	is_inversally_ordered(const t_stack *stack)
 {
-	unsigned int	i;
+	int	i;
+	int	curr;
+	int	next;
+	int	len;
 
 	i = 0;
-	while (i < stack->len - 1)
+	len = stack->len;
+	while (i < len - 1)
 	{
-		if (stack->list[i] < stack->list[i + 1]
-			&& stack->list[i] != 0 && stack->list[i + 1] != (int) stack->len - 1)
-			return (0);
+		curr = stack->list[i];
+		next = stack->list[i + 1];
+		if (curr < next && (curr != 0 || next != len - 1))
+				return (0);
 		++i;
 	}
-	return (i == stack->len - 1);
+	return (1);
 }

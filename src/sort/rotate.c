@@ -55,6 +55,27 @@ static void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	rotate_movements_aux(stack_a, stack_b, moves, print);
 }
 
+int	get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a)
+{
+	int	index_b;
+	int	curr_cost;
+
+	index_b = binary_search(stack_b->list, stack_b->len, stack_a->list[index_a]);
+	curr_cost = ft_max(index_a, index_b);
+	if (curr_cost > (int) (index_a + stack_b->len - index_b))
+	{
+		curr_cost = (int) (index_a + stack_b->len - index_b);
+	}
+	if (curr_cost > (int) (stack_a->len - index_a + index_b))
+	{
+		curr_cost = (int) (stack_a->len - index_a + index_b);
+	}
+	if (curr_cost > ft_max(stack_a->len - index_a, stack_b->len - index_b))
+	{
+		curr_cost = ft_max(stack_a->len - index_a, stack_b->len - index_b);
+	}
+	return (curr_cost);
+}
 
 /**
  * Move an stack_a index and its expected position in stack_b to the top

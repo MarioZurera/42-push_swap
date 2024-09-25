@@ -21,7 +21,7 @@ void	check_rotations(int *ra, int *rb, int curr_ra, int curr_rb)
 		return ;
 	}
 }
-
+/*
 static void	optimize_rotations(int *curr_ra, int *curr_rb, int len_a, int len_b)
 {
 	int	rot_a;
@@ -51,34 +51,47 @@ static void	optimize_rotations(int *curr_ra, int *curr_rb, int len_a, int len_b)
 	*curr_ra = rot_a;
 	*curr_rb = rot_b;
 }
+*/
 
 static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 {
 	int	rotations_a;
-	int	rotations_b;
+	// int	rotations_b;
 	int	a_curr_rots;
-	int b_curr_rots;
+	// int b_curr_rots;
 
 	if (stack_b->size == 0)
 		return ;
 	rotations_a = -1;
-	rotations_b = -1;
+	//rotations_b = -1;
 	a_curr_rots = -1;
 	while (++a_curr_rots < (int) stack_a->len)
 	{
-		b_curr_rots = binary_search(stack_b->list, stack_b->len, stack_a->list[a_curr_rots]);
-		optimize_rotations(&a_curr_rots, &b_curr_rots, stack_a->len, stack_b->len);
-		check_rotations(&rotations_a, &rotations_b, a_curr_rots, b_curr_rots);
+		rotations_a = get_rotations_cost(stack_a, stack_b, a_curr_rots);
+		// b_curr_rots = binary_search(stack_b->list, stack_b->len, stack_a->list[a_curr_rots]);
+		// optimize_rotations(&a_curr_rots, &b_curr_rots, stack_a->len, stack_b->len);
+		// check_rotations(&rotations_a, &rotations_b, a_curr_rots, b_curr_rots);
 	}
+	rotate(stack_a, stack_b, rotations_a, 1);
 }
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->len > 4)
+	while (stack_a->len > 3)
 	{
 		min_movs_rotate(stack_a, stack_b);
 		pb(stack_a, stack_b, 1);
 	}
+	sort3(stack_a);
+	while (stack_b->len > 0)
+	{
+		while (stack_a->list[0] < stack_b->list[0])
+			rra(stack_a, stack_b, 1);
+		pa(stack_a, stack_b, 1);
+		if (stack_b->len > 0)
+			rra(stack_a, stack_b, 1);
+	}
+	sort_partial_ordered_stack_a(stack_a);
 }
 
 /*static int	calculate_rotations(t_stack *stack_a, t_stack *stack_b, int index)
