@@ -87,11 +87,13 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 	sort3(stack_a);
 	while (stack_b->len > 0)
 	{
-		while (stack_a->list[0] < stack_b->list[0] && (stack_a->list[0] < stack_a->list[stack_a->len - 1] && stack_b->list[0] == (int) stack_a->len))
+		while (stack_a->list[0] < stack_b->list[0] && !is_ordered(stack_a))
 			ra(stack_a, stack_b, 1);
 		pa(stack_a, stack_b, 1);
+		/*
 		if (stack_b->len > 0)
 			rra(stack_a, stack_b, 1);
+		*/
 	}
 	sort_partial_ordered_stack_a(stack_a);
 }
