@@ -70,10 +70,15 @@ t_i32_array	*parse_string_array(t_str_array *array)
 	i = 0;
 	while (i < result->size)
 	{
+		if (*array->get(array, i) == '+' || *array->get(array, i) == '-')
+		{
+			(free(result), result = NULL);
+			break;
+		}
 		num = ft_atol(array->get(array, i));
 		if (num < INT_MIN || num > INT_MAX)
 		{
-			write(2, "[ABORT]: Parse error: Invalid overflow\n", 40);
+			write(2, "Error", 7);
 			exit(1);
 		}
 		result->list[i] = num;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	check_repetition(int *nums, unsigned int size)
+static void	check_repetition(const int *nums, unsigned int size)
 {
 	unsigned int	i;
 
@@ -41,6 +41,7 @@ static int	*index_list(int *list, unsigned int size)
 	index = smalloc(size * sizeof(int));
 	index = populate_from(index, list, size);
 	index = quicksort(index, 0, size - 1);
+	check_repetition(index, size);
 	i = -1;
 	while (++i < (int) size)
 		list[i] = binary_search(index, size, list[i]);
@@ -54,6 +55,5 @@ static int	*index_list(int *list, unsigned int size)
 t_stack	*parse_numbers(t_stack *stack)
 {
 	stack->list = index_list(stack->list, stack->len);
-	check_repetition(stack->list, stack->len);
 	return (stack);
 }

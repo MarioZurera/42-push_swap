@@ -19,8 +19,7 @@
 // 0 2 1 --- SWAP + RA
 // 2 1 0 --- SWAP + RRA
 
-void	sort3(t_stack *stack)
-{
+void	sort3(t_stack *stack) {
 	int	*lst;
 
 	lst = stack->list;
@@ -33,8 +32,10 @@ void	sort3(t_stack *stack)
 	else if (lst[0] < lst[1] && lst[0] > lst[2] && lst[1] > lst[2])
 		rra(stack, NULL, 1);
 	else
+	{
 		sa(stack, NULL, 1);
-	sort3(stack);
+		sort3(stack);
+	}
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
