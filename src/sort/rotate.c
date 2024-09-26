@@ -55,12 +55,22 @@ void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	rotate_movements_aux(stack_a, stack_b, moves, print);
 }
 
+static int	next_element_index(int *arr, int size, int value)
+{
+	int index;
+
+	index = 0;
+	while (arr[index] > value && index < size)
+		++index;
+	return (index);
+}
+
 int	get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a)
 {
 	int	index_b;
 	int	curr_cost;
 
-	index_b = binary_search(stack_b->list, stack_b->len, stack_a->list[index_a]);
+	index_b = next_element_index(stack_b->list, stack_b->len, stack_a->list[index_a]);
 	curr_cost = ft_max(index_a, index_b);
 	if (curr_cost > (int) (index_a + stack_b->len - index_b))
 	{

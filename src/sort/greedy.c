@@ -35,68 +35,111 @@ static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 	}
 	rotate(stack_a, stack_b, rotations_a, 1);
 }
-
-static int	get_max_index(int *arr, int size)
+/*
+static int	get_max_element(int *arr, int size)
 {
 	int	i;
-	int	max_i;
 	int	max;
 
 	i = -1;
-	max_i = -1;
 	max = INT_MIN;
 	while (++i < size) {
 		if (arr[i] > max)
-		{
 			max = arr[i];
-			max_i = i;
-		}
 	}
-	return (max_i);
+	return (max);
 }
 
-// static void	rotate_a(t_stack *stack_a, int min)
-// {
-// 	while (min--)
-// 		ra(stack_a, NULL, 1);
-// 	ra(stack_a, NULL, 1);
-// 	ra(stack_a, NULL, 1);
-//
-// 	// TODO: min can rotate the other way around
-// }
+static int	get_min_index(int *arr, int size)
+{
+	int	i;
+	int	min;
+	int	min_i;
+
+	i = -1;
+	min_i = 0;
+	min = INT_MAX;
+	while (++i < size) {
+		if (arr[i] < min)
+		{
+			min = arr[i];
+			min_i = i;
+		}
+	}
+	return (min_i);
+}
+
+static int	get_supreme_index(int *arr, int size, int element)
+{
+	int	i;
+	int	supreme_i;
+	int	supreme;
+
+	if (element > get_max_element(arr, size))
+		return (get_min_index(arr, size));
+	i = -1;
+	supreme_i = -1;
+	supreme = INT_MAX;
+	while (++i < size) {
+		if (arr[i] < supreme && arr[i] > element)
+		{
+			supreme = arr[i];
+			supreme_i = i;
+		}
+	}
+	if (supreme_i == -1)
+		return (get_min_index(arr, size));
+	return (supreme_i);
+}
+
+static void	rotate_a(t_stack *stack_a, int index)
+{
+	if (index > (int) stack_a->len / 2)
+	{
+		index = stack_a->len - index;
+		while (index--)
+			rra(stack_a, NULL, 1);
+	}
+	else
+	{
+		while (index--)
+			ra(stack_a, NULL, 1);
+	}
+
+	// TODO: min can rotate the other way around
+}
 
 static void	insert_element(t_stack *stack_a, t_stack *stack_b, const int element)
 {
-	int	min;
-	int	max;
+	int	supreme_i;
 
-	max = get_max_index(stack_a->list, stack_a->len);
-	min = (max + 1) % stack_a->len;
-
-
-	if (element < stack_a->list[min]) {
-		while (min--)
-			ra(stack_a, NULL, 1);
-	}
-	else if (element > stack_a->list[max]) {
-		while (min--)
-			ra(stack_a, NULL, 1);
-	}
-	else {
-		while (1)
-		{
-			if (element < stack_a->list[0])
-				break ;
-			ra(stack_a, stack_b, 1);
-		}
-	}
+	supreme_i = get_supreme_index(stack_a->list, stack_a->len, element);
+	// ft_printf("%d\n", supreme_i);
+	rotate_a(stack_a, supreme_i);
 	pa(stack_a, stack_b, 1);
 }
+*/
+
 
 static void	merge_stacks(t_stack *stack_a, t_stack *stack_b)
 {
+	while (stack_b->len > 0 && stack_b->list[0] > stack_a->list[stack_a->len - 1])
+		pa(stack_a, stack_b, 1);
+	rra(stack_a, stack_b, 1);
+	while (stack_b->len > 0 && stack_b->list[0] > stack_a->list[stack_a->len - 1])
+		pa(stack_a, stack_b, 1);
+	rra(stack_a, stack_b, 1);
+	while (stack_b->len > 0 && stack_b->list[0] > stack_a->list[stack_a->len - 1])
+		pa(stack_a, stack_b, 1);
+	rra(stack_a, stack_b, 1);
 	while (stack_b->len > 0)
-		insert_element(stack_a, stack_b, stack_b->list[0]);
+		pa(stack_a, stack_b, 1);
+}
+
+static void print_stack(const t_stack *stack)
+{
+	for (int i = 0; i < (int) stack->len; i++)
+		ft_printf("%d\n", stack->list[i]);
 }
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
@@ -107,6 +150,7 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 		pb(stack_a, stack_b, 1);
 	}
 	sort3(stack_a);
+	print_stack(stack_b);
 	merge_stacks(stack_a, stack_b);
 	sort_partial_ordered_stack_a(stack_a);
 }

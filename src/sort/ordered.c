@@ -63,6 +63,8 @@ void	sort_partial_ordered_stack_a(t_stack *stack_a)
 	int	i;
 
 	i = 0;
+	if (is_ordered_from(stack_a))
+		return ;
 	n = rotations_to_order(stack_a);
 	if (n <= ((int) stack_a->len) - n)
 	{

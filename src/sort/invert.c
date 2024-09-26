@@ -51,12 +51,12 @@ int	is_inversally_ordered(const t_stack *stack)
 
 	i = 0;
 	len = stack->len;
-	while (i < len - 1)
+	while (i < len)
 	{
 		curr = stack->list[i];
-		next = stack->list[i + 1];
-		if (curr + 1 != next && (curr != 0 || next != len - 1))
-				return (0);
+		next = stack->list[(i + 1) % stack->len];
+		if (curr - 1 != next && (curr != 0 || next != len - 1))
+			return (0);
 		++i;
 	}
 	return (1);
