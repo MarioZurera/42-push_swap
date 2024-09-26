@@ -46,12 +46,10 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		sort_partial_ordered_stack_a(stack_a);
 		return ;
 	}
-	ft_printf("NOT PARTIAL ORDER!\n");
 	if (is_inversally_ordered(stack_a))
 	{
 		sort_inversally_ordered_stack_a(stack_a, stack_b);
 		return ;
 	}
-	ft_printf("NOT PARTIAL INV ORDER!\n");
 	greedy_algorithm(stack_a, stack_b);
 }
