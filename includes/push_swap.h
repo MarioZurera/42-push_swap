@@ -60,6 +60,8 @@ int		rrb(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
 void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print);
 int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a);
+void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
+	int moves[2], int print);
 
 // *** Push_Swap  *** //
 
@@ -72,6 +74,7 @@ void	sort3(t_stack *stack);
 // *** Ordered *** //
 
 int		is_ordered(const t_stack *stack);
+int		is_ordered_from(const t_stack *stack);
 int		is_partially_ordered(const t_stack *stack);
 void	sort_partial_ordered_stack_a(t_stack *stack_a);
 int		is_inversally_ordered(const t_stack *stack);
