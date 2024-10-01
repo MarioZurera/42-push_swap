@@ -88,6 +88,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
 // *** Heuristic *** //
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b);
+int		get_max_index(int *arr, int size);
 
 // *** Main *** //
 

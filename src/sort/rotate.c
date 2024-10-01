@@ -40,6 +40,8 @@ static void	rotate_movements_aux(t_stack *stack_a, t_stack *stack_b,
 void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	int moves[2], int print)
 {
+	ft_printf("Moves on R: %d", moves[1]);
+
 	while (moves[0] > 0 && moves[1] > 0)
 	{
 		rr(stack_a, stack_b, print);
@@ -60,9 +62,13 @@ static int	next_element_index(int *arr, int size, int value)
 	int index;
 
 	index = 0;
+	while (arr[index] < value && index < size)
+		++index;
+	if (index == size)
+		return (get_max_index(arr, size));
 	while (arr[index] > value && index < size)
 		++index;
-	return (index);
+	return (index % size);
 }
 
 int	get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a)
@@ -97,25 +103,25 @@ void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print)
 	int	moves[2];
 	int	curr_cost;
 
-	index_b = binary_search(stack_b->list, stack_b->len, stack_a->list[index_a]);
-	curr_cost = ft_max(index_a, index_b);
+	index_b = next_element_index(stack_b->list, stack_b->len, stack_a->list[index_a]);
 	moves[0] = index_a;
 	moves[1] = index_b;
+	curr_cost = ft_max(index_a, index_b);
 	if (curr_cost > (int) (index_a + stack_b->len - index_b))
 	{
-		moves[1] = -index_b;
+		moves[1] = stack_b->len - index_b;
 		curr_cost = index_a + stack_b->len - index_b;
 	}
 	if (curr_cost > (int) (stack_a->len - index_a + index_b))
 	{
-		moves[0] = -index_a;
+		moves[0] = index_a - stack_a->len;
 		moves[1] = index_b;
 		curr_cost = stack_a->len - index_a + index_b;
 	}
 	if (curr_cost > ft_max(stack_a->len - index_a, stack_b->len - index_b))
 	{
-		moves[0] = -index_a;
-		moves[1] = -index_b;
+		moves[0] = index_a - stack_a->len;
+		moves[1] = index_b - stack_b->len;
 	}
 	rotate_movements(stack_a, stack_b, moves, print % 2);
 }
