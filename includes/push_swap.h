@@ -58,8 +58,8 @@ int		rr(t_stack *stack_a, t_stack *stack_b, int print);
 int		rra(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrb(t_stack *stack_a, t_stack *stack_b, int print);
 int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
-void	rotate(t_stack *stack_a, t_stack *stack_b, int index_a, int print);
-int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_a);
+void	rotate(t_stack *stack_a, t_stack *stack_b, int index_b, int print);
+int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_b);
 void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	int moves[2], int print);
 

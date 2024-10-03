@@ -24,7 +24,7 @@ static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 	cost = 0;
 	while (++b_curr_rots < (int) stack_b->len)
 	{
-		tmp_cost = get_rotations_cost(stack_b, stack_a, b_curr_rots);
+		tmp_cost = get_rotations_cost(stack_a, stack_b, b_curr_rots);
 		if (tmp_cost < cost)
 		{
 			rotations_b = b_curr_rots;
@@ -71,5 +71,6 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 		min_movs_rotate(stack_a, stack_b);
 		pa(stack_a, stack_b, 1);
 	}
+	print_stack(stack_a);
 	sort_partial_ordered_stack_a(stack_a);
 }
