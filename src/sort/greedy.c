@@ -31,26 +31,26 @@ static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 			cost = tmp_cost;
 		}
 	}
-	rotate(stack_b, stack_a, rotations_b, 1);
+	rotate(stack_a, stack_b, rotations_b, 1);
 }
 
-int	get_max_index(int *arr, int size)
+int	get_min_index(int *arr, int size)
 {
 	int	i;
-	int	max;
-	int	max_i;
+	int	min;
+	int	min_i;
 
 	i = -1;
-	max_i = 0;
-	max = INT_MIN;
+	min_i = 0;
+	min = INT_MAX;
 	while (++i < size) {
-		if (arr[i] > max)
+		if (arr[i] < min)
 		{
-			max = arr[i];
-			max_i = i;
+			min = arr[i];
+			min_i = i;
 		}
 	}
-	return (max_i);
+	return (min_i);
 }
 
 
@@ -58,7 +58,7 @@ void print_stack(t_stack *stack) {
 	for (unsigned i = 0; i < stack->len; i++) {
 		ft_printf("%d | ", stack->list[i]);
 	}
-	ft_printf("\n");
+	ft_printf("(LEN: %d)\n", stack->len);
 }
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
@@ -67,10 +67,11 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 	while (stack_a->len > 3)
 			pb(stack_a, stack_b, 1);
 	sort3(stack_a);
-	while (stack_b->len > 0) {
+	while (stack_b->len > 0)
+	{
 		min_movs_rotate(stack_a, stack_b);
 		pa(stack_a, stack_b, 1);
 	}
+	rotate_movements(stack_a, stack_b, (int[]){ get_min_index(stack_a->list, stack_a->len), 0} , 1);
 	print_stack(stack_a);
-	sort_partial_ordered_stack_a(stack_a);
 }
