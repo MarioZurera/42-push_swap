@@ -42,6 +42,7 @@ t_stack	*create_stack(unsigned int size, int *nums);
 t_stack	*create_stack_from(t_i32_array *array);
 
 // *** Error Handler *** //
+
 void	check_stack(t_stack *stack);
 void	push_swap_error(void);
 
@@ -61,8 +62,9 @@ int		rrr(t_stack *stack_a, t_stack *stack_b, int print);
 void	rotate(t_stack *stack_a, t_stack *stack_b, int index_b, int print);
 int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_b);
 void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
-	int moves[2], int print);
+			int moves[2], int print);
 void	rotate_a(t_stack *stack_a, int moves);
+int		next_element_index(int *arr, int size, int value);
 
 // *** Push_Swap  *** //
 
@@ -90,6 +92,8 @@ void	sort(t_stack *stack_a, t_stack *stack_b);
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b);
 int		get_min_index(int *arr, int size);
+void	set_sublen(int *current_length, int *max_length, int *end, int tmp_end);
+void	push_to_b_tiny(t_stack *stack_a, t_stack *stack_b);
 
 // *** Main *** //
 

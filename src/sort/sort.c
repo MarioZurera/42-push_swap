@@ -19,7 +19,8 @@
 // 0 2 1 --- SWAP + RA
 // 2 1 0 --- SWAP + RRA
 
-void	sort3(t_stack *stack) {
+void	sort3(t_stack *stack)
+{
 	int	*lst;
 
 	lst = stack->list;

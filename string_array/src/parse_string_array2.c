@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr_i.c                                      :+:      :+:    :+:   */
+/*   parse_string_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzurera- <mzurera-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 19:23:33 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/07/18 16:42:20 by mzurera-         ###   ########.fr       */
+/*   Created: 2024/08/02 01:46:01 by mzurera-          #+#    #+#             */
+/*   Updated: 2024/08/02 23:42:51 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "string_array_private.h"
 
-int	ft_strchr_i(const char *s, int c)
+void	check_oob(long num, t_str_array *array, t_i32_array	*result)
 {
-	char	*res;
-
-	res = ft_strchr(s, c);
-	if (res == NULL)
-		return (-1);
-	return ((size_t)((size_t) res - (size_t) s));
+	if (num < INT_MIN || num > INT_MAX)
+	{
+		result->free(result);
+		array->free(array);
+		write(2, "Error", 7);
+		exit(1);
+	}
 }

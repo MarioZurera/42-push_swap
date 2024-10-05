@@ -58,7 +58,7 @@ MOVEMENTS		= $(addprefix $(MOVEMENTS_DIR)/, $(MOVEMENTS_SRC))
 ERROR_SRC		= error.c
 ERROR			= $(addprefix $(ERROR_DIR)/, $(ERROR_SRC))
 
-SORT_SRC		= sort.c ordered.c invert.c rotate.c greedy.c
+SORT_SRC		= sort.c ordered.c invert.c rotate.c rotate2.c greedy.c greedy2.c
 SORT			=$(addprefix $(SORT_DIR)/, $(SORT_SRC))
 
 MAIN			= main.c

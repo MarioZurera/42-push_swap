@@ -32,13 +32,14 @@ int	is_ordered_from(const t_stack *stack)
 	return (i == stack->len - 1);
 }
 
-int	is_partially_ordered(const t_stack *stack) {
+int	is_partially_ordered(const t_stack *stack)
+{
 	unsigned int	i;
 	unsigned int	n;
 
 	i = 0;
 	n = stack->list[0];
-	while (i < stack->len && stack->list[i] == (int) ((n + i) % stack->len))
+	while (i < stack->len && stack->list[i] == (int)((n + i) % stack->len))
 		++i;
 	return (i == stack->len);
 }

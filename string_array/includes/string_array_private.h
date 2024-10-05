@@ -26,6 +26,7 @@ t_str_array	*clone_string_array(t_str_array *array);
 t_str_array	*map_string_array(t_str_array *array, char *(*f)(char *));
 int			every_string_array(t_str_array *array, int (*f)(const char *));
 t_i32_array	*parse_string_array(t_str_array *array);
+void		check_oob(long num, t_str_array *array, t_i32_array	*result);
 
 t_str_array	*string_array_from(char **array);
 t_str_array	*string_array_from_const(char **array);

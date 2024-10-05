@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   greedy2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 01:27:32 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/02 23:43:05 by mzurera-         ###   ########.fr       */
+/*   Created: 2024/08/02 18:06:10 by mzurera-          #+#    #+#             */
+/*   Updated: 2024/08/03 14:37:27 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+void	set_sublen(int *current_length, int *max_length, int *end, int tmp_end)
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
+	if (*current_length > *max_length)
+	{
+		*max_length = *current_length;
+		*end = tmp_end;
+	}
+	*current_length = 1;
+}
 
-	if (argc < 2)
-		return (0);
-	stack_a = parse_numbers(tokenize_numbers(argc, argv));
-	stack_b = create_stack(stack_a->size, NULL);
-	sort(stack_a, stack_b);
-	stack_a->free(stack_a);
-	stack_b->free(stack_b);
-	return (0);
+void	push_to_b_tiny(t_stack *stack_a, t_stack *stack_b)
+{
+	while (stack_a->len > 3)
+		pb(stack_a, stack_b, 1);
+	sort3(stack_a);
 }
