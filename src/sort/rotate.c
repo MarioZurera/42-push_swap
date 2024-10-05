@@ -62,11 +62,11 @@ static int	next_element_index(int *arr, int size, int value)
 
 	index = 0;
 	min_index = get_min_index(arr, size);
-	if (min_index == 0 || value >= arr[0])
+	if (value > arr[size - 1] && index < min_index)
 	{
 		while (index < min_index)
 		{
-			if (value <= arr[index])
+			if (value < arr[index])
 				return index;
 			index++;
 		}
@@ -75,11 +75,11 @@ static int	next_element_index(int *arr, int size, int value)
 	index = min_index;
 	while (index < size)
 	{
-		if (value <= arr[index])
+		if (value < arr[index])
 			return index;
 		index++;
 	}
-	return (size);
+	return (min_index);
 }
 
 int	get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_b)

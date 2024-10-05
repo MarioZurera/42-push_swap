@@ -65,7 +65,7 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
 	// Find longest already sorted segment in A (avoid pushing into B)
 	while (stack_a->len > 3)
-			pb(stack_a, stack_b, 1);
+		pb(stack_a, stack_b, 1);
 	sort3(stack_a);
 	while (stack_b->len > 0)
 	{
@@ -73,5 +73,4 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 		pa(stack_a, stack_b, 1);
 	}
 	rotate_movements(stack_a, stack_b, (int[]){ get_min_index(stack_a->list, stack_a->len), 0} , 1);
-	print_stack(stack_a);
 }
