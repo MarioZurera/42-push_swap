@@ -12,14 +12,36 @@
 
 #include "push_swap.h"
 
-void	do_movements(t_stack *stack_a, t_stack *stack_b) {
+static void	do_movements_2(t_stack *stack_a, t_stack *stack_b, char *mov)
+{
+	if (ft_strncmp(movement, "ra", 2) == 0)
+		ra(stack_a, stack_b, 0);
+	else if (ft_strncmp(movement, "rb", 2) == 0)
+		rb(stack_a, stack_b, 0);
+	else if (ft_strncmp(movement, "rra", 3) == 0)
+		rra(stack_a, stack_b, 0);
+	else if (ft_strncmp(movement, "rrb", 3) == 0)
+		rrb(stack_a, stack_b, 0);
+	else if (ft_strncmp(movement, "rrr", 3) == 0)
+		rrr(stack_a, stack_b, 0);
+	else if (ft_strncmp(movement, "rr", 2) == 0)
+		rr(stack_a, stack_b, 0);
+	else
+	{
+		free(mov);
+		exit(1);
+	}
+}
+
+static void	do_movements(t_stack *stack_a, t_stack *stack_b)
+{
 	char	*movement;
 
 	while (true)
 	{
 		movement = get_next_line(0);
 		if (movement == NULL)
-			break;
+			break ;
 		else if (ft_strncmp(movement, "sa", 2) == 0)
 			sa(stack_a, stack_b, 0);
 		else if (ft_strncmp(movement, "sb", 2) == 0)
@@ -30,31 +52,18 @@ void	do_movements(t_stack *stack_a, t_stack *stack_b) {
 			pa(stack_a, stack_b, 0);
 		else if (ft_strncmp(movement, "pb", 2) == 0)
 			pb(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "ra", 2) == 0)
-			ra(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "rb", 2) == 0)
-			rb(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "rra", 3) == 0)
-			rra(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "rrb", 3) == 0)
-			rrb(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "rrr", 3) == 0)
-			rrr(stack_a, stack_b, 0);
-		else if (ft_strncmp(movement, "rr", 2) == 0)
-			rr(stack_a, stack_b, 0);
-
-		else
-			exit(1);
+		do_movements_2(stack_a, stack_b, movement);
 		free(movement);
 	}
 }
 
-int	main(int argc, char **argv) {
+int	main(int argc, char **argv)
+{
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 
 	stack_a = parse_numbers(tokenize_numbers(argc, argv));
-	stack_b = create_stack(stack_a->size, NONE);
+	stack_b = create_stack(stack_a->size, NULL);
 	do_movements(stack_a, stack_b);
 	if (is_ordered(stack_a) && stack_b->len == 0)
 		ft_printf("OK\n");

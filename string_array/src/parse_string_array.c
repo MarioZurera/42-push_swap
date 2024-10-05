@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "string_array_private.h"
-#include <stdio.h>
 
 static int	ft_isdigit(const int c)
 {
@@ -71,19 +70,14 @@ t_i32_array	*parse_string_array(t_str_array *array)
 	i = 0;
 	while (i < result->size)
 	{
-		if ((*array->get(array, i) == '+' || *array->get(array, i) == '-') && !array->get(array, i)[1])
+		if ((*array->get(array, i) == '+' || *array->get(array, i) == '-')
+			&& !array->get(array, i)[1])
 		{
 			(free(result), result = NULL);
-			break;
+			break ;
 		}
 		num = ft_atol(array->get(array, i));
-		if (num < INT_MIN || num > INT_MAX)
-		{
-			result->free(result);
-			array->free(array);
-			write(2, "Error", 7);
-			exit(1);
-		}
+		check_oob(num, array, result);
 		result->list[i] = num;
 		i++;
 	}

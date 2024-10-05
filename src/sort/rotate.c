@@ -59,13 +59,13 @@ void	rotate_a(t_stack *stack_a, int moves)
 {
 	if (moves > (int) stack_a->len / 2)
 		moves -= (int) stack_a->len;
-	rotate_movements(stack_a, NULL, (int[]){ moves, 0 }, 1);
+	rotate_movements(stack_a, NULL, (int []){moves, 0}, 1);
 }
 
 static int	next_element_index(int *arr, int size, int value)
 {
-	int index;
-	int min_index;
+	int	index;
+	int	min_index;
 
 	index = 0;
 	min_index = get_min_index(arr, size);
@@ -74,16 +74,16 @@ static int	next_element_index(int *arr, int size, int value)
 		while (index < min_index)
 		{
 			if (value < arr[index])
-				return index;
+				return (index);
 			index++;
 		}
-		return min_index;
+		return (min_index);
 	}
 	index = min_index;
 	while (index < size)
 	{
 		if (value < arr[index])
-			return index;
+			return (index);
 		index++;
 	}
 	return (min_index);
@@ -94,52 +94,20 @@ int	get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_b)
 	int	index_a;
 	int	curr_cost;
 
-	index_a = next_element_index(stack_a->list, stack_a->len, stack_b->list[index_b]);
+	index_a = next_element_index(stack_a->list, stack_a->len,
+			stack_b->list[index_b]);
 	curr_cost = ft_max(index_a, index_b);
-	if (curr_cost > (int) (index_b + stack_a->len - index_a))
+	if (curr_cost > (int)(index_b + stack_a->len - index_a))
 	{
-		curr_cost = (int) (index_b + stack_a->len - index_a);
+		curr_cost = (int)(index_b + stack_a->len - index_a);
 	}
-	if (curr_cost > (int) (stack_b->len - index_b + index_a))
+	if (curr_cost > (int)(stack_b->len - index_b + index_a))
 	{
-		curr_cost = (int) (stack_b->len - index_b + index_a);
+		curr_cost = (int)(stack_b->len - index_b + index_a);
 	}
 	if (curr_cost > ft_max(stack_a->len - index_a, stack_b->len - index_b))
 	{
 		curr_cost = ft_max(stack_a->len - index_a, stack_b->len - index_b);
 	}
 	return (curr_cost);
-}
-
-/**
- * Move a stack_a index and its expected position in stack_b to the top
- * in minimum rotations, stack_b must be sorted.
- */
-void	rotate(t_stack *stack_a, t_stack *stack_b, int index_b, int print)
-{
-	int	index_a;
-	int	moves[2];
-	int	curr_cost;
-
-	index_a = next_element_index(stack_a->list, stack_a->len, stack_b->list[index_b]);
-	moves[0] = index_a;
-	moves[1] = index_b;
-	curr_cost = ft_max(index_a, index_b);
-	if (curr_cost > (int) (index_b + stack_a->len - index_a))
-	{
-		moves[0] = index_a - stack_a->len;
-		curr_cost = index_b + stack_a->len - index_a;
-	}
-	if (curr_cost > (int) (stack_b->len - index_b + index_a))
-	{
-		moves[0] = index_a;
-		moves[1] = index_b - stack_b->len;
-		curr_cost = stack_b->len - index_b + index_a;
-	}
-	if (curr_cost > ft_max(stack_a->len - index_a, stack_b->len - index_b))
-	{
-		moves[0] = index_a - stack_a->len;
-		moves[1] = index_b - stack_b->len;
-	}
-	rotate_movements(stack_a, stack_b, moves, print % 2);
 }

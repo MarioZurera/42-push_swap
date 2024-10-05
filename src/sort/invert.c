@@ -12,7 +12,7 @@
 
 #include "../../includes/push_swap.h"
 
-static void sort_4_inverted(t_stack *stack_a, t_stack *stack_b)
+static void	sort_4_inverted(t_stack *stack_a, t_stack *stack_b)
 {
 	sa(stack_a, stack_b, 1);
 	ra(stack_a, stack_b, 1);
@@ -28,7 +28,6 @@ void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b)
 		sort_partial_ordered_stack_a(stack_a);
 		return ;
 	}
-
 	while (stack_a->len > 4)
 		pb(stack_a, stack_b, 1);
 	sort_4_inverted(stack_a, stack_b);

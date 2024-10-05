@@ -36,6 +36,7 @@ SRC_FILE	= create_string_array.c	\
 			  map_string_array.c	\
 			  every_string_array.c	\
 			  parse_string_array.c	\
+			  parse_string_array2.c	\
 			  free_i32_array.c		\
 			  ft_strdup.c
 
