@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "string_array_private.h"
+#include <stdio.h>
 
 static int	ft_isdigit(const int c)
 {
@@ -70,7 +71,7 @@ t_i32_array	*parse_string_array(t_str_array *array)
 	i = 0;
 	while (i < result->size)
 	{
-		if (*array->get(array, i) == '+' || *array->get(array, i) == '-')
+		if ((*array->get(array, i) == '+' || *array->get(array, i) == '-') && !array->get(array, i)[1])
 		{
 			(free(result), result = NULL);
 			break;

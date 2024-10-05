@@ -55,14 +55,6 @@ int	get_min_index(int *arr, int size)
 	return (min_i);
 }
 
-
-void print_stack(t_stack *stack) {
-	for (unsigned i = 0; i < stack->len; i++) {
-		ft_printf("%d | ", stack->list[i]);
-	}
-	ft_printf("(LEN: %d)\n", stack->len);
-}
-
 // static unsigned int	get_subarray(const int *arr, int n, int *end) {
 // 	int	max_length;
 // 	int	current_length;
