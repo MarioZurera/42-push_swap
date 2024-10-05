@@ -78,8 +78,13 @@ STANDARD_SRC   += $(addprefix $(SRC_DIR)/, $(SORT))
 STANDARD_OBJ	= $(STANDARD_SRC:.c=.o)
 
 # BONUS #
-BONUS_SRC		= $(addprefix $(SRC_DIR)/, $(BONUS))
-BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(BONUS_MAIN))
+BONUS_SRC	    = $(addprefix $(SRC_DIR)/, $(BONUS_MAIN))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(LEXER))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(PARSER))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(STACK))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(MOVEMENTS))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(ERROR))
+BONUS_SRC	   += $(addprefix $(SRC_DIR)/, $(SORT))
 BONUS_OBJ		= $(BONUS_SRC:.c=.o)
 
 # TEST #
@@ -132,10 +137,11 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(BONUS_OBJS) $(BONUS_MAIN_OBJ)
+bonus: $(BONUS_OBJ)
 	@echo "$(C_BLUE)Builing $(NAME) with bonus...$(C_DEF)"
 	@make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(BONUS_MAIN_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(NAME)
+	@make all -s -C ./$(STR_ARR_DIR)/
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -L./$(STR_ARR_DIR) ./$(STR_ARR_DIR)/$(STRING_ARRAY) -o checker
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
 
 test: $(TEST_OBJ)
