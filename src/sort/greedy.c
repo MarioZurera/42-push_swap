@@ -25,14 +25,12 @@ static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 	while (++b_curr_rots < (int) stack_b->len)
 	{
 		tmp_cost = get_rotations_cost(stack_a, stack_b, b_curr_rots);
-		// ft_printf("Current cost is: %d\n", tmp_cost);
 		if (tmp_cost < cost)
 		{
 			rotations_b = b_curr_rots;
 			cost = tmp_cost;
 		}
 	}
-	// ft_printf("Rotations B: %i", rotations_b);
 	rotate(stack_a, stack_b, rotations_b, 1);
 }
 
@@ -86,27 +84,32 @@ static int	get_subarray(const int *arr, int n, int *end) {
 		max_length = current_length;
 		*end = tmp_end;
 	}
-	*end = (*end + 1) % n;
+	// *end = (*end + 1) % n;
 	return max_length;
 }
 
-void	push_to_b(t_stack *stack_a, t_stack *stack_b)
-{
+void	push_to_b(t_stack *stack_a, t_stack *stack_b) {
 	int	length;
 	int	start;
 	int	end;
 	int	*list;
 	int	len;
 
+	if (stack_a->len <= 5)
+	{
+		while (stack_a->len > 3)
+			pb(stack_a, stack_b, 1);
+		sort3(stack_a);
+		return ;
+	}
 	list = stack_a->list;
 	len = (int) stack_a->len;
-	length = get_subarray(list, len, &start);
-	end = (start + length) % len;
-	ft_printf("Start, End, Len: %i, %i, %i", start, end, length);
-	if (end - start < 0)
+	length = get_subarray(list, len, &end);
+	start = (len + end - (length - 1)) % len;
+	if (end - start < 0 || start == 0)
 	{
-		rotate_movements(stack_a, stack_b, (int[]){ end + 1, 0 }, 1);
-		start -= end;
+		rotate_a(stack_a, end + 1);
+		start = len - length;
 	}
 	while (start > 0)
 	{
@@ -115,7 +118,7 @@ void	push_to_b(t_stack *stack_a, t_stack *stack_b)
 	}
 	if (len == length)
 		return ;
-	rotate_movements(stack_a, stack_b, (int[]){ end + 1, 0 }, 1);
+	rotate_a(stack_a, length);
 	while ((int) stack_a->len > length)
 		pb(stack_a, stack_b, 1);
 }
@@ -128,5 +131,5 @@ void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 		min_movs_rotate(stack_a, stack_b);
 		pa(stack_a, stack_b, 1);
 	}
-	rotate_movements(stack_a, stack_b, (int[]){ get_min_index(stack_a->list, stack_a->len), 0} , 1);
+	rotate_a(stack_a, get_min_index(stack_a->list, stack_a->len));
 }

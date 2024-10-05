@@ -6,13 +6,13 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/08/02 23:45:37 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/10/05 18:02:40 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COMMANDS #
 CC				= clang
-CFLAGS			= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=address
 RM				= rm -f
 RM_DIR			= rm -rf
 

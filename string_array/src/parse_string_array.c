@@ -79,6 +79,8 @@ t_i32_array	*parse_string_array(t_str_array *array)
 		num = ft_atol(array->get(array, i));
 		if (num < INT_MIN || num > INT_MAX)
 		{
+			result->free(result);
+			array->free(array);
 			write(2, "Error", 7);
 			exit(1);
 		}

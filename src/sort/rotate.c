@@ -55,6 +55,13 @@ void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	rotate_movements_aux(stack_a, stack_b, moves, print);
 }
 
+void	rotate_a(t_stack *stack_a, int moves)
+{
+	if (moves > (int) stack_a->len / 2)
+		moves -= (int) stack_a->len;
+	rotate_movements(stack_a, NULL, (int[]){ moves, 0 }, 1);
+}
+
 static int	next_element_index(int *arr, int size, int value)
 {
 	int index;

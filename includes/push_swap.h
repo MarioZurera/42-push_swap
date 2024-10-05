@@ -62,6 +62,7 @@ void	rotate(t_stack *stack_a, t_stack *stack_b, int index_b, int print);
 int		get_rotations_cost(t_stack *stack_a, t_stack *stack_b, int index_b);
 void	rotate_movements(t_stack *stack_a, t_stack *stack_b,
 	int moves[2], int print);
+void	rotate_a(t_stack *stack_a, int moves);
 
 // *** Push_Swap  *** //
 
