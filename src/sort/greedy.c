@@ -55,61 +55,74 @@ int	get_min_index(int *arr, int size)
 	return (min_i);
 }
 
-// static unsigned int	get_subarray(const int *arr, int n, int *end) {
-// 	int	max_length;
-// 	int	current_length;
-// 	int	tmp_end;
-// 	int	i;
-//
-// 	i = 0;
-// 	max_length = 1;
-// 	current_length = 1;
-// 	if (n == 0)
-// 		return 0;
-// 	while (i < 2 * n - 1)
-// 	{
-// 		if (arr[(i + 1) % n] > arr[i % n]) {
-// 			current_length++;
-// 			tmp_end = (i + 1) % n;
-// 		}
-// 		else
-// 		{
-// 			if (current_length > max_length) {
-// 				max_length = current_length;
-// 				*end = tmp_end;
-// 			}
-// 			current_length = 1;
-// 		}
-// 		i++;
-// 	}
-// 	if (current_length > max_length) {
-// 		max_length = current_length;
-// 		*end = tmp_end;
-// 	}
-// 	*end = (*end + 1) % n;
-// 	return max_length;
-// }
+static int	get_subarray(const int *arr, int n, int *end) {
+	int	max_length;
+	int	current_length;
+	int	tmp_end;
+	int	i;
+
+	i = 0;
+	max_length = 1;
+	current_length = 1;
+	if (n == 0)
+		return 0;
+	while (i < 2 * n - 1)
+	{
+		if (arr[(i + 1) % n] > arr[i % n]) {
+			current_length++;
+			tmp_end = (i + 1) % n;
+		}
+		else
+		{
+			if (current_length > max_length) {
+				max_length = current_length;
+				*end = tmp_end;
+			}
+			current_length = 1;
+		}
+		i++;
+	}
+	if (current_length > max_length) {
+		max_length = current_length;
+		*end = tmp_end;
+	}
+	*end = (*end + 1) % n;
+	return max_length;
+}
+
+void	push_to_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int	length;
+	int	start;
+	int	end;
+	int	*list;
+	int	len;
+
+	list = stack_a->list;
+	len = (int) stack_a->len;
+	length = get_subarray(list, len, &start);
+	end = (start + length) % len;
+	ft_printf("Start, End, Len: %i, %i, %i", start, end, length);
+	if (end - start < 0)
+	{
+		rotate_movements(stack_a, stack_b, (int[]){ end + 1, 0 }, 1);
+		start -= end;
+	}
+	while (start > 0)
+	{
+		start--;
+		pb(stack_a, stack_b, 1);
+	}
+	if (len == length)
+		return ;
+	rotate_movements(stack_a, stack_b, (int[]){ end + 1, 0 }, 1);
+	while ((int) stack_a->len > length)
+		pb(stack_a, stack_b, 1);
+}
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
-	// unsigned int				sub_length;
-	// int				end_subarray;
-	// int				*list;
-	// unsigned int	len;
-	//
-	// list = stack_a->list;
-	// len = stack_a->len;
-	// // Find longest already sorted segment in A (avoid pushing into B)
-	// if (len > 20)
-	// {
-	// 	sub_length = get_subarray(list, len, &end_subarray);
-	// 	rotate_movements(stack_a, stack_b, (int[]){ end_subarray, 0} , 1);
-	// }
-	// else
-	// 	sub_length = 3;
-	while (stack_a->len > 3)
-		pb(stack_a, stack_b, 1);
-	sort3(stack_a);
+	push_to_b(stack_a, stack_b);
 	while (stack_b->len > 0)
 	{
 		min_movs_rotate(stack_a, stack_b);
