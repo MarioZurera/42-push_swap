@@ -6,7 +6,7 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/10/05 18:02:40 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/10/06 21:07:39 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,6 +129,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) checker
 	@$(RM) $(LIBFT)
 	@$(RM) $(TEST_NAME)
 	@make fclean -s -C $(LIB_DIR)
