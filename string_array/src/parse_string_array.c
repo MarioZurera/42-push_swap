@@ -66,7 +66,7 @@ t_i32_array	*parse_string_array(t_str_array *array)
 
 	result = create_i32_array(array->len(array));
 	if (!array->every(array, &is_correct_format_number))
-		return (result->free(result), NULL);
+		return (result->free(result), array->free(array), NULL);
 	i = 0;
 	while (i < result->size)
 	{

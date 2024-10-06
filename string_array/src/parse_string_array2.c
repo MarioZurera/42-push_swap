@@ -18,7 +18,7 @@ void	check_oob(long num, t_str_array *array, t_i32_array	*result)
 	{
 		result->free(result);
 		array->free(array);
-		write(2, "Error", 7);
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 }

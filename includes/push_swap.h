@@ -43,7 +43,6 @@ t_stack	*create_stack_from(t_i32_array *array);
 
 // *** Error Handler *** //
 
-void	check_stack(t_stack *stack);
 void	push_swap_error(void);
 
 // *** Movements *** //
@@ -68,7 +67,6 @@ int		next_element_index(int *arr, int size, int value);
 
 // *** Push_Swap  *** //
 
-t_stack	*init_stack(int amount_of_nums);
 t_stack	*tokenize_numbers(int argc, char **argv);
 t_stack	*parse_numbers(t_stack *stack);
 void	sort(t_stack *stack_a, t_stack *stack_b);
@@ -86,7 +84,6 @@ void	sort_inversally_ordered_stack_a(t_stack *stack_a, t_stack *stack_b);
 // *** Sort *** //
 
 void	sort(t_stack *stack_a, t_stack *stack_b);
-// void	sort5(t_stack *stack_a, t_stack *stack_b);
 
 // *** Heuristic *** //
 
