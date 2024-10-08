@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	check_repetition(const int *nums, unsigned int size)
+static void	check_repetition(int *nums, unsigned int size, t_stack *stack)
 {
 	unsigned int	i;
 
@@ -20,7 +20,11 @@ static void	check_repetition(const int *nums, unsigned int size)
 	while (i < size && nums[i] != nums[i - 1])
 		i++;
 	if (i != size)
+	{
+		free(nums);
+		stack->free(stack);
 		push_swap_error();
+	}
 }
 
 static int	*populate_from(int *dest, int *src, unsigned int size)
@@ -33,15 +37,19 @@ static int	*populate_from(int *dest, int *src, unsigned int size)
 	return (dest);
 }
 
-static int	*index_list(int *list, unsigned int size)
+static int	*index_list(t_stack *stack)
 {
-	int	*index;
-	int	i;
+	int				*list;
+	unsigned int	size;
+	int				*index;
+	int				i;
 
+	list = stack->list;
+	size = stack->size;
 	index = smalloc(size * sizeof(int));
 	index = populate_from(index, list, size);
 	index = quicksort(index, 0, size - 1);
-	check_repetition(index, size);
+	check_repetition(index, size, stack);
 	i = -1;
 	while (++i < (int) size)
 		list[i] = binary_search(index, size, list[i]);
@@ -54,6 +62,6 @@ static int	*index_list(int *list, unsigned int size)
  */
 t_stack	*parse_numbers(t_stack *stack)
 {
-	stack->list = index_list(stack->list, stack->len);
+	stack->list = index_list(stack);
 	return (stack);
 }

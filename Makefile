@@ -6,7 +6,7 @@
 #    By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 01:27:23 by mzurera-          #+#    #+#              #
-#    Updated: 2024/10/06 21:07:39 by mzurera-         ###   ########.fr        #
+#    Updated: 2024/10/08 17:56:34 by mzurera-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,8 @@ RM_DIR			= rm -rf
 # DIRECTORIES #
 SRC_DIR			= src
 INC_DIR			= includes
-TEST_DIR		= test
 LIB_DIR			= libft
 STR_ARR_DIR		= string_array
-UNITY_DIR		= unity/src
 
 # LIBRARIES #
 LIBFT			= libft.a
@@ -62,10 +60,7 @@ SORT_SRC		= sort.c ordered.c invert.c rotate.c rotate2.c greedy.c greedy2.c
 SORT			=$(addprefix $(SORT_DIR)/, $(SORT_SRC))
 
 MAIN			= main.c
-#BONUS			=
 BONUS_MAIN		= main_bonus.c
-TEST			= test.c stack.c movements.c
-UNITY			= unity.c
 
 # STANDARD #
 STANDARD_SRC	= $(addprefix $(SRC_DIR)/, $(MAIN))
@@ -112,7 +107,7 @@ C_DEF			= \033[0m
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I $(INC_DIR) -I $(UNITY_DIR) -c $^ -o $@
+	$(CC) $(CFLAGS) -I $(INC_DIR) -c $^ -o $@
 
 $(NAME): $(STANDARD_OBJ)
 	@echo "$(C_BLUE)Builing $(NAME)...$(C_DEF)"
@@ -144,20 +139,5 @@ bonus: $(BONUS_OBJ)
 	@make all -s -C ./$(STR_ARR_DIR)/
 	@$(CC) $(CFLAGS) $(BONUS_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -L./$(STR_ARR_DIR) ./$(STR_ARR_DIR)/$(STRING_ARRAY) -o checker
 	@echo "$(C_GREEN)$(CAP_NAME) built and ready to go!$(C_DEF)"
-
-test: $(TEST_OBJ)
-	@+make all -s -C ./$(LIB_DIR)/
-	@$(CC) $(CFLAGS) $(TEST_OBJ) -L./$(LIB_DIR) ./$(LIB_DIR)/$(LIBFT) -o $(TEST_NAME)
-	@echo "=================== RUNNING TESTS ==================="
-	@./$(TEST_NAME)
-	@echo "=================== TESTS COMPLETE =================="
-
-test_bonus: $(BONUS_OBJS) $(TEST_OBJS)
-	@+make all -s -C ./$(LIB_DIR)/
-	@+make all -s -C ./$(LIB_TEST_DIR)/
-	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(TEST_OBJS) -L./$(LIB_DIR) -lft -o $(TEST_NAME)
-	@echo "=================== TEST COMPILED ==================="
-	@./$(TEST_NAME)
-	@echo
 
 .PHONY: all bonus clean fclean re test test_bonus .c.o
