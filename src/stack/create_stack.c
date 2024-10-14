@@ -19,6 +19,11 @@ t_stack	*create_stack_from(t_i32_array *array)
 
 	if (array == NULL)
 		push_swap_error();
+	if (array->size == 0)
+	{
+		array->free(array);
+		push_swap_error();
+	}
 	stack = create_stack(array->size, array->list);
 	free(array);
 	return (stack);
@@ -34,7 +39,7 @@ t_stack	*create_stack(const unsigned int size, int *nums)
 	stack->size = size;
 	stack->list = nums;
 	stack->len = size;
-	if (stack->list == NONE)
+	if (stack->list == NULL)
 	{
 		stack->list = scalloc(size, sizeof(int));
 		stack->len = 0;

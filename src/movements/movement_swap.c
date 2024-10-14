@@ -45,7 +45,7 @@ int	sb(t_stack *stack_a, t_stack *stack_b, int print)
 
 int	ss(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	if (stack_a->len < 2 || stack_b->len < 2)
+	if (stack_a->len < 2 && stack_b->len < 2)
 		return (0);
 	swap(stack_a->list, stack_a->list + 1);
 	swap(stack_b->list, stack_b->list + 1);

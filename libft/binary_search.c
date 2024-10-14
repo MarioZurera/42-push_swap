@@ -14,9 +14,9 @@
 
 int	binary_search(int *arr, int size, int value)
 {
-	unsigned int	l;
-	unsigned int	r;
-	unsigned int	m;
+	int	l;
+	int	r;
+	int	m;
 
 	if (size <= 0)
 		return (0);
@@ -32,5 +32,5 @@ int	binary_search(int *arr, int size, int value)
 		if (arr[m] > value)
 			r = m - 1;
 	}
-	return (l - 1);
+	return (r);
 }

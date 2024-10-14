@@ -21,6 +21,6 @@ char	*ft_strnchr(const char *s, int c, int n)
 	while (s[i] && s[i] != c && i < n)
 		++i;
 	if (s[i] != c)
-		return (NONE);
+		return (NULL);
 	return ((char *) &s[i]);
 }

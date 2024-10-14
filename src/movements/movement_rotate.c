@@ -36,7 +36,7 @@ int	rb(t_stack *stack_a, t_stack *stack_b, int print)
 
 int	rr(t_stack *stack_a, t_stack *stack_b, int print)
 {
-	if (stack_a->len < 2 || stack_b->len < 2)
+	if (stack_a->len < 2 && stack_b->len < 2)
 		return (0);
 	ra(stack_a, stack_b, 0);
 	rb(stack_a, stack_b, 0);

@@ -33,7 +33,7 @@ static char	*get_flags(const char *format, int *pos)
 	if (format[*pos] == '*')
 		(*pos)++;
 	if (!ft_strchr(conversions, format[*pos]))
-		return (NONE);
+		return (NULL);
 	result = ft_substr(format, start, *pos - start);
 	return (result);
 }
@@ -73,10 +73,10 @@ static t_conversion	*eval_flags(const char *format, int *pos, va_list arg)
 	data->length = 0;
 	data->precision = -1;
 	data->flags = get_flags(format, pos);
-	if (data->flags == NONE)
+	if (data->flags == NULL)
 	{
 		free(data);
-		return (NONE);
+		return (NULL);
 	}
 	format_flags(data, arg);
 	return (data);
@@ -89,7 +89,7 @@ int	eval_conversion(const char *format, int *pos, va_list arg)
 
 	printed_chars = 0;
 	data = eval_flags(format, pos, arg);
-	if (data == NONE)
+	if (data == NULL)
 		return (-1);
 	printed_chars = ft_conversion(format, pos, arg, data);
 	free(data->flags);

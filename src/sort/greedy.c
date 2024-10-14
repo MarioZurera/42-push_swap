@@ -12,128 +12,114 @@
 
 #include "push_swap.h"
 
-void	check_rotations(int *ra, int *rb, int curr_ra, int curr_rb)
-{
-	if (*ra == -1 || *rb == -1)
-	{
-		*ra = curr_ra;
-		*rb = curr_rb;
-		return ;
-	}
-}
-
-static void	optimize_rotations(int *curr_ra, int *curr_rb, int len_a, int len_b)
-{
-	int	rot_a;
-	int	rot_b;
-	int	cost;
-
-	rot_a = *curr_ra;
-	rot_b = *curr_rb;
-	cost = ft_max(*curr_ra, *curr_rb);
-	if (len_a - *curr_ra + *curr_rb < cost)
-	{
-		rot_a = *curr_ra - len_a;
-		rot_b = *curr_rb;
-		cost = -rot_a + rot_b;
-	}
-	if (*curr_ra + len_b - *curr_rb < cost)
-	{
-		rot_a = *curr_ra;
-		rot_b = *curr_rb - len_b;
-		cost = rot_a - rot_b;
-	}
-	if (ft_max(len_a - *curr_ra, len_b - *curr_rb) < cost)
-	{
-		rot_a = *curr_ra - len_a;
-		rot_b = *curr_rb - len_b;
-	}
-	*curr_ra = rot_a;
-	*curr_rb = rot_b;
-}
-
 static void	min_movs_rotate(t_stack *stack_a, t_stack *stack_b)
 {
-	int	rotations_a;
 	int	rotations_b;
-	int	a_curr_rots;
-	int b_curr_rots;
+	int	b_curr_rots;
+	int	cost;
+	int	tmp_cost;
 
-	if (stack_b->size == 0)
-		return ;
-	rotations_a = -1;
-	rotations_b = -1;
-	a_curr_rots = -1;
-	while (++a_curr_rots < (int) stack_a->len)
+	rotations_b = 0;
+	b_curr_rots = -1;
+	cost = INT_MAX;
+	while (++b_curr_rots < (int) stack_b->len)
 	{
-		b_curr_rots = binary_search(stack_b->list, stack_b->len, stack_a->list[a_curr_rots]);
-		optimize_rotations(&a_curr_rots, &b_curr_rots, stack_a->len, stack_b->len);
-		check_rotations(&rotations_a, &rotations_b, a_curr_rots, b_curr_rots);
+		tmp_cost = get_rotations_cost(stack_a, stack_b, b_curr_rots);
+		if (tmp_cost < cost)
+		{
+			rotations_b = b_curr_rots;
+			cost = tmp_cost;
+		}
 	}
+	rotate(stack_a, stack_b, rotations_b, 1);
+}
+
+int	get_min_index(int *arr, int size)
+{
+	int	i;
+	int	min;
+	int	min_i;
+
+	i = -1;
+	min_i = 0;
+	min = INT_MAX;
+	while (++i < size)
+	{
+		if (arr[i] < min)
+		{
+			min = arr[i];
+			min_i = i;
+		}
+	}
+	return (min_i);
+}
+
+static int	get_subarray(const int *arr, int n, int *end)
+{
+	int	max_length;
+	int	current_length;
+	int	tmp_end;
+	int	i;
+
+	i = 0;
+	max_length = 1;
+	current_length = 1;
+	if (n == 0)
+		return (0);
+	while (i < 2 * n - 1)
+	{
+		if (arr[(i + 1) % n] > arr[i % n])
+		{
+			current_length++;
+			tmp_end = (i + 1) % n;
+		}
+		else
+			set_sublen(&current_length, &max_length, end, tmp_end);
+		i++;
+	}
+	set_sublen(&current_length, &max_length, end, tmp_end);
+	return (max_length);
+}
+
+void	push_to_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int	length;
+	int	start;
+	int	end;
+	int	*list;
+	int	len;
+
+	list = stack_a->list;
+	len = (int) stack_a->len;
+	length = get_subarray(list, len, &end);
+	start = (len + end - (length - 1)) % len;
+	if (end - start < 0 || start == 0)
+	{
+		rotate_a(stack_a, end + 1);
+		start = len - length;
+	}
+	while (start > 0)
+	{
+		start--;
+		pb(stack_a, stack_b, 1);
+	}
+	if (len == length)
+		return ;
+	rotate_a(stack_a, length);
+	while ((int) stack_a->len > length)
+		pb(stack_a, stack_b, 1);
 }
 
 void	greedy_algorithm(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->len > 4)
+	if (stack_a->len <= 5)
+		push_to_b_tiny(stack_a, stack_b);
+	else
+		push_to_b(stack_a, stack_b);
+	while (stack_b->len > 0)
 	{
 		min_movs_rotate(stack_a, stack_b);
-		pb(stack_a, stack_b, 1);
+		pa(stack_a, stack_b, 1);
 	}
+	rotate_a(stack_a, get_min_index(stack_a->list, stack_a->len));
 }
-
-/*static int	calculate_rotations(t_stack *stack_a, t_stack *stack_b, int index)
-{
-	int	index_a;
-	int	index_b;
-	int	curr_cost;
-
-	index_a = index;
-	index_b = binary_search(stack_b->list, stack_b->len, stack_a->list[index]);
-	curr_cost = ft_max(index_a, index_b);
-	curr_cost = ft_min(curr_cost, index_a + stack_b->len - index_b);
-	curr_cost = ft_min(curr_cost, stack_a->len - index_a + index_b);
-	curr_cost = ft_min(curr_cost, ft_max(stack_a->len - index_a, stack_b->len - index_b));
-	return (curr_cost);
-}
-
-static int	find_minimum_cost_and_rotate(t_stack *stack_a, t_stack *stack_b)
-{
-	int		i;
-	int		curr_cost;
-	int		min_cost;
-	int		min_index;
-
-	i = 0;
-	min_cost = -1;
-	min_index = -1;
-	while (i < (int) stack_a->len)
-	{
-		curr_cost = calculate_rotations(stack_a, stack_b, min_cost, i);
-		if (curr_cost >= 0)
-		{
-			min_cost = curr_cost;
-			min_index = i;
-		}
-		++i;
-		ft_printf("%d\t|\t%d\n", min_cost, min_index);
-	}
-	//rotate(stack_a, stack_b, min_index, 1);
-	return (min_cost);
-}
-
-int	greedy_algorithm(const t_stack *stack_a, const t_stack *stack_b)
-{
-	t_stack	*s_a_cpy;
-	t_stack	*s_b_cpy;
-	int		cost;
-
-	s_a_cpy = stack_a->copy(stack_a);
-	s_b_cpy = stack_b->copy(stack_b);
-	cost = 0;
-	while (s_a_cpy->len > 4)
-	{
-		cost += find_minimum_cost_and_rotate(s_a_cpy, s_b_cpy);
-		pb(s_a_cpy, s_b_cpy, 1);
-	}
-	return (cost);
-}*/

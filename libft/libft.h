@@ -27,9 +27,9 @@
 #  define FD_LIMIT 256
 # endif /* FD_LIMIT */
 
-# ifndef NONE
-#  define NONE NULL
-# endif /* NONE */
+// # ifndef NONE
+// #  define NONE NULL
+// # endif /* NONE */
 
 typedef enum e_bool
 {

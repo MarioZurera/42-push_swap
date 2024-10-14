@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pop_stack.c                                        :+:      :+:    :+:   */
+/*   greedy2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzurera- <mzurera-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 01:24:28 by mzurera-          #+#    #+#             */
-/*   Updated: 2024/08/03 20:20:42 by mzurera-         ###   ########.fr       */
+/*   Created: 2024/08/02 18:06:10 by mzurera-          #+#    #+#             */
+/*   Updated: 2024/08/03 14:37:27 by mzurera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack_private.h"
+#include "../../includes/push_swap.h"
 
-int	pop_stack(t_stack *stack)
+void	set_sublen(int *current_length, int *max_length, int *end, int tmp_end)
 {
-	int	n;
-	int	i;
-
-	if (stack->len == 0)
-		return (-1);
-	n = stack->list[0];
-	i = 0;
-	while (++i < (int) stack->len)
-		stack->list[i - 1] = stack->list[i];
-	stack->len--;
-	return (n);
+	if (*current_length > *max_length)
+	{
+		*max_length = *current_length;
+		*end = tmp_end;
+	}
+	*current_length = 1;
 }
 
-int	pop_back_stack(t_stack *stack)
+void	push_to_b_tiny(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack->len == 0)
-		return (-1);
-	return (stack->list[--stack->len]);
+	while (stack_a->len > 3)
+		pb(stack_a, stack_b, 1);
+	sort3(stack_a);
 }

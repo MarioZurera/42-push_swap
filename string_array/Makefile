@@ -14,7 +14,7 @@
 # COMMANDS #
 CC				= clang
 LIBC			= ar rcs
-CFLAGS			= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=address
 RM				= rm -f
 RM_DIR			= rm -rf
 
@@ -36,6 +36,7 @@ SRC_FILE	= create_string_array.c	\
 			  map_string_array.c	\
 			  every_string_array.c	\
 			  parse_string_array.c	\
+			  parse_string_array2.c	\
 			  free_i32_array.c		\
 			  ft_strdup.c
 

@@ -17,7 +17,7 @@ int	ft_strchr_i(const char *s, int c)
 	char	*res;
 
 	res = ft_strchr(s, c);
-	if (res == NONE)
+	if (res == NULL)
 		return (-1);
 	return ((size_t)((size_t) res - (size_t) s));
 }

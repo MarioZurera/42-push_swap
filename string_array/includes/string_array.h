@@ -14,6 +14,7 @@
 # define STRING_ARRAY_H
 
 # include <stdlib.h>
+# include <stdint.h>
 
 typedef struct s_str_array	t_str_array;
 typedef struct s_i32_array	t_i32_array;
